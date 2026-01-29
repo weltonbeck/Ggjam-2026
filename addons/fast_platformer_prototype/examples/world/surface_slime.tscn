@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1vo6v88vpebv"]
+
+[ext_resource type="Script" uid="uid://cuyalj0skxkpd" path="res://addons/fast_platformer_prototype/components/surface/surface.gd" id="1_niy8t"]
+[ext_resource type="Texture2D" uid="uid://ceyjvt8uyf3ru" path="res://addons/fast_platformer_prototype/assets/sprites/tiles_colors.png" id="2_fh0r0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hd8lr"]
+size = Vector2(8, 8)
+
+[node name="SurfaceSlime" type="StaticBody2D"]
+script = ExtResource("1_niy8t")
+surface_speed_multiply_factor = -0.8
+surface_friction_multiply_factor = 0.5
+surface_jump_multiply_stickiness = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hd8lr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fh0r0")
+hframes = 2
+vframes = 2
+frame = 2

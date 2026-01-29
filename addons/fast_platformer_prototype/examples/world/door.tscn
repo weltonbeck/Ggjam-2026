@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://b1quon2yjilvk"]
+
+[ext_resource type="Texture2D" uid="uid://cpmkfyq5l7yy4" path="res://addons/fast_platformer_prototype/assets/sprites/door.png" id="1_taubp"]
+[ext_resource type="PackedScene" uid="uid://blcy6xvvh2jei" path="res://addons/fast_prototype/components/trigger/game_state_trigger.tscn" id="2_b1sio"]
+[ext_resource type="PackedScene" uid="uid://d4a0l7f4vrrc6" path="res://addons/fast_prototype/components/trigger/event_trigger_animation.tscn" id="3_wjeyc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gt1ms"]
+size = Vector2(12, 32)
+
+[sub_resource type="Animation" id="Animation_b1sio"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_wjeyc"]
+resource_name = "closed"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_6rmh2"]
+resource_name = "open"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13, 14, 15, 16, 17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.79927474),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_6sxfh"]
+resource_name = "opened"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7v88x"]
+_data = {
+&"RESET": SubResource("Animation_b1sio"),
+&"closed": SubResource("Animation_wjeyc"),
+&"open": SubResource("Animation_6rmh2"),
+&"opened": SubResource("Animation_6sxfh")
+}
+
+[node name="Door" type="Node2D" unique_id=1022999747]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=783365902]
+z_index = 1
+texture = ExtResource("1_taubp")
+hframes = 9
+vframes = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=616903664]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=519913287]
+shape = SubResource("RectangleShape2D_gt1ms")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1409059473]
+libraries/ = SubResource("AnimationLibrary_7v88x")
+autoplay = &"closed"
+
+[node name="GameStateTrigger" parent="." unique_id=1105425245 instance=ExtResource("2_b1sio")]
+game_state_key = "collectables.key"
+
+[node name="EventTriggerAnimation" parent="." unique_id=1289673856 node_paths=PackedStringArray("animation_player") instance=ExtResource("3_wjeyc")]
+animation_player = NodePath("../AnimationPlayer")
+animation_name = "open"
+trigger_once = true
+target_signal_node = NodePath("../GameStateTrigger")
+target_signal = "triggered"

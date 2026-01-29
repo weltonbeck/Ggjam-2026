@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ljw2eetb8ujs"]
+
+[ext_resource type="Script" uid="uid://dcsufv57cr42n" path="res://addons/fast_prototype/components/camera/base_camera_2d_trigger.gd" id="1_j2r2c"]
+
+[node name="BaseCamera2DTrigger" type="Node2D"]
+script = ExtResource("1_j2r2c")

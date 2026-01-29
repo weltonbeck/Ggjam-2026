@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://blcy6xvvh2jei"]
+
+[ext_resource type="Script" uid="uid://b2q6jvflsk4rw" path="res://addons/fast_prototype/components/trigger/game_state_trigger.gd" id="1_17p71"]
+
+[node name="GameStateTrigger" type="Node2D" unique_id=1105425245]
+script = ExtResource("1_17p71")

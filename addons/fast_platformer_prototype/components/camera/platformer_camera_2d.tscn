@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://beb4fbily8rdh"]
+
+[ext_resource type="Script" uid="uid://1ho8lebyw7yu" path="res://addons/fast_platformer_prototype/components/camera/platformer_camera_2d.gd" id="1_mksaf"]
+
+[node name="PlatformerCamera2D" type="Camera2D"]
+script = ExtResource("1_mksaf")

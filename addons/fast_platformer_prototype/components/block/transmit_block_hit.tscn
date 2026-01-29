@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://o5k665ucxfmk"]
+
+[ext_resource type="Script" uid="uid://dvd5su1idlpfy" path="res://addons/fast_platformer_prototype/components/block/transmit_block_hit.gd" id="1_60adu"]
+
+[node name="TransmitHit" type="Node2D"]
+script = ExtResource("1_60adu")

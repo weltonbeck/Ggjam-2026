@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bude7jcvaw78s"]
+
+[ext_resource type="Script" uid="uid://dk6wn5fxbgdh" path="res://addons/fast_prototype/components/trigger/event_trigger.gd" id="1_5nsgn"]
+
+[node name="EventTrigger" type="Node2D"]
+z_index = 100
+script = ExtResource("1_5nsgn")

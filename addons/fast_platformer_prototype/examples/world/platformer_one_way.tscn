@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1wyajnhew762"]
+
+[ext_resource type="Script" uid="uid://ckc3oeiwa62i2" path="res://addons/fast_platformer_prototype/components/platformer/platformer.gd" id="1_iiuti"]
+[ext_resource type="Texture2D" uid="uid://8wiwlaabasbu" path="res://addons/fast_platformer_prototype/assets/sprites/platformer.png" id="1_ju20n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iiuti"]
+size = Vector2(16, 3.625)
+
+[node name="PlatformerOneWay" type="StaticBody2D"]
+script = ExtResource("1_iiuti")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ju20n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_iiuti")

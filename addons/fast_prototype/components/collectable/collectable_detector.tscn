@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://daatb7te5ogdy"]
+
+[ext_resource type="Script" uid="uid://day7r60ugl6fc" path="res://addons/fast_prototype/components/collectable/collectable_detector.gd" id="1_rp7mp"]
+
+[node name="CollectableDetector" type="Area2D"]
+script = ExtResource("1_rp7mp")

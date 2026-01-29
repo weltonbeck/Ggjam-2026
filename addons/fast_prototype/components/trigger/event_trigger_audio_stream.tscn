@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c45poswh2mcyh"]
+
+[ext_resource type="Script" uid="uid://clbvmgqjveg2i" path="res://addons/fast_prototype/components/trigger/event_trigger_audio_stream.gd" id="1_in2a5"]
+
+[node name="EventTriggerAudioStream" type="AudioStreamPlayer2D"]
+bus = &"SFX"
+script = ExtResource("1_in2a5")

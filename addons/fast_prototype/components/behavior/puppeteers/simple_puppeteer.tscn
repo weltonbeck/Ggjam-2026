@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2s54bdxa18wp"]
+
+[ext_resource type="Script" uid="uid://ieht4a141x3v" path="res://addons/fast_prototype/components/behavior/puppeteers/simple_puppeteer.gd" id="1_78yms"]
+
+[node name="SimplePuppeteer" type="Node"]
+script = ExtResource("1_78yms")

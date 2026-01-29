@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://blalno2t4f0gd"]
+
+[ext_resource type="Script" uid="uid://cj8l7cu4a5kn8" path="res://addons/fast_prototype/components/collectable/collectable.gd" id="1_gal0o"]
+[ext_resource type="AudioStream" uid="uid://bjh7ak5hlu21n" path="res://addons/fast_prototype/assets/sound/collectable.wav" id="3_yfw2x"]
+[ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="4_5p5wk"]
+[ext_resource type="PackedScene" uid="uid://cy41k0fvsvoh4" path="res://addons/fast_prototype/examples/world/collected_effect.tscn" id="5_7ij4n"]
+[ext_resource type="Texture2D" uid="uid://0sfwbgb06ofl" path="res://addons/fast_prototype/assets/sprites/key.png" id="5_gal0o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tagd3"]
+size = Vector2(19, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gal0o"]
+atlas = ExtResource("5_gal0o")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tagd3"]
+atlas = ExtResource("5_gal0o")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfw2x"]
+atlas = ExtResource("5_gal0o")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5p5wk"]
+atlas = ExtResource("5_gal0o")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ij4n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gal0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tagd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfw2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5p5wk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Key" type="Area2D" unique_id=1637739673 node_paths=PackedStringArray("audio_stream_player")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_gal0o")
+game_state_key = "collectables.key"
+audio_stream_player = NodePath("AudioCollected")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=153565110]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_tagd3")
+
+[node name="AudioCollected" type="AudioStreamPlayer2D" parent="." unique_id=1780749631]
+stream = ExtResource("3_yfw2x")
+bus = &"SFX"
+metadata/_edit_lock_ = true
+
+[node name="EventSpawnerCollectedEffect" parent="." unique_id=1066790235 instance=ExtResource("4_5p5wk")]
+packed_scene = ExtResource("5_7ij4n")
+target_signal_node = NodePath("..")
+target_signal = "collected"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=719633424]
+sprite_frames = SubResource("SpriteFrames_7ij4n")
+autoplay = "default"
+frame_progress = 0.23895994

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://o1746xdmj8gs"]
+
+[ext_resource type="Script" uid="uid://bu5wuk40dhk0y" path="res://addons/fast_prototype/components/identifier/enemy_itentifier.gd" id="1_vqtop"]
+
+[node name="EnemyItentifier" type="Node"]
+script = ExtResource("1_vqtop")

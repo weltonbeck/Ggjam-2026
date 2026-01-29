@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dichmnwad02li"]
+
+[ext_resource type="Script" uid="uid://bmcfl2k04iw5y" path="res://addons/fast_platformer_prototype/components/block/hit_block.gd" id="1_scqqj"]
+
+[node name="HitBlock" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_scqqj")

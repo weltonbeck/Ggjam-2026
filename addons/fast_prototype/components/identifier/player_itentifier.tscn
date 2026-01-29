@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxdlcyyyu02lh"]
+
+[ext_resource type="Script" uid="uid://dv0vk5gaoiolp" path="res://addons/fast_prototype/components/identifier/player_Identifier.gd" id="1_s5oey"]
+
+[node name="PlayerItentifier" type="Node"]
+script = ExtResource("1_s5oey")
