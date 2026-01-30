@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://oaurdx1osbc0"]
+
+[ext_resource type="Script" uid="uid://dp1w8hk1h5l8b" path="res://scenes/entities/drone.gd" id="1_n87ok"]
+[ext_resource type="PackedScene" uid="uid://bxpmwsl5sijpj" path="res://scenes/entities/drone_bullet.tscn" id="2_xcp44"]
+[ext_resource type="Texture2D" uid="uid://dqgv86e305eru" path="res://assets/sprites/drone.png" id="3_xcp44"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcp44"]
+atlas = ExtResource("3_xcp44")
+region = Rect2(0, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0gm0"]
+atlas = ExtResource("3_xcp44")
+region = Rect2(64, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxefg"]
+atlas = ExtResource("3_xcp44")
+region = Rect2(128, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khhpe"]
+atlas = ExtResource("3_xcp44")
+region = Rect2(192, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87gur"]
+atlas = ExtResource("3_xcp44")
+region = Rect2(256, 256, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tq5o"]
+atlas = ExtResource("3_xcp44")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vf5s"]
+atlas = ExtResource("3_xcp44")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in55t"]
+atlas = ExtResource("3_xcp44")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvif6"]
+atlas = ExtResource("3_xcp44")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h0gm0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcp44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0gm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxefg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khhpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87gur")
+}],
+"loop": false,
+"name": &"exploding",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tq5o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vf5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in55t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvif6")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 11.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n87ok"]
+radius = 25.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xcp44"]
+radius = 123.454445
+
+[node name="Drone" type="CharacterBody2D" unique_id=185204279]
+collision_layer = 4
+script = ExtResource("1_n87ok")
+bullet_scene = ExtResource("2_xcp44")
+
+[node name="Pivot" type="Node2D" parent="." unique_id=516597853]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="Pivot" unique_id=572654468]
+sprite_frames = SubResource("SpriteFrames_h0gm0")
+animation = &"exploding"
+autoplay = "flying"
+frame = 4
+frame_progress = 1.0
+
+[node name="Muzzle" type="Marker2D" parent="Pivot" unique_id=1971454740]
+position = Vector2(21, 23)
+
+[node name="RayCast2D" type="RayCast2D" parent="Pivot" unique_id=1972736399]
+position = Vector2(1, 5)
+target_position = Vector2(30, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1386730362]
+position = Vector2(0, 5)
+shape = SubResource("CircleShape2D_n87ok")
+
+[node name="HitArea" type="Area2D" parent="." unique_id=121032802]
+position = Vector2(0, 5)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea" unique_id=1598535942]
+shape = SubResource("CircleShape2D_xcp44")
+debug_color = Color(0.9268284, 3.7541984e-05, 0.6728599, 0.41960785)
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=864059053]
+
+[connection signal="body_entered" from="HitArea" to="." method="_on_hit_area_body_entered"]
+[connection signal="body_exited" from="HitArea" to="." method="_on_hit_area_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
