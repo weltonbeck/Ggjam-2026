@@ -40,8 +40,8 @@ func _on_state_next_transitions() -> void:
 
 # Função que define as condições para transições entre estados
 func _on_state_check_transitions(current_state_name:String, _current_state:Node) -> void:
-	if behavior and _is_hurted:
-		if state_machine.current_state not in ["hurt"]:
+	if behavior and not behavior.is_able_to_die() and _is_hurted:
+		if state_machine.current_state_name not in ["hurt"]:
 			transition_to_me()
 
 # Função chamada ao entrar neste estado

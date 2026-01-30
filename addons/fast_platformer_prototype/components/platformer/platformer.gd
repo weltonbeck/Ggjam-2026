@@ -1,4 +1,4 @@
-class_name PlatformerComponent
+class_name Platformer
 extends Node2D
 
 @export var one_way_platformer:bool = true ## é uma platforma one_way

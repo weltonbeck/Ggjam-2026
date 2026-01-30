@@ -1,12 +1,15 @@
 extends State
 
+@export_group("Intagible")
+@export var life_points: LifePoints
+
 # nome do state
 func _state_name() -> String:
 	return "dash"
 
 func _on_state_ready() -> void:
 	if behavior:
-		set_animation_tree_blend_param(animation_tree, animation_blend_param,behavior._last_horizontal_input, behavior.get_last_input())
+		set_animation_tree_blend_param(animation_tree, animation_tree_blend_param,behavior._last_horizontal_input, behavior.get_last_input())
 
 # Função chamada a cada frame de física (para lógicas dependentes da física)
 func _on_state_physics_process(delta : float) -> void:
@@ -14,6 +17,8 @@ func _on_state_physics_process(delta : float) -> void:
 		behavior.horizontal_movement(delta,0)
 		if behavior.has_method("handle_slope_slide"):
 			behavior.handle_slope_slide(delta, behavior.velocity.normalized().x)
+			if behavior.dash_apply_gravity:
+				behavior.handle_gravity(delta)
 		else:
 			behavior.vertical_movement(delta,0)
 		behavior.handle_dash(delta)
@@ -37,6 +42,8 @@ func _on_state_next_transitions() -> void:
 func _on_state_enter(_last_state_name: String) -> void:
 	if behavior:
 		behavior.do_dash()
+		if life_points:
+			life_points.set_intagible(behavior.dash_duration_time)
 
 
 func _on_state_exit() -> void:
@@ -45,4 +52,4 @@ func _on_state_exit() -> void:
 
 func _on_animation_process(_delta: float) -> void:
 	if behavior and animation_tree and behavior.velocity != Vector2.ZERO:
-		set_animation_tree_blend_param(animation_tree, animation_blend_param, behavior.velocity.normalized().x, behavior.velocity.normalized())
+		set_animation_tree_blend_param(animation_tree, animation_tree_blend_param, behavior.velocity.normalized().x, behavior.velocity.normalized())

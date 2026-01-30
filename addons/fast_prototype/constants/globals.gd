@@ -27,5 +27,6 @@ const GROUP_CAMERA = "Camera"
 
 const GROUP_PLATFORMER = "Platformer"
 const GROUP_THROUGH_PLATFORMER = "ThroughPlatformer"
+const GROUP_PUSHABLE_PLATFORMER = "PushablePlatformer"
 const GROUP_SURFACE = "Surface"
 const GROUP_BLOCK = "Block"

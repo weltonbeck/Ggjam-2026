@@ -20,7 +20,6 @@ var _vertical_input:float = 0 # Entrada de direção do movimento (-1,0,1)
 var _last_vertical_input:float = 0 # ultima direção dada
 var _last_input: Vector2 = Vector2.ZERO
 
-var _face_direction: Vector2 = Vector2.DOWN ## direçao que o personagem esta olhando
 
 signal face_direction_changed(face_direction:Vector2)
 
@@ -54,6 +53,8 @@ var _input_attack_pressed:bool = false ## controle do input de ataque pressionad
 var _attack_input_buffer_timer:float = 0 ## controla o timer do input buffer
 #endregion
 
+var _die:bool = false
+
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 
@@ -79,11 +80,14 @@ func do_move_and_slide() -> bool:
 	_last_velocity = velocity
 	return super.move_and_slide()
 
+func die() -> void:
+	_die = true
+	deactivate_inputs_control()
+	
+func is_able_to_die() -> bool:
+	return _die
+
 #region Movement
-func set_facing(_input:Vector2) -> void:
-	if _input != Vector2.ZERO and _face_direction != _input.normalized():
-		_face_direction = _input.normalized()
-		emit_signal("face_direction_changed", _face_direction)
 
 func set_horizontal_input(_input:float) -> void:
 	_horizontal_input = _input

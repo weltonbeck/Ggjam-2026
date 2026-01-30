@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cnh1puf212hhs"]
+
+[ext_resource type="Script" uid="uid://cjn6fuwv3fug2" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.gd" id="1_n70tl"]
+
+[node name="EventTriggerLevelSwap" type="Node2D" unique_id=1719558936]
+script = ExtResource("1_n70tl")

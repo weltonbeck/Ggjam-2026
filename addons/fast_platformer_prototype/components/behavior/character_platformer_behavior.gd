@@ -58,6 +58,13 @@ var _jump_multiply: float = 1 ## multiplicação do pulo para pular mais alto
 var _in_force_jump: bool = false ## caso esteja no pulo forçado
 #endregion
 
+#region dash Variables
+@export_group("Dash Params")
+@export var dash_apply_gravity: bool = true ## aplica a gravidade no dash
+@export var dash_four_directions: bool = false ## dash para cima e baixo tambem
+
+#endregion
+
 #region crouch Variables
 
 var _crouch_input_pressed: bool = false
@@ -68,14 +75,27 @@ var _crouch_input_pressed: bool = false
 
 ## raycasts para maior precisão
 @export_group("Raycasts")
+@export_subgroup("Bottom")
 @export var rc_bottom_left:RayCast2D ## raycast da baixo esquerda
 @export var rc_bottom_center:RayCast2D ## raycast da baixo centro
 @export var rc_bottom_right:RayCast2D ## raycast da baixo direita
+
+@export_subgroup("Top")
+@export var rc_top_left:RayCast2D ## raycast da cima esquerda
+@export var rc_top_center:RayCast2D ## raycast da cima centro
+@export var rc_top_right:RayCast2D ## raycast da cima direita
+
+
+@export_subgroup("Sides")
+@export var rc_left_center:RayCast2D ## raycast do centro esquerda
+@export var rc_right_center:RayCast2D ## raycast do centro direito
 
 #endregion
 
 var current_floor_platformer: Node2D ## minha plataforma no chão
 var current_floor_surface:Surface ## minha superficie
+
+var current_pushable_platformer: Pushable
 
 
 func _ready() -> void:
@@ -94,6 +114,10 @@ func do_move_and_slide() -> bool:
 	handle_platformer()
 	handle_surface()
 	return output
+
+
+func is_able_to_die() -> bool:
+	return _die or is_able_to_die_smashed()
 
 #region Movement
 func is_able_to_move() -> bool:
@@ -322,6 +346,9 @@ func reset_dashes() -> void:
 		current_dash = 0  # Volta o contador de dashes para 0
 
 func get_valid_directions() -> Array:
+	if dash_four_directions:
+		return super.get_valid_directions()
+	
 	var directions = [Vector2.ZERO]
 	directions.append(Vector2.LEFT)
 	directions.append(Vector2.RIGHT)
@@ -338,6 +365,9 @@ func handle_dash(delta:float, _force_direction: Vector2 = Vector2.ZERO) -> void:
 #endregion
 
 #region Crouch
+
+func is_crouch_input_pressed() -> bool:
+	return _crouch_input_pressed
 
 func is_able_to_crouch() -> bool:
 	return is_able_to_stop() and is_on_floor() and _crouch_input_pressed
@@ -429,6 +459,55 @@ func _handle_through_platform() -> void:
 
 #endregion
 
+#region Platformer Push / Pull
+
+func _get_pushable_platformer() -> Pushable:
+	var _pushable_platformer: Pushable
+	if (is_on_rc_side_left() and _last_horizontal_input < 0):
+		_pushable_platformer = _get_collider_from_raycast(rc_left_center,Globals.GROUP_PUSHABLE_PLATFORMER)
+	elif (is_on_rc_side_right() and _last_horizontal_input > 0):
+		_pushable_platformer = _get_collider_from_raycast(rc_right_center,Globals.GROUP_PUSHABLE_PLATFORMER)
+	
+	if _pushable_platformer is Pushable and is_instance_valid(_pushable_platformer):
+		return _pushable_platformer
+		
+	return null
+
+func is_able_to_push_wall() -> bool:
+	if current_pushable_platformer:
+		return true
+	
+	if is_on_wall() or (is_on_rc_side_left() and _last_horizontal_input < 0) or (is_on_rc_side_right() and _last_horizontal_input > 0):
+		return true
+	
+	return false
+
+func clear_current_pushable_platformer() -> void:
+	if current_pushable_platformer:
+		current_pushable_platformer.set_holder(null)
+	current_pushable_platformer = null
+
+func handle_pushable_platformer(_delta:float, _horizontal_velocity:float = 0) -> void:
+	if current_pushable_platformer:
+		current_pushable_platformer.push_process(_delta, _horizontal_velocity)
+	else:
+		current_pushable_platformer = _get_pushable_platformer()
+		if current_pushable_platformer:
+			current_pushable_platformer.set_holder(self)
+		
+#endregion
+
+#region Platformer Die
+
+func is_able_to_die_smashed() -> bool:
+	if is_on_floor() and (is_on_ceiling() or is_on_rc_ceiling()):
+		return true
+	elif rc_left_center and rc_right_center and rc_left_center.is_colliding() and rc_right_center.is_colliding():
+		return true
+	return false
+
+#endregion
+
 #region Raycast
 
 func is_on_rc_floor() -> bool:
@@ -450,6 +529,27 @@ func is_on_rc_floor_left_edge() -> bool:
 func is_on_rc_floor_right_edge() -> bool:
 	if rc_bottom_left and rc_bottom_right:
 		return rc_bottom_left.is_colliding() and not rc_bottom_right.is_colliding()
+	return false
+
+func is_on_rc_ceiling() -> bool:
+	if rc_top_left and rc_top_center and rc_top_right:
+		return rc_top_left.is_colliding() or rc_top_center.is_colliding() or rc_top_right.is_colliding()
+	else:
+		return false
+
+func is_on_rc_side() -> bool:
+	if rc_left_center and rc_right_center:
+		return rc_left_center.is_colliding() or rc_right_center.is_colliding()
+	return false
+
+func is_on_rc_side_left() -> bool:
+	if rc_left_center:
+		return rc_left_center.is_colliding()
+	return false
+
+func is_on_rc_side_right() -> bool:
+	if rc_right_center:
+		return rc_right_center.is_colliding()
 	return false
 
 #endregion

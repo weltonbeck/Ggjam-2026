@@ -76,8 +76,8 @@ func change_scene(new_scene: Variant, fade_audio: bool = true) -> void:
 	#   - o AudioManager existir
 	#   - a música realmente estiver tocando
 	# ============================================================
-	#if fade_audio and AudioManager and AudioManager.bgm_player.playing:
-		#await AudioManager.fade_out_bgm()
+	if fade_audio and AudioManager and AudioManager.bgm_player.playing:
+		AudioManager.fade_out_bgm()
 
 	# ============================================================
 	#  DESATIVA O CAMERA MANAGER DURANTE A TROCA
@@ -95,7 +95,7 @@ func change_scene(new_scene: Variant, fade_audio: bool = true) -> void:
 	#  Troca a cena de fato
 	# ============================================================
 	if packed and packed is PackedScene:
-		get_tree().change_scene_to_packed(packed)
+		get_tree().call_deferred("change_scene_to_packed", packed)
 	else:
 		push_error("SceneManager: Falha ao carregar a cena: " + str(new_scene))
 

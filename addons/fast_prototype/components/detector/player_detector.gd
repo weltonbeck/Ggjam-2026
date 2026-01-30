@@ -20,7 +20,7 @@ var _player_inside: Node2D = null
 
 
 ## Emitido quando o player entra na área de detecção.
-signal player_detected(player: Node2D)
+signal player_entered(player: Node2D)
 
 ## Emitido quando o player sai da área de detecção.
 signal player_exited(player: Node2D)
@@ -79,7 +79,7 @@ func set_collision_layers() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if trigger_once and _triggered:
 		return
-
+		
 	# Validação dupla:
 	# - Pertencer ao grupo de player (flexível)
 	# - Ser do tipo CharacterBehavior (segurança de tipo)
@@ -87,7 +87,7 @@ func _on_body_entered(body: Node2D) -> void:
 		_player_inside = body
 		_triggered = true
 
-		player_detected.emit(body)
+		player_entered.emit(body)
 
 
 ## Callback disparado quando um corpo sai da área.

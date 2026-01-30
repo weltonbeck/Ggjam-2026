@@ -210,10 +210,16 @@ func set_animation_tree_blend_param(_animation_tree:AnimationTree, _param:String
 func animation_tree_travel(_animation_tree:AnimationTree, _animation_name: String, _playback_path: String = "parameters/playback") -> void:
 	if  not _animation_tree or not is_instance_valid(_animation_tree) or not _animation_tree.is_inside_tree() or not _animation_name or not _playback_path or  not _animation_tree.get(_playback_path): 
 		return
+		
+	
 	var state_machine: AnimationNodeStateMachine = _animation_tree.tree_root
 	var playback_control  = _animation_tree.get(_playback_path)
 	var current_animation = playback_control .get_current_node()
 	
+	# Se já estiver na animação → restart
+	if current_animation == _animation_name:
+		return
+		
 	if state_machine.has_transition(current_animation, _animation_name):
 		# Acessa o parâmetro usando a sintaxe de ponto e chama travel().
 		playback_control.travel(_animation_name)
@@ -221,6 +227,10 @@ func animation_tree_travel(_animation_tree:AnimationTree, _animation_name: Strin
 #animation sprite travel
 func animated_sprite_travel(_animated_sprite:AnimatedSprite2D, _animation_name: String) -> void:
 	if not _animated_sprite or not is_instance_valid(_animated_sprite) or not _animation_name or not _animated_sprite.sprite_frames.has_animation(_animation_name):
+		return
+	
+	# Se já estiver tocando essa animação, sai fora
+	if _animated_sprite.animation == _animation_name and _animated_sprite.is_playing():
 		return
 	
 	_animated_sprite.play(_animation_name)

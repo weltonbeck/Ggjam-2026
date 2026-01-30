@@ -26,7 +26,11 @@ func _on_state_next_transitions() -> void:
 			transition_to("dash")
 		elif state_machine.has_state("attack") and behavior.is_able_to_attack():
 			transition_to("attack")
-		elif state_machine.has_state("run") and behavior.is_able_to_move():
-			transition_to("run")
 		elif behavior.is_able_to_crouch():
 			transition_to("crouch")
+		elif state_machine.has_state("push_walk") and behavior.is_able_to_move() and behavior.has_method("is_able_to_push_wall") and behavior.is_able_to_push_wall():
+			transition_to("push_walk")
+		elif state_machine.has_state("push_idle") and  behavior.is_able_to_stop() and behavior.has_method("is_able_to_push_wall") and behavior.is_able_to_push_wall():
+			transition_to("push_idle")
+		elif state_machine.has_state("run") and behavior.is_able_to_move():
+			transition_to("run")

@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://c7wyk7duohm5j"]
+
+[ext_resource type="Script" uid="uid://blorus258bjwg" path="res://addons/fast_platformer_prototype/components/behavior/character_platformer_behavior.gd" id="1_jq0pf"]
+[ext_resource type="PackedScene" uid="uid://o1746xdmj8gs" path="res://addons/fast_prototype/components/identifier/enemy_itentifier.tscn" id="1_rrp0o"]
+[ext_resource type="Texture2D" uid="uid://cdag1xc0n1234" path="res://assets/sprites/enemy.png" id="2_jq0pf"]
+[ext_resource type="PackedScene" uid="uid://dttd4r7nmj42p" path="res://addons/fast_prototype/components/state_machine/state_machine.tscn" id="3_68dbu"]
+[ext_resource type="Script" uid="uid://cdmwl0okbdamc" path="res://addons/fast_prototype/components/state_machine/states/idle.gd" id="4_f71c5"]
+[ext_resource type="PackedScene" uid="uid://ch2oxk6peli3s" path="res://addons/fast_prototype/components/damage/hurt_box.tscn" id="5_adrne"]
+[ext_resource type="Script" uid="uid://bu31gawm8506x" path="res://addons/fast_prototype/components/state_machine/states/hurt.gd" id="6_68dbu"]
+[ext_resource type="PackedScene" uid="uid://dl4mjjsj8v0eo" path="res://addons/fast_prototype/components/damage/hit_box.tscn" id="6_o0e0p"]
+[ext_resource type="PackedScene" uid="uid://l5d7y0pghaqc" path="res://addons/fast_prototype/components/damage/life_points.tscn" id="7_f71c5"]
+[ext_resource type="AudioStream" uid="uid://ccdop10uba1ki" path="res://addons/fast_prototype/assets/sound/hurt.wav" id="10_adrne"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfp2m"]
+atlas = ExtResource("2_jq0pf")
+region = Rect2(0, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ku5l"]
+atlas = ExtResource("2_jq0pf")
+region = Rect2(96, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hijg5"]
+atlas = ExtResource("2_jq0pf")
+region = Rect2(192, 0, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae2me"]
+atlas = ExtResource("2_jq0pf")
+region = Rect2(288, 0, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fp52m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfp2m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ku5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hijg5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ae2me")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rrp0o"]
+radius = 36.0
+height = 88.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5aq6"]
+size = Vector2(61, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_od71d"]
+size = Vector2(61, 88)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1910708734]
+collision_layer = 8
+script = ExtResource("1_jq0pf")
+
+[node name="EnemyItentifier" parent="." unique_id=1986323858 node_paths=PackedStringArray("target") instance=ExtResource("1_rrp0o")]
+target = NodePath("..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2071569626]
+position = Vector2(0, -48)
+sprite_frames = SubResource("SpriteFrames_fp52m")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.07851289
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=991281659]
+position = Vector2(1, -45)
+shape = SubResource("CapsuleShape2D_rrp0o")
+
+[node name="StateMachine" parent="." unique_id=682641134 node_paths=PackedStringArray("behavior", "initial_state") instance=ExtResource("3_68dbu")]
+behavior = NodePath("..")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1986181938]
+script = ExtResource("4_f71c5")
+
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=329661146 node_paths=PackedStringArray("life_points", "audio_stream_player")]
+script = ExtResource("6_68dbu")
+life_points = NodePath("../../LifePoints")
+push_force = 350.0
+time_interval = 0.5
+audio_stream_player = NodePath("../../AudioHurt")
+
+[node name="LifePoints" parent="." unique_id=879321014 instance=ExtResource("7_f71c5")]
+
+[node name="HurtBox" parent="." unique_id=1297779625 node_paths=PackedStringArray("life_points") instance=ExtResource("5_adrne")]
+collision_layer = 8
+collision_mask = 0
+life_points = NodePath("../LifePoints")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1012388423]
+position = Vector2(5.5, -44)
+shape = SubResource("RectangleShape2D_s5aq6")
+debug_color = Color(0.12025965, 0.7059674, 0.27291515, 0.41960785)
+
+[node name="HitBox" parent="." unique_id=701527412 instance=ExtResource("6_o0e0p")]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1599392011]
+position = Vector2(5.5, -44)
+shape = SubResource("RectangleShape2D_od71d")
+debug_color = Color(0.95132166, 2.695322e-06, 0.5666602, 0.41960785)
+
+[node name="AudioHurt" type="AudioStreamPlayer2D" parent="." unique_id=968696238]
+stream = ExtResource("10_adrne")
+bus = &"SFX"
+metadata/_edit_lock_ = true

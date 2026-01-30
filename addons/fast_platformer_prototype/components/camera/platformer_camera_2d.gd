@@ -15,8 +15,6 @@ extends BaseCamera2D
 
 @export var target: Node2D ## Objeto a ser seguido pela câmera.
 
-@export var sub_viewport_container: SubViewportContainer 
-
 # --- Movimento horizontal ---
 @export_group("horizontal Moviment")
 

@@ -4,6 +4,8 @@ extends Node
 @export var target:CharacterBody2D
 
 func _ready() -> void:
+	if not target and get_parent() is CharacterBehavior:
+		target = get_parent()
 	set_identifier()
 
 func set_identifier() -> void:
