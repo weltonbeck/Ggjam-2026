@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://oaurdx1osbc0"]
+[gd_scene format=3 uid="uid://jss4lpahhqai"]
 
-[ext_resource type="Script" uid="uid://dp1w8hk1h5l8b" path="res://scenes/entities/drone.gd" id="1_n87ok"]
+[ext_resource type="Script" path="res://scenes/entities/drone.gd" id="1_n87ok"]
 [ext_resource type="PackedScene" uid="uid://bxpmwsl5sijpj" path="res://scenes/entities/drone_bullet.tscn" id="2_xcp44"]
 [ext_resource type="Texture2D" uid="uid://dqgv86e305eru" path="res://assets/sprites/drone.png" id="3_xcp44"]
 
@@ -87,7 +87,7 @@ radius = 25.0
 radius = 123.454445
 
 [node name="Drone" type="CharacterBody2D" unique_id=185204279]
-collision_layer = 4
+collision_layer = 8
 script = ExtResource("1_n87ok")
 bullet_scene = ExtResource("2_xcp44")
 

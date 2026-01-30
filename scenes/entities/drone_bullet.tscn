@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bxpmwsl5sijpj"]
 
-[ext_resource type="Script" uid="uid://bdr3gkemx7cgx" path="res://scenes/entities/drone_bullet.gd" id="1_ntueu"]
+[ext_resource type="Script" path="res://scenes/entities/drone_bullet.gd" id="1_ntueu"]
+[ext_resource type="Script" uid="uid://mgclbo6rctbp" path="res://addons/fast_prototype/components/damage/hit_box.gd" id="2_fuljh"]
 
 [sub_resource type="Gradient" id="Gradient_xv64c"]
 offsets = PackedFloat32Array(0.4759036, 1)
@@ -17,16 +18,22 @@ fill_to = Vector2(0.5, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_fuljh"]
 
 [node name="DroneBullet" type="Area2D" unique_id=1586197576]
-collision_layer = 4
+collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_ntueu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2117191150]
 texture = SubResource("GradientTexture2D_ntueu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1379457160]
-shape = SubResource("CircleShape2D_fuljh")
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1606789102]
+
+[node name="HitBox" type="Area2D" parent="." unique_id=763547930]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_fuljh")
+metadata/_custom_type_script = "uid://mgclbo6rctbp"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1379457160]
+shape = SubResource("CircleShape2D_fuljh")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
