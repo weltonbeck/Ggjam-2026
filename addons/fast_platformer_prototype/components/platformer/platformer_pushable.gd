@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Pushable
 
 @export var gravity: float= 900.0
+@export var min_velocity:float = 20.0
 @export var friction: float= 100.0
 
 var holder: CharacterPlaformerBehavior = null
@@ -18,6 +19,8 @@ func _physics_process(delta):
 		move_and_slide()
 
 func push_process(delta, horizontal_velocity:float = 0):
+	if abs(horizontal_velocity) < min_velocity:
+		horizontal_velocity = sign(horizontal_velocity) * min_velocity
 	velocity.x = horizontal_velocity
 	_apply_gravity(delta)
 	move_and_slide()

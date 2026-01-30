@@ -6,6 +6,8 @@ var active_inputs: bool = true
 
 var _last_velocity: Vector2 = Vector2.ZERO
 
+var current_delta: float = 0
+
 #region Movement variables
 @export_group("Movement Params")
 @export var max_speed: float = 60.0 ## Velocidade máxima de movimento do personagem (em pixels por segundo).
@@ -65,6 +67,7 @@ func _process(delta: float) -> void:
 	_process_attack(delta)
 
 func _physics_process(_delta: float) -> void:
+	current_delta = _delta
 	pass
 
 func activate_inputs_control() -> void:

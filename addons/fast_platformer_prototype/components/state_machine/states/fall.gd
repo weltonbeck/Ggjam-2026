@@ -10,7 +10,7 @@ func _on_state_physics_process(delta : float) -> void:
 		behavior.horizontal_movement(delta)
 		behavior.handle_gravity(delta)
 		behavior.do_move_and_slide()
-		
+
 
 # Função que define as condições para transições entre estados
 func _on_state_next_transitions() -> void:

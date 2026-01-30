@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://dwn20x4lnn3ea" path="res://addons/fast_platformer_prototype/components/state_machine/states/jump.gd" id="7_j7xw4"]
 [ext_resource type="Script" uid="uid://btgnvuxcexoro" path="res://addons/fast_platformer_prototype/components/state_machine/states/fall.gd" id="8_medo6"]
 [ext_resource type="Script" uid="uid://cifisxri804er" path="res://addons/fast_prototype/components/state_machine/states/attack.gd" id="9_dvt2f"]
-[ext_resource type="Script" uid="uid://th1j2n8cyc0m" path="res://addons/fast_platformer_prototype/components/state_machine/states/fall_on_edge.gd" id="9_lx1p0"]
 [ext_resource type="Script" uid="uid://cgbqduvpofp5h" path="res://addons/fast_platformer_prototype/components/state_machine/states/crouch.gd" id="10_puber"]
 [ext_resource type="Script" uid="uid://bu31gawm8506x" path="res://addons/fast_prototype/components/state_machine/states/hurt.gd" id="11_cocv6"]
 [ext_resource type="PackedScene" uid="uid://ch2oxk6peli3s" path="res://addons/fast_prototype/components/damage/hurt_box.tscn" id="12_3nwpd"]
@@ -810,8 +809,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lnswd"]
-radius = 17.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5tg2x"]
+radius = 16.5
 height = 82.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7xw4"]
@@ -954,7 +953,7 @@ states/dash/node = SubResource("AnimationNodeBlendSpace1D_go4pq")
 states/dash/position = Vector2(565, 100)
 transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_nmfrm"), "base", "crouch", SubResource("AnimationNodeStateMachineTransition_38dyx"), "crouch", "base", SubResource("AnimationNodeStateMachineTransition_736hv"), "base", "dash", SubResource("AnimationNodeStateMachineTransition_l567y"), "dash", "base", SubResource("AnimationNodeStateMachineTransition_cwqw8")]
 
-[node name="Character" type="CharacterBody2D" unique_id=1061758820 node_paths=PackedStringArray("rc_bottom_left", "rc_bottom_center", "rc_bottom_right", "rc_top_left", "rc_top_center", "rc_top_right", "rc_left_center", "rc_right_center")]
+[node name="Character" type="CharacterBody2D" unique_id=1061758820 node_paths=PackedStringArray("rc_bottom_left", "rc_bottom_center", "rc_bottom_right", "rc_top_left", "rc_top_center", "rc_top_right", "rc_left_top", "rc_left_center", "rc_left_bottom", "rc_right_top", "rc_right_center", "rc_right_bottom")]
 collision_layer = 2
 script = ExtResource("1_nmfrm")
 air_max_speed = 250.0
@@ -969,8 +968,12 @@ rc_bottom_right = NodePath("Raycasts/Bottom/RayCastBottomRight")
 rc_top_left = NodePath("Raycasts/Top/RayCastTopLeft")
 rc_top_center = NodePath("Raycasts/Top/RayCastTopCenter")
 rc_top_right = NodePath("Raycasts/Top/RayCastTopRight")
-rc_left_center = NodePath("Raycasts/Sides/RayCastLeftCenter")
-rc_right_center = NodePath("Raycasts/Sides/RayCastRightCenter")
+rc_left_top = NodePath("Raycasts/Left/RayCastLeftTop")
+rc_left_center = NodePath("Raycasts/Left/RayCastLeftCenter")
+rc_left_bottom = NodePath("Raycasts/Left/RayCastLeftBottom")
+rc_right_top = NodePath("Raycasts/Right/RayCastRightTop")
+rc_right_center = NodePath("Raycasts/Right/RayCastRightCenter")
+rc_right_bottom = NodePath("Raycasts/Right/RayCastRightBottom")
 max_speed = 200.0
 acceleration = 800.0
 deceleration = 800.0
@@ -983,7 +986,6 @@ dash_cooldown_time = 0.1
 target = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=84611841]
-z_index = 1
 position = Vector2(0, -48)
 sprite_frames = SubResource("SpriteFrames_8skks")
 animation = &"action"
@@ -991,8 +993,8 @@ autoplay = "idle"
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=42998860]
-position = Vector2(0, -41)
-shape = SubResource("CapsuleShape2D_lnswd")
+position = Vector2(-0.5, -41)
+shape = SubResource("CapsuleShape2D_5tg2x")
 
 [node name="StateMachine" parent="." unique_id=145017064 node_paths=PackedStringArray("behavior", "initial_state") instance=ExtResource("4_puber")]
 behavior = NodePath("..")
@@ -1027,12 +1029,6 @@ animation_tree = NodePath("../../AnimationTree")
 animation_tree_animation_name = "base"
 animated_sprite = NodePath("../../AnimatedSprite2D")
 animated_sprite_animation_name = "fall"
-
-[node name="FallOnEdge" type="Node" parent="StateMachine" unique_id=1140661099 node_paths=PackedStringArray("animated_sprite")]
-script = ExtResource("9_lx1p0")
-edge_fall_velocity = 100.0
-animated_sprite = NodePath("../../AnimatedSprite2D")
-animated_sprite_animation_name = "idle"
 
 [node name="Attack" type="Node" parent="StateMachine" unique_id=365023456 node_paths=PackedStringArray("hit_box", "animation_tree", "animated_sprite", "audio_stream_player")]
 script = ExtResource("9_dvt2f")
@@ -1134,26 +1130,44 @@ target_position = Vector2(0, -3)
 [node name="Bottom" type="Node2D" parent="Raycasts" unique_id=348982190]
 
 [node name="RayCastBottomLeft" type="RayCast2D" parent="Raycasts/Bottom" unique_id=409359935]
-position = Vector2(-16, -1)
-target_position = Vector2(0, 3)
+position = Vector2(-16, -8)
+target_position = Vector2(0, 9)
 
 [node name="RayCastBottomCenter" type="RayCast2D" parent="Raycasts/Bottom" unique_id=333296986]
-position = Vector2(0, -1)
+position = Vector2(0, -2)
 target_position = Vector2(0, 3)
 
 [node name="RayCastBottomRight" type="RayCast2D" parent="Raycasts/Bottom" unique_id=1862998913]
-position = Vector2(16, -1)
-target_position = Vector2(0, 3)
+position = Vector2(16, -8)
+target_position = Vector2(0, 9)
 
-[node name="Sides" type="Node2D" parent="Raycasts" unique_id=143021064]
+[node name="Left" type="Node2D" parent="Raycasts" unique_id=143021064]
 
-[node name="RayCastLeftCenter" type="RayCast2D" parent="Raycasts/Sides" unique_id=1392306443]
+[node name="RayCastLeftTop" type="RayCast2D" parent="Raycasts/Left" unique_id=1401883889]
+position = Vector2(-10, -80)
+target_position = Vector2(-9, 0)
+
+[node name="RayCastLeftCenter" type="RayCast2D" parent="Raycasts/Left" unique_id=1392306443]
 position = Vector2(-15, -41)
 target_position = Vector2(-4, 0)
 
-[node name="RayCastRightCenter" type="RayCast2D" parent="Raycasts/Sides" unique_id=1806443475]
+[node name="RayCastLeftBottom" type="RayCast2D" parent="Raycasts/Left" unique_id=2130506718]
+position = Vector2(-10, -2)
+target_position = Vector2(-9, 0)
+
+[node name="Right" type="Node2D" parent="Raycasts" unique_id=1381217159]
+
+[node name="RayCastRightTop" type="RayCast2D" parent="Raycasts/Right" unique_id=1117152851]
+position = Vector2(10, -80)
+target_position = Vector2(9, 0)
+
+[node name="RayCastRightCenter" type="RayCast2D" parent="Raycasts/Right" unique_id=1806443475]
 position = Vector2(15, -41)
 target_position = Vector2(4, 0)
+
+[node name="RayCastRightBottom" type="RayCast2D" parent="Raycasts/Right" unique_id=1869446567]
+position = Vector2(10, -2)
+target_position = Vector2(9, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=14655666]
 libraries/ = SubResource("AnimationLibrary_cocv6")

@@ -27,6 +27,8 @@ func _on_state_next_transitions() -> void:
 func _on_state_check_transitions(current_state_name:String, _current_state:Node) -> void:
 	if behavior:
 		if current_state_name in ["idle"] and is_on_edge() and behavior.is_able_to_stop():
+			#print("is_on_wall ",behavior.is_on_wall() )
+			#print("is_on_rc_wall ",behavior.is_on_rc_wall() )
 			if not behavior.is_on_rc_floor_center() and not behavior.is_in_slope():
 				transition_to_me()
 
@@ -36,7 +38,12 @@ func _on_state_enter(_last_state_name:String) -> void:
 
 func is_on_edge() -> bool:
 	if behavior:
-		return behavior.is_on_rc_floor_right_edge() or behavior.is_on_rc_floor_left_edge()
+		var _is_on_rc_floor_right_edge = behavior.is_on_rc_floor_right_edge() 
+		var _is_on_rc_floor_left_edge =  behavior.is_on_rc_floor_left_edge()
+		print("_is_on_rc_floor_right_edge",_is_on_rc_floor_right_edge) 
+		print("_is_on_rc_floor_left_edge",_is_on_rc_floor_left_edge) 
+		
+		return _is_on_rc_floor_right_edge != _is_on_rc_floor_left_edge and (_is_on_rc_floor_right_edge or _is_on_rc_floor_left_edge)
 	return false
 
 func get_edge_direction() -> int:

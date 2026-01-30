@@ -86,9 +86,15 @@ var _crouch_input_pressed: bool = false
 @export var rc_top_right:RayCast2D ## raycast da cima direita
 
 
-@export_subgroup("Sides")
-@export var rc_left_center:RayCast2D ## raycast do centro esquerda
-@export var rc_right_center:RayCast2D ## raycast do centro direito
+@export_subgroup("Left")
+@export var rc_left_top:RayCast2D ## raycast da esquerda cima
+@export var rc_left_center:RayCast2D ## raycast da esquerda centro
+@export var rc_left_bottom:RayCast2D ## raycast da esquerda baixo
+
+@export_subgroup("Right")
+@export var rc_right_top:RayCast2D ## raycast da direita cima
+@export var rc_right_center:RayCast2D ## raycast da direita centro
+@export var rc_right_bottom:RayCast2D ## raycast da direita baixo
 
 #endregion
 
@@ -110,6 +116,7 @@ func _physics_process(delta: float) -> void:
 
 func do_move_and_slide() -> bool:
 	_handle_through_platform()
+	handle_pushable_platformer(current_delta)
 	var output = super.do_move_and_slide()
 	handle_platformer()
 	handle_surface()
@@ -208,9 +215,13 @@ func handle_slope_slide(_delta:float, horizontal_input: float = _horizontal_inpu
 #region gravity
 
 func is_able_to_fall() -> bool:
+	if rc_bottom_center:
+		return not is_on_rc_floor() and not is_on_floor() and velocity.y > 0
 	return not is_on_floor() and velocity.y > 0
 
 func is_able_to_land() -> bool:
+	if rc_bottom_center:
+		return is_on_rc_floor() and is_on_floor() and velocity.y == 0
 	return is_on_floor() and velocity.y == 0
 
 func is_able_to_super_land(_min_force_fall:float = 0) -> bool:
@@ -231,7 +242,8 @@ func is_able_to_fast_fall() -> bool:
 	return is_able_to_fall() and _fast_fall_input_pressed
 
 func handle_gravity(delta:float, _extra_multiplier:float = 1) -> void:
-	if not is_on_floor():
+	
+	if not (rc_bottom_center and is_on_rc_floor()) and not is_on_floor():	
 		# Modificadores de gravidade: hang time e fast fall
 		var gravity_multiplier = 1.0
 		# HANG TIME:
@@ -255,6 +267,7 @@ func handle_gravity(delta:float, _extra_multiplier:float = 1) -> void:
 		# gravidade maxima
 		if velocity.y > max_gravity:
 			velocity.y = max_gravity
+	
 
 func reset_velocity_y() -> void:
 	velocity.y = 0
@@ -319,7 +332,7 @@ func do_jump() -> void:
 		_jump_input_buffer_timer = 0
 
 func _process_jump(delta:float) -> void:
-	if is_on_floor() and velocity.y >= 0:
+	if (is_on_floor() or (is_on_rc_wall_left() and is_on_rc_wall_right()) ) and velocity.y >= 0:
 		# pisar no chão reseta o pulo
 		reset_jumps()
 		#controla o coyote time
@@ -402,26 +415,58 @@ func _get_floor_collider(group_name: String = "") -> Node2D:
 
 	return null
 
-func get_floor_platformer() -> Node2D:
+func get_floor_platformer(_group:String = Globals.GROUP_PLATFORMER) -> Node2D:
 	var collider = null
 	if rc_bottom_center:
-		collider = _get_collider_from_raycast(rc_bottom_center,Globals.GROUP_PLATFORMER)
+		collider = _get_collider_from_raycast(rc_bottom_center,_group)
+		if not collider and rc_bottom_left:
+			collider = _get_collider_from_raycast(rc_bottom_left,_group)
+		if not collider and rc_bottom_right:
+			collider = _get_collider_from_raycast(rc_bottom_right,_group)
 	else:
-		collider = _get_floor_collider(Globals.GROUP_PLATFORMER)
+		collider = _get_floor_collider(_group)
 		
 	return collider
 	
 func get_floor_surface() -> Surface:
-	var collider
-	if rc_bottom_center:
-		collider = _get_collider_from_raycast(rc_bottom_center,Globals.GROUP_SURFACE)
-	else:
-		collider = _get_floor_collider(Globals.GROUP_SURFACE)
+	var collider = get_floor_platformer(Globals.GROUP_SURFACE)
 	
 	if not collider is Surface :
 		return null
 	
 	return collider as Surface
+
+func get_wall_platformer(_force:bool = false, _group:String = Globals.GROUP_PLATFORMER) -> Node2D:
+	var _wall_platformer: Node2D
+	if (is_on_rc_wall_left() and (_force or _last_velocity.x < 0)):
+		_wall_platformer = _get_collider_from_raycast(rc_left_center,_group)
+		if not _wall_platformer:
+			_wall_platformer = _get_collider_from_raycast(rc_left_top,_group)
+		if not _wall_platformer:
+			_wall_platformer = _get_collider_from_raycast(rc_left_bottom,_group)
+			
+	elif (is_on_rc_wall_right() and (_force or _last_velocity.x > 0)):
+		_wall_platformer = _get_collider_from_raycast(rc_right_center,_group)
+		if not _wall_platformer:
+			_wall_platformer = _get_collider_from_raycast(rc_right_top,_group)
+		if not _wall_platformer:
+			_wall_platformer = _get_collider_from_raycast(rc_right_bottom,_group)
+			
+		
+	if is_instance_valid(_wall_platformer):
+		return _wall_platformer
+		
+	return null
+
+func get_ceiling_platformer(_group:String = Globals.GROUP_PLATFORMER) -> Node2D:
+	var collider = null
+	if rc_top_center:
+		collider = _get_collider_from_raycast(rc_top_center,_group)
+	if not collider and rc_top_left:
+		collider = _get_collider_from_raycast(rc_top_left,_group)
+	if not collider and rc_top_right:
+		collider = _get_collider_from_raycast(rc_top_right,_group)
+	return collider
 
 func is_on_through_platform() -> bool:
 	var floor_collision = get_floor_platformer()
@@ -457,19 +502,23 @@ func _handle_through_platform() -> void:
 		var through_platform_down_force = 2 # força de descida da plataforma
 		global_position.y += through_platform_down_force
 
+func is_able_to_die_smashed() -> bool:
+	if is_on_floor() and (is_on_ceiling() or is_on_rc_ceiling()):
+		if not get_ceiling_platformer(Globals.GROUP_THROUGH_PLATFORMER):
+			return true
+	elif rc_left_center and rc_right_center and is_on_rc_wall_left() and is_on_rc_wall_right():
+		if not get_wall_pushable_platformer(true) and not get_wall_platformer(true,Globals.GROUP_THROUGH_PLATFORMER):
+			return true
+	return false
+
 #endregion
 
 #region Platformer Push / Pull
 
-func _get_pushable_platformer() -> Pushable:
-	var _pushable_platformer: Pushable
-	if (is_on_rc_side_left() and _last_horizontal_input < 0):
-		_pushable_platformer = _get_collider_from_raycast(rc_left_center,Globals.GROUP_PUSHABLE_PLATFORMER)
-	elif (is_on_rc_side_right() and _last_horizontal_input > 0):
-		_pushable_platformer = _get_collider_from_raycast(rc_right_center,Globals.GROUP_PUSHABLE_PLATFORMER)
-	
-	if _pushable_platformer is Pushable and is_instance_valid(_pushable_platformer):
-		return _pushable_platformer
+func get_wall_pushable_platformer(_force:bool = false) -> Pushable:
+	var _wall_platformer = get_wall_platformer(_force,Globals.GROUP_PUSHABLE_PLATFORMER)
+	if _wall_platformer is Pushable:
+		return _wall_platformer
 		
 	return null
 
@@ -477,7 +526,7 @@ func is_able_to_push_wall() -> bool:
 	if current_pushable_platformer:
 		return true
 	
-	if is_on_wall() or (is_on_rc_side_left() and _last_horizontal_input < 0) or (is_on_rc_side_right() and _last_horizontal_input > 0):
+	if is_on_wall() or (is_on_rc_wall_left() and _last_horizontal_input < 0) or (is_on_rc_wall_right() and _last_horizontal_input > 0):
 		return true
 	
 	return false
@@ -487,26 +536,29 @@ func clear_current_pushable_platformer() -> void:
 		current_pushable_platformer.set_holder(null)
 	current_pushable_platformer = null
 
-func handle_pushable_platformer(_delta:float, _horizontal_velocity:float = 0) -> void:
+func handle_pushable_platformer(_delta:float, _velocity:Vector2 = velocity) -> void:
 	if current_pushable_platformer:
-		current_pushable_platformer.push_process(_delta, _horizontal_velocity)
+		if _velocity.y != 0 or (is_pushable_platformer_on_right() and _velocity.x < 0) or (is_pushable_platformer_on_left() and _velocity.x > 0):
+			clear_current_pushable_platformer()
+		else:
+			current_pushable_platformer.push_process(_delta, _velocity.x)
 	else:
-		current_pushable_platformer = _get_pushable_platformer()
+		current_pushable_platformer = get_wall_pushable_platformer()
 		if current_pushable_platformer:
 			current_pushable_platformer.set_holder(self)
-		
-#endregion
 
-#region Platformer Die
-
-func is_able_to_die_smashed() -> bool:
-	if is_on_floor() and (is_on_ceiling() or is_on_rc_ceiling()):
-		return true
-	elif rc_left_center and rc_right_center and rc_left_center.is_colliding() and rc_right_center.is_colliding():
-		return true
+func is_pushable_platformer_on_right() -> bool:
+	if current_pushable_platformer:
+		return global_position.x < current_pushable_platformer.global_position.x
+	return false
+	
+func is_pushable_platformer_on_left() -> bool:
+	if current_pushable_platformer:
+		return global_position.x > current_pushable_platformer.global_position.x
 	return false
 
 #endregion
+
 
 #region Raycast
 
@@ -520,7 +572,7 @@ func is_on_rc_floor_center() -> bool:
 	if rc_bottom_center:
 		return rc_bottom_center.is_colliding()
 	return false
-
+	
 func is_on_rc_floor_left_edge() -> bool:
 	if rc_bottom_left and rc_bottom_right:
 		return rc_bottom_right.is_colliding() and not rc_bottom_left.is_colliding()
@@ -537,19 +589,17 @@ func is_on_rc_ceiling() -> bool:
 	else:
 		return false
 
-func is_on_rc_side() -> bool:
-	if rc_left_center and rc_right_center:
-		return rc_left_center.is_colliding() or rc_right_center.is_colliding()
+func is_on_rc_wall() -> bool:
+	return is_on_rc_wall_left() or is_on_rc_wall_right()
+
+func is_on_rc_wall_left() -> bool:
+	if rc_left_top and rc_left_center and rc_left_bottom:
+		return rc_left_top.is_colliding() or rc_left_center.is_colliding() or rc_left_bottom.is_colliding()
 	return false
 
-func is_on_rc_side_left() -> bool:
-	if rc_left_center:
-		return rc_left_center.is_colliding()
-	return false
-
-func is_on_rc_side_right() -> bool:
-	if rc_right_center:
-		return rc_right_center.is_colliding()
+func is_on_rc_wall_right() -> bool:
+	if rc_right_top and rc_right_center and rc_right_bottom:
+		return rc_right_top.is_colliding() or rc_right_center.is_colliding() or rc_right_bottom.is_colliding()
 	return false
 
 #endregion

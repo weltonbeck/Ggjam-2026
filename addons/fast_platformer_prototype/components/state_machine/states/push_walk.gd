@@ -15,8 +15,6 @@ func _on_state_physics_process(delta : float) -> void:
 		else:
 			behavior.vertical_movement(delta, behavior._vertical_input, behavior.max_speed / 2)
 		
-		behavior.handle_pushable_platformer(delta, behavior.velocity.x)
-		
 		behavior.do_move_and_slide()
 		
 	
@@ -39,6 +37,6 @@ func _on_state_next_transitions() -> void:
 			transition_to("idle")
 		
 
-func _on_state_exit() -> void:
-	if behavior:
-		behavior.clear_current_pushable_platformer()
+#func _on_state_exit() -> void:
+	#if behavior:
+		#behavior.clear_current_pushable_platformer()
