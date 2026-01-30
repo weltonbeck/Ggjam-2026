@@ -17,6 +17,8 @@ fill_to = Vector2(0.5, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_fuljh"]
 
 [node name="DroneBullet" type="Area2D" unique_id=1586197576]
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_ntueu")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2117191150]
@@ -24,3 +26,7 @@ texture = SubResource("GradientTexture2D_ntueu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1379457160]
 shape = SubResource("CircleShape2D_fuljh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1606789102]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
