@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Global GameJjam 2026"
-run/main_scene="uid://c1nshof3u2g2g"
+run/main_scene="uid://cv1dtkuu78hsg"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 run/max_fps=60
 config/icon="res://icon.svg"

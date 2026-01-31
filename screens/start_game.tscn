@@ -1,23 +1,11 @@
-[gd_scene format=3 uid="uid://c1nshof3u2g2g"]
+[gd_scene format=3 uid="uid://cv1dtkuu78hsg"]
 
 [ext_resource type="Texture2D" uid="uid://c31h8dphdi8vx" path="res://assets/bg/bg_start_game.png" id="1_2fln3"]
 [ext_resource type="PackedScene" uid="uid://jxgo3ycppel2" path="res://addons/fast_prototype/components/audio/music_trigger.tscn" id="1_ot8ai"]
 [ext_resource type="AudioStream" uid="uid://ckiplvw5qgk46" path="res://assets/audio/teste.mp3" id="2_d662f"]
 [ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="4_g1lfl"]
 
-[node name="StartGame" type="Node2D" unique_id=1527396183]
-
-[node name="MusicTrigger" parent="." unique_id=572786924 instance=ExtResource("1_ot8ai")]
-music_stream = ExtResource("2_d662f")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1362468688]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=531402106]
-offset_right = 800.0
-offset_bottom = 450.0
-texture = ExtResource("1_2fln3")
-
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=1107782685]
+[node name="StartGame" type="Control" unique_id=2015797123]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,23 +13,72 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/Control" unique_id=1087003625]
+[node name="Background" type="TextureRect" parent="." unique_id=531402106]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -46.5
-offset_top = -15.5
-offset_right = 46.5
-offset_bottom = 15.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_2fln3")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1326066418]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 60
+
+[node name="Layout" type="VBoxContainer" parent="MarginContainer" unique_id=2113399443]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Layout" unique_id=675076880]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+color = Color(1, 1, 1, 0.4117647)
+
+[node name="Label" type="Label" parent="MarginContainer/Layout/ColorRect" unique_id=179396297]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0.016666412, 1)
+theme_override_font_sizes/font_size = 45
+text = "Mask Heist"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Layout" unique_id=757827469]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Menu" type="VBoxContainer" parent="MarginContainer/Layout/CenterContainer" unique_id=1749510051]
+layout_mode = 2
+alignment = 1
+
+[node name="NewGameButton" type="Button" parent="MarginContainer/Layout/CenterContainer/Menu" unique_id=1087003625]
+layout_mode = 2
 text = "New Game"
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/Layout/CenterContainer/Menu" unique_id=1314433645]
+layout_mode = 2
+text = "Options"
+
+[node name="CredtisButton" type="Button" parent="MarginContainer/Layout/CenterContainer/Menu" unique_id=1762244328]
+layout_mode = 2
+text = "Credits"
+
+[node name="MusicTrigger" parent="." unique_id=572786924 instance=ExtResource("1_ot8ai")]
+music_stream = ExtResource("2_d662f")
 
 [node name="EventTriggerLevelSwap" parent="." unique_id=1719558936 instance=ExtResource("4_g1lfl")]
 position = Vector2(1050, 223)
-packed_scene_path = "uid://b16l1mn7qrsae"
-target_signal_node = NodePath("../CanvasLayer/Control/Button")
+target_signal_node = NodePath("../MarginContainer/Layout/CenterContainer/Menu/NewGameButton")
 target_signal = "pressed"

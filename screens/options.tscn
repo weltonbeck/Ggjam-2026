@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://clqurpspip3yu"]
+
+[ext_resource type="Script" uid="uid://dt7y3ndi6y4to" path="res://screens/options.gd" id="1_6t2dq"]
+
+[node name="Options" type="Control" unique_id=1049783179]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6t2dq")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=890373868]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 60
+
+[node name="Layout" type="VBoxContainer" parent="MarginContainer" unique_id=298353637]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/Layout" unique_id=761090635]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Options"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer00" type="Control" parent="MarginContainer/Layout" unique_id=1299644110]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Menu" type="VBoxContainer" parent="MarginContainer/Layout" unique_id=1971540024]
+layout_mode = 2
+alignment = 1
+
+[node name="MusicLabel" type="Label" parent="MarginContainer/Layout/Menu" unique_id=1657960992]
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/Layout/Menu" unique_id=1347073907]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="SoundLabel" type="Label" parent="MarginContainer/Layout/Menu" unique_id=1565622422]
+layout_mode = 2
+text = "Sound Effects"
+horizontal_alignment = 1
+
+[node name="SoundSlider" type="HSlider" parent="MarginContainer/Layout/Menu" unique_id=1726752363]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+
+[node name="Spacer01" type="Control" parent="MarginContainer/Layout" unique_id=1808476873]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SaveButton" type="Button" parent="MarginContainer/Layout" unique_id=449262438]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Save"
+
+[connection signal="value_changed" from="MarginContainer/Layout/Menu/MusicSlider" to="." method="_on_value_changed" binds= ["BGM"]]
+[connection signal="value_changed" from="MarginContainer/Layout/Menu/SoundSlider" to="." method="_on_value_changed" binds= ["SFX"]]
