@@ -1,23 +1,24 @@
 [gd_scene format=3 uid="uid://b16l1mn7qrsae"]
 
 [ext_resource type="PackedScene" uid="uid://jxgo3ycppel2" path="res://addons/fast_prototype/components/audio/music_trigger.tscn" id="1_xm56c"]
-[ext_resource type="AudioStream" uid="uid://ckiplvw5qgk46" path="res://assets/audio/teste.mp3" id="2_sy3u5"]
+[ext_resource type="Texture2D" uid="uid://bs7d131sbxu2s" path="res://assets/sprites/mask1-1.png" id="2_mgq3i"]
+[ext_resource type="Texture2D" uid="uid://spygup48v4xa" path="res://assets/sprites/mask1-4.png" id="3_lr0vd"]
 [ext_resource type="Texture2D" uid="uid://j53fgsij3qnm" path="res://assets/bg/bg_level_select.png" id="3_xm56c"]
 [ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="4_7513o"]
+[ext_resource type="Texture2D" uid="uid://btfta3ho4b7lp" path="res://assets/sprites/mask1-2.png" id="4_fojku"]
+[ext_resource type="Texture2D" uid="uid://d1w3m1mm1vspb" path="res://assets/sprites/mask2-1.png" id="5_oucb2"]
+[ext_resource type="Texture2D" uid="uid://mvn3hm2nmrgd" path="res://assets/sprites/mask2-4.png" id="6_ere4d"]
+[ext_resource type="Texture2D" uid="uid://bl7u31sdybooh" path="res://assets/sprites/mask2-2.png" id="7_r3sbp"]
+[ext_resource type="Texture2D" uid="uid://cehq4bm6474ev" path="res://assets/sprites/mask4-1.png" id="8_722js"]
+[ext_resource type="Texture2D" uid="uid://bx6dmbjcelep4" path="res://assets/sprites/mask4-4.png" id="9_r3naq"]
+[ext_resource type="Texture2D" uid="uid://muvepsul54dk" path="res://assets/sprites/mask4-2.png" id="10_140kh"]
+[ext_resource type="Texture2D" uid="uid://b4treli1pb3gk" path="res://assets/sprites/mask3-1.png" id="11_p3svd"]
+[ext_resource type="Texture2D" uid="uid://8l4wo3g4tndq" path="res://assets/sprites/mask3-4.png" id="12_yrbbt"]
+[ext_resource type="Texture2D" uid="uid://dva6epryguial" path="res://assets/sprites/mask3-2.png" id="13_467ju"]
+[ext_resource type="AudioStream" uid="uid://djibx7ejvgbre" path="res://assets/musics/Spy Glass.mp3" id="15_lr0vd"]
+[ext_resource type="Texture2D" uid="uid://ddvmdj5ltf0o2" path="res://assets/sprites/choose_your_mask.png" id="17_lr0vd"]
 
-[node name="SelectLevel" type="Node2D" unique_id=1527396183]
-
-[node name="MusicTrigger" parent="." unique_id=572786924 instance=ExtResource("1_xm56c")]
-music_stream = ExtResource("2_sy3u5")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1362468688]
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=531402106]
-offset_right = 800.0
-offset_bottom = 450.0
-texture = ExtResource("3_xm56c")
-
-[node name="Control" type="Control" parent="CanvasLayer" unique_id=1107782685]
+[node name="SelectLevel" type="Control" unique_id=799755882]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,44 +26,87 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="CanvasLayer/Control" unique_id=1087003625]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -303.0
-offset_top = -72.0
-offset_right = -210.0
-offset_bottom = -41.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "mask 1"
+[node name="Background" type="TextureRect" parent="." unique_id=531402106]
+layout_mode = 0
+offset_right = 800.0
+offset_bottom = 450.0
+texture = ExtResource("3_xm56c")
 
-[node name="Button2" type="Button" parent="CanvasLayer/Control" unique_id=1362922030]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -156.0
-offset_top = -51.0
-offset_right = -63.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "mask 2
-"
+[node name="MaskButton1" type="TextureButton" parent="." unique_id=267026041]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 0
+offset_left = 95.0
+offset_top = 123.0
+offset_right = 195.0
+offset_bottom = 223.0
+texture_normal = ExtResource("2_mgq3i")
+texture_pressed = ExtResource("3_lr0vd")
+texture_hover = ExtResource("4_fojku")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MaskButton2" type="TextureButton" parent="." unique_id=2099545670]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+offset_left = 241.0
+offset_top = 148.0
+offset_right = 321.0
+offset_bottom = 228.0
+texture_normal = ExtResource("5_oucb2")
+texture_pressed = ExtResource("6_ere4d")
+texture_hover = ExtResource("7_r3sbp")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MaskButton3" type="TextureButton" parent="." unique_id=1053504975]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 0
+offset_left = 341.0
+offset_top = 209.0
+offset_right = 431.0
+offset_bottom = 299.0
+texture_normal = ExtResource("8_722js")
+texture_pressed = ExtResource("9_r3naq")
+texture_hover = ExtResource("10_140kh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MaskButton4" type="TextureButton" parent="." unique_id=440280629]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 444.0
+offset_top = 108.0
+offset_right = 544.0
+offset_bottom = 208.0
+texture_normal = ExtResource("11_p3svd")
+texture_pressed = ExtResource("12_yrbbt")
+texture_hover = ExtResource("13_467ju")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="MusicTrigger" parent="." unique_id=572786924 instance=ExtResource("1_xm56c")]
+music_stream = ExtResource("15_lr0vd")
 
 [node name="EventTriggerLevelSwap" parent="." unique_id=1719558936 instance=ExtResource("4_7513o")]
 position = Vector2(1050, 223)
 packed_scene_path = "uid://22v0mhq3mryc"
-target_signal_node = NodePath("../CanvasLayer/Control/Button")
+target_signal_node = NodePath("../MaskButton1")
 target_signal = "pressed"
 
 [node name="EventTriggerLevelSwap2" parent="." unique_id=1429015595 instance=ExtResource("4_7513o")]
 position = Vector2(1050, 223)
-target_signal_node = NodePath("../CanvasLayer/Control/Button2")
 target_signal = "pressed"
+
+[node name="ChooseYourMask" type="TextureRect" parent="." unique_id=705727736]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -93.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("17_lr0vd")
+expand_mode = 1
+stretch_mode = 5
