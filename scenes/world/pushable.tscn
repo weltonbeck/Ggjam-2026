@@ -1,21 +1,17 @@
 [gd_scene format=3 uid="uid://cek766ct4nnfu"]
 
 [ext_resource type="Script" uid="uid://dy7kqda47wsiv" path="res://addons/fast_platformer_prototype/components/platformer/platformer_pushable.gd" id="1_1k4yd"]
-[ext_resource type="Texture2D" uid="uid://cttdectormixh" path="res://addons/fast_prototype/assets/sprites/enemy.png" id="1_qhg11"]
+[ext_resource type="Texture2D" uid="uid://daha0ddtwxjqq" path="res://assets/sprites/pushbox.png" id="2_1k4yd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fptyg"]
-size = Vector2(60, 115)
+size = Vector2(62, 128)
 
 [node name="Pushable" type="CharacterBody2D" unique_id=984363278]
 collision_mask = 11
 script = ExtResource("1_1k4yd")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=660840199]
-position = Vector2(1.4999979, -20)
-scale = Vector2(6.0625, 9.846)
-texture = ExtResource("1_qhg11")
-hframes = 2
-vframes = 2
+texture = ExtResource("2_1k4yd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1840597693]
 shape = SubResource("RectangleShape2D_fptyg")

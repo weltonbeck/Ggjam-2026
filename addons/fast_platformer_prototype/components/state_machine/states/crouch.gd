@@ -17,6 +17,8 @@ func _on_state_next_transitions() -> void:
 	if behavior:
 		if state_machine.has_state("fall") and behavior.has_method("is_able_to_fall") and behavior.is_able_to_fall():
 			transition_to("fall")
+		elif state_machine.has_state("dash") and behavior.is_able_to_dash():
+			transition_to("dash")
 		elif state_machine.has_state("run") and behavior.is_able_to_move() and not behavior.is_crouch_input_pressed():
 			transition_to("run")
 		elif not behavior.is_able_to_crouch() and behavior.is_able_to_stop():

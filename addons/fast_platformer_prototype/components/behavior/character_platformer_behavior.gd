@@ -67,6 +67,12 @@ var _in_force_jump: bool = false ## caso esteja no pulo forçado
 
 #region crouch Variables
 
+#region crouch Variables
+
+var _pull_input_pressed: bool = false
+
+#endregion
+
 var _crouch_input_pressed: bool = false
 
 #endregion
@@ -503,13 +509,46 @@ func _handle_through_platform() -> void:
 		global_position.y += through_platform_down_force
 
 func is_able_to_die_smashed() -> bool:
-	if is_on_floor() and (is_on_ceiling() or is_on_rc_ceiling()):
-		if not get_ceiling_platformer(Globals.GROUP_THROUGH_PLATFORMER):
-			return true
-	elif rc_left_center and rc_right_center and is_on_rc_wall_left() and is_on_rc_wall_right():
-		if not get_wall_pushable_platformer(true) and not get_wall_platformer(true,Globals.GROUP_THROUGH_PLATFORMER):
-			return true
+	return is_able_to_die_smashed_up_down() or is_able_to_die_smashed_left_right()
+
+func is_able_to_die_smashed_up_down() -> bool:
+	var space: float = 2.0
+
+	var up: bool= test_move(global_transform, Vector2(0, -space))
+	var down: bool= test_move(global_transform, Vector2(0, space))
+	
+	if up and down:
+		#if (is_on_floor() or is_on_rc_floor()) and (is_on_ceiling() or is_on_rc_ceiling()):
+			#if not get_ceiling_platformer(Globals.GROUP_THROUGH_PLATFORMER):
+				#return true
+		return true
 	return false
+			
+func is_able_to_die_smashed_left_right() -> bool:
+	#elif rc_left_center and rc_right_center and is_on_rc_wall_left() and is_on_rc_wall_right():
+	#if rc_left_center and rc_right_center and rc_left_center.is_colliding() and rc_right_center.is_colliding():
+		#if not current_pushable_platformer and not get_wall_pushable_platformer(true) and not get_wall_platformer(true,Globals.GROUP_THROUGH_PLATFORMER):
+			#print("esmagado lado")
+			#print("current_pushable_platformer ", current_pushable_platformer)
+			#print("get_wall_pushable_platformer ", get_wall_pushable_platformer(true))
+			#
+			#return true
+	#return false
+	var space: float= 2.0
+
+	var left: bool= test_move(global_transform, Vector2(-space, 0))
+	var right: bool= test_move(global_transform, Vector2(space, 0))
+	
+	if left and right:
+		if rc_left_center and rc_right_center and rc_left_center.is_colliding() and rc_right_center.is_colliding():
+			if not current_pushable_platformer and not get_wall_pushable_platformer(true) and not get_wall_platformer(true,Globals.GROUP_THROUGH_PLATFORMER):
+				return true
+	return false
+
+func test_move_left_right(space: float= 2.0) -> bool:
+	var left: bool= test_move(global_transform, Vector2(-space, 0))
+	var right: bool= test_move(global_transform, Vector2(space, 0))
+	return left and right
 
 #endregion
 
@@ -531,6 +570,21 @@ func is_able_to_push_wall() -> bool:
 	
 	return false
 
+func is_pull_input_pressed() -> bool:
+	return _pull_input_pressed
+
+func set_pull_input_pressed(button_value: bool) -> void:
+	_pull_input_pressed = button_value
+
+func is_able_to_pull_wall() -> bool:
+	if is_pull_input_pressed() and current_pushable_platformer and ((is_pushable_platformer_on_right() and _last_horizontal_input < 0) or (is_pushable_platformer_on_left() and _last_horizontal_input > 0)):
+		return true
+		
+	if is_pull_input_pressed() and ((is_on_rc_wall_left() and _last_horizontal_input > 0) or (is_on_rc_wall_right() and _last_horizontal_input < 0)):
+		return true
+	
+	return false
+
 func clear_current_pushable_platformer() -> void:
 	if current_pushable_platformer:
 		current_pushable_platformer.set_holder(null)
@@ -538,8 +592,11 @@ func clear_current_pushable_platformer() -> void:
 
 func handle_pushable_platformer(_delta:float, _velocity:Vector2 = velocity) -> void:
 	if current_pushable_platformer:
-		if _velocity.y != 0 or (is_pushable_platformer_on_right() and _velocity.x < 0) or (is_pushable_platformer_on_left() and _velocity.x > 0):
-			clear_current_pushable_platformer()
+		if _velocity.y != 0 or (is_pushable_platformer_on_right() and _velocity.x < 0 and not is_pull_input_pressed()) or (is_pushable_platformer_on_left() and _velocity.x > 0 and not is_pull_input_pressed()):
+			await get_tree().physics_frame
+			var _pushable_platformer = get_wall_pushable_platformer()
+			if not _pushable_platformer or _pushable_platformer != current_pushable_platformer:
+				clear_current_pushable_platformer()
 		else:
 			current_pushable_platformer.push_process(_delta, _velocity.x)
 	else:

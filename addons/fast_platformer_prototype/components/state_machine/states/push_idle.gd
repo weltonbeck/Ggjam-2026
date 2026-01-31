@@ -25,12 +25,14 @@ func _on_state_next_transitions() -> void:
 			transition_to("fall")
 		elif state_machine.has_state("dash") and behavior.is_able_to_dash():
 			transition_to("dash")
-		elif state_machine.has_state("attack") and behavior.is_able_to_attack():
+		elif state_machine.has_state("pull_walk") and behavior.is_able_to_move() and behavior.has_method("is_able_to_pull_wall") and behavior.is_able_to_pull_wall():
+			transition_to("pull_walk")
+		elif state_machine.has_state("push_walk") and behavior.is_able_to_move() and behavior.has_method("is_able_to_push_wall") and behavior.is_able_to_push_wall():
+			transition_to("push_walk")
+		elif state_machine.has_state("attack") and behavior.is_able_to_attack() and not behavior.current_pushable_platformer:
 			transition_to("attack")
 		elif behavior.is_able_to_crouch():
 			transition_to("crouch")
-		elif state_machine.has_state("push_walk") and behavior.is_able_to_move() and behavior.has_method("is_able_to_push_wall") and behavior.is_able_to_push_wall():
-			transition_to("push_walk")
 		elif state_machine.has_state("run") and behavior.is_able_to_move():
 			transition_to("run")
 		elif state_machine.has_state("idle") and behavior.has_method("is_able_to_push_wall") and not behavior.is_able_to_push_wall():

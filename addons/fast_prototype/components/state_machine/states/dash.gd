@@ -34,6 +34,8 @@ func _on_state_next_transitions() -> void:
 			transition_to("double_jump")
 		elif behavior.is_able_to_stop_dash() and state_machine.has_state("fall") and behavior.has_method("is_able_to_fall") and behavior.is_able_to_fall():
 			transition_to("fall")
+		elif behavior.is_able_to_stop_dash() and behavior.is_able_to_crouch():
+			transition_to("crouch")
 		elif behavior.is_able_to_stop_dash() and state_machine.has_state("run") and behavior.is_able_to_move():
 			transition_to("run")
 		elif behavior.is_able_to_stop_dash() and state_machine.has_state("idle") and behavior.is_able_to_stop():

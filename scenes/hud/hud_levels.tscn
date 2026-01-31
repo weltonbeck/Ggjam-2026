@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://bqy6ipvqys88m"]
+
+[ext_resource type="Script" uid="uid://dy5mfa6itpv3w" path="res://scenes/hud/hud_levels.gd" id="1_c51cd"]
+[ext_resource type="Texture2D" uid="uid://b6bif1p4td8bl" path="res://assets/hud/hud-heart-off.png" id="2_5xr8p"]
+[ext_resource type="Texture2D" uid="uid://buapwpdo212r" path="res://assets/hud/hud-heart-on.png" id="2_c51cd"]
+[ext_resource type="Texture2D" uid="uid://drss8acvp788w" path="res://assets/hud/hud_coin.png" id="4_ct4qh"]
+[ext_resource type="FontFile" uid="uid://dfbpb37lcno6i" path="res://assets/font/Kenney Pixel.ttf" id="5_i2ere"]
+
+[node name="HudLevels" type="CanvasLayer" unique_id=249876708 node_paths=PackedStringArray("heart_node", "hearts_container", "coins_label")]
+layer = 2
+script = ExtResource("1_c51cd")
+heart_texture_black = ExtResource("2_5xr8p")
+heart_texture_red = ExtResource("2_c51cd")
+heart_node = NodePath("Control/MarginContainer/HBoxContainer/Hearts/TextureHeart")
+hearts_container = NodePath("Control/MarginContainer/HBoxContainer/Hearts")
+coins_label = NodePath("Control/MarginContainer/HBoxContainer/HBoxContainer/CoinLabel")
+
+[node name="Control" type="Control" parent="." unique_id=2111866424]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1722437422]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer" unique_id=1358841513]
+layout_mode = 2
+
+[node name="Hearts" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=432241283]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureHeart" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/Hearts" unique_id=87237562]
+layout_mode = 2
+texture = ExtResource("2_c51cd")
+stretch_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer" unique_id=2101936460]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="TextureCoin" type="TextureRect" parent="Control/MarginContainer/HBoxContainer/HBoxContainer" unique_id=305488704]
+layout_mode = 2
+texture = ExtResource("4_ct4qh")
+stretch_mode = 2
+
+[node name="CoinLabel" type="Label" parent="Control/MarginContainer/HBoxContainer/HBoxContainer" unique_id=891980844]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("5_i2ere")
+theme_override_font_sizes/font_size = 50
+text = "0000"

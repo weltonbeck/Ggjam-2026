@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://l5d7y0pghaqc"]
+[gd_scene format=3 uid="uid://l5d7y0pghaqc"]
 
 [ext_resource type="Script" uid="uid://bwu00du4kkway" path="res://addons/fast_prototype/components/damage/life_points.gd" id="1_m3vn5"]
 
-[node name="LifePoints" type="Node"]
+[node name="LifePoints" type="Node" unique_id=655648246]
 script = ExtResource("1_m3vn5")

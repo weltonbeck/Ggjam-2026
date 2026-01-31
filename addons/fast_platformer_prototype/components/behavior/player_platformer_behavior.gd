@@ -19,6 +19,7 @@ class_name PlayerPlaformerBehavior
 @export var key_dash: StringName = &"key_button_b"
 @export var key_fast_fall:  StringName = &"key_down"
 @export var key_crouch:  StringName = &"key_down"
+@export var key_pull:  StringName = &"key_button_x"
 @export var key_attack:  StringName = &"key_button_x"
 
 
@@ -74,6 +75,9 @@ func _process_inputs(delta: float) -> void:
 	
 	if key_crouch and InputMap.has_action(key_crouch):
 		set_crouch_input_pressed(Input.is_action_pressed(key_crouch))
+	
+	if key_pull and InputMap.has_action(key_pull):
+		set_pull_input_pressed(Input.is_action_just_pressed(key_attack) or Input.is_action_pressed(key_pull))
 	
 	if key_attack and InputMap.has_action(key_attack):
 		set_attack_input(Input.is_action_just_pressed(key_attack))

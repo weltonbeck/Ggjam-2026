@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Pushable
 
 @export var gravity: float= 900.0
-@export var min_velocity:float = 20.0
+@export var min_velocity:float = 5.0
 @export var friction: float= 100.0
 
 var holder: CharacterPlaformerBehavior = null
