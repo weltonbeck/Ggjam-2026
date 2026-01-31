@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://jxgo3ycppel2" path="res://addons/fast_prototype/components/audio/music_trigger.tscn" id="1_ot8ai"]
 [ext_resource type="AudioStream" uid="uid://ckiplvw5qgk46" path="res://assets/audio/teste.mp3" id="2_d662f"]
 [ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="4_g1lfl"]
-[ext_resource type="PackedScene" uid="uid://b16l1mn7qrsae" path="res://screens/select_level.tscn" id="5_siwfh"]
 
 [node name="StartGame" type="Node2D" unique_id=1527396183]
 
@@ -43,6 +42,6 @@ text = "New Game"
 
 [node name="EventTriggerLevelSwap" parent="." unique_id=1719558936 instance=ExtResource("4_g1lfl")]
 position = Vector2(1050, 223)
-packed_scene = ExtResource("5_siwfh")
+packed_scene_path = "uid://b16l1mn7qrsae"
 target_signal_node = NodePath("../CanvasLayer/Control/Button")
 target_signal = "pressed"

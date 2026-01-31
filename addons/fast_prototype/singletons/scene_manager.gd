@@ -134,4 +134,12 @@ func reload_current_scene() -> void:
 #   - arquivo realmente existir
 # ================================================================
 func _validate_scene_path(path: String) -> bool:
-	return path != "" and path.ends_with(".tscn") and FileAccess.file_exists(path)
+	if path.is_empty():
+		return false
+
+	# aceita uid:// e res://
+	if not (path.begins_with("res://") or path.begins_with("uid://")):
+		return false
+
+	# verifica se é uma cena carregável
+	return ResourceLoader.exists(path, "PackedScene")
