@@ -374,7 +374,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rrp0o"]
-radius = 36.0
+radius = 18.0
 height = 88.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s5aq6"]
@@ -397,6 +397,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox:active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ln8om"]
 resource_name = "base_left"
@@ -412,6 +436,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox:active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_14tws"]
@@ -429,12 +477,118 @@ tracks/0/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox:active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtBox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_fkgbd"]
+resource_name = "die_left"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HurtBox:monitorable")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HitBox:active")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_owm76"]
+resource_name = "die_right"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox:active")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HurtBox:monitorable")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_owm76"]
 _data = {
 &"RESET": SubResource("Animation_r3y0q"),
 &"base_left": SubResource("Animation_ln8om"),
-&"base_right": SubResource("Animation_14tws")
+&"base_right": SubResource("Animation_14tws"),
+&"die_left": SubResource("Animation_fkgbd"),
+&"die_right": SubResource("Animation_owm76")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r3y0q"]
@@ -449,12 +603,30 @@ blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_ln8om")
 blend_point_1/pos = 1.0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_14tws"]
+animation = &"die_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_owm76"]
+animation = &"die_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_fkgbd"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_14tws")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_owm76")
+blend_point_1/pos = 1.0
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_owm76"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pt174"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2ynut"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fkgbd"]
 states/base/node = SubResource("AnimationNodeBlendSpace1D_14tws")
 states/base/position = Vector2(370, 100)
-transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_owm76")]
+states/die/node = SubResource("AnimationNodeBlendSpace1D_fkgbd")
+states/die/position = Vector2(370, 186)
+transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_owm76"), "base", "die", SubResource("AnimationNodeStateMachineTransition_pt174"), "die", "base", SubResource("AnimationNodeStateMachineTransition_2ynut")]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1910708734]
 collision_layer = 8
@@ -466,7 +638,7 @@ target = NodePath("..")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2071569626]
 position = Vector2(0, -48)
 sprite_frames = SubResource("SpriteFrames_fp52m")
-animation = &"die"
+animation = &"idle"
 autoplay = "idle"
 flip_h = true
 
@@ -509,7 +681,7 @@ script = ExtResource("8_owm76")
 life_points = NodePath("../../LifePoints")
 push_force = 350.0
 animation_tree = NodePath("../../AnimationTree")
-animation_tree_animation_name = "base"
+animation_tree_animation_name = "die"
 animated_sprite = NodePath("../../AnimatedSprite2D")
 animated_sprite_animation_name = "die"
 
@@ -546,3 +718,4 @@ libraries/ = SubResource("AnimationLibrary_owm76")
 tree_root = SubResource("AnimationNodeStateMachine_fkgbd")
 anim_player = NodePath("../AnimationPlayer")
 parameters/base/blend_position = -1.0
+parameters/die/blend_position = 0.0

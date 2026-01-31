@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://b16l1mn7qrsae"]
 
 [ext_resource type="PackedScene" uid="uid://jxgo3ycppel2" path="res://addons/fast_prototype/components/audio/music_trigger.tscn" id="1_xm56c"]
-[ext_resource type="Texture2D" uid="uid://bs7d131sbxu2s" path="res://assets/sprites/mask1-1.png" id="2_mgq3i"]
-[ext_resource type="Texture2D" uid="uid://spygup48v4xa" path="res://assets/sprites/mask1-4.png" id="3_lr0vd"]
+[ext_resource type="Texture2D" uid="uid://bs7d131sbxu2s" path="res://assets/hud/mask1-1.png" id="2_mgq3i"]
+[ext_resource type="Texture2D" uid="uid://spygup48v4xa" path="res://assets/hud/mask1-4.png" id="3_lr0vd"]
 [ext_resource type="Texture2D" uid="uid://j53fgsij3qnm" path="res://assets/bg/bg_level_select.png" id="3_xm56c"]
 [ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="4_7513o"]
-[ext_resource type="Texture2D" uid="uid://btfta3ho4b7lp" path="res://assets/sprites/mask1-2.png" id="4_fojku"]
-[ext_resource type="Texture2D" uid="uid://d1w3m1mm1vspb" path="res://assets/sprites/mask2-1.png" id="5_oucb2"]
-[ext_resource type="Texture2D" uid="uid://mvn3hm2nmrgd" path="res://assets/sprites/mask2-4.png" id="6_ere4d"]
-[ext_resource type="Texture2D" uid="uid://bl7u31sdybooh" path="res://assets/sprites/mask2-2.png" id="7_r3sbp"]
-[ext_resource type="Texture2D" uid="uid://cehq4bm6474ev" path="res://assets/sprites/mask4-1.png" id="8_722js"]
-[ext_resource type="Texture2D" uid="uid://bx6dmbjcelep4" path="res://assets/sprites/mask4-4.png" id="9_r3naq"]
-[ext_resource type="Texture2D" uid="uid://muvepsul54dk" path="res://assets/sprites/mask4-2.png" id="10_140kh"]
-[ext_resource type="Texture2D" uid="uid://b4treli1pb3gk" path="res://assets/sprites/mask3-1.png" id="11_p3svd"]
-[ext_resource type="Texture2D" uid="uid://8l4wo3g4tndq" path="res://assets/sprites/mask3-4.png" id="12_yrbbt"]
-[ext_resource type="Texture2D" uid="uid://dva6epryguial" path="res://assets/sprites/mask3-2.png" id="13_467ju"]
+[ext_resource type="Texture2D" uid="uid://btfta3ho4b7lp" path="res://assets/hud/mask1-2.png" id="4_fojku"]
+[ext_resource type="Texture2D" uid="uid://d1w3m1mm1vspb" path="res://assets/hud/mask2-1.png" id="5_oucb2"]
+[ext_resource type="Texture2D" uid="uid://mvn3hm2nmrgd" path="res://assets/hud/mask2-4.png" id="6_ere4d"]
+[ext_resource type="Texture2D" uid="uid://bl7u31sdybooh" path="res://assets/hud/mask2-2.png" id="7_r3sbp"]
+[ext_resource type="Texture2D" uid="uid://cehq4bm6474ev" path="res://assets/hud/mask4-1.png" id="8_722js"]
+[ext_resource type="Texture2D" uid="uid://bx6dmbjcelep4" path="res://assets/hud/mask4-4.png" id="9_r3naq"]
+[ext_resource type="Texture2D" uid="uid://muvepsul54dk" path="res://assets/hud/mask4-2.png" id="10_140kh"]
+[ext_resource type="Texture2D" uid="uid://b4treli1pb3gk" path="res://assets/hud/mask3-1.png" id="11_p3svd"]
+[ext_resource type="Texture2D" uid="uid://8l4wo3g4tndq" path="res://assets/hud/mask3-4.png" id="12_yrbbt"]
+[ext_resource type="Texture2D" uid="uid://dva6epryguial" path="res://assets/hud/mask3-2.png" id="13_467ju"]
 [ext_resource type="AudioStream" uid="uid://djibx7ejvgbre" path="res://assets/musics/Spy Glass.mp3" id="15_lr0vd"]
 [ext_resource type="Texture2D" uid="uid://ddvmdj5ltf0o2" path="res://assets/sprites/choose_your_mask.png" id="17_lr0vd"]
 
@@ -89,7 +89,6 @@ music_stream = ExtResource("15_lr0vd")
 
 [node name="EventTriggerLevelSwap" parent="." unique_id=1719558936 instance=ExtResource("4_7513o")]
 position = Vector2(1050, 223)
-packed_scene_path = "uid://22v0mhq3mryc"
 target_signal_node = NodePath("../MaskButton1")
 target_signal = "pressed"
 

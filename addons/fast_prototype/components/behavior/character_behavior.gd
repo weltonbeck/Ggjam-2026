@@ -27,7 +27,6 @@ signal face_direction_changed(face_direction:Vector2)
 
 #endregion
 
-
 #region Dash Variables
 
 @export_group("Dash Variables")
@@ -55,6 +54,16 @@ var _input_attack_pressed:bool = false ## controle do input de ataque pressionad
 var _attack_input_buffer_timer:float = 0 ## controla o timer do input buffer
 #endregion
 
+#region Shoot Variables
+@export_group("Shoot Params")
+@export var shoot_input_buffer_time: float = 0.15 ## Tempo (em segundos) que o input de shoot é armazenado, aguardando condição para atacar.
+
+var _input_shoot:bool = false ## controle do input de shoot
+var _input_shoot_pressed:bool = false ## controle do input de ataque pressionado
+var _shoot_input_buffer_timer:float = 0 ## controla o timer do input buffer
+#endregion
+
+
 var _die:bool = false
 
 func _ready() -> void:
@@ -65,6 +74,7 @@ func _process(delta: float) -> void:
 		_process_inputs(delta)
 	_process_dash(delta)
 	_process_attack(delta)
+	_process_shoot(delta)
 
 func _physics_process(_delta: float) -> void:
 	current_delta = _delta
@@ -269,6 +279,28 @@ func _process_attack(delta:float) -> void:
 	# Atualiza buffer timer
 	if _attack_input_buffer_timer > 0:
 		_attack_input_buffer_timer -= delta
+
+#endregion
+
+#region Shoot Functions
+func is_able_to_shoot() -> bool:
+	return _shoot_input_buffer_timer > 0
+
+func set_shoot_input(_input:bool = false) -> void:
+	_input_shoot = _input
+
+func set_shoot_input_pressed(_input:bool = false) -> void:
+	_input_shoot_pressed = _input
+
+func _process_shoot(delta:float) -> void:
+	#caso tiver apertado
+	if _input_shoot:
+		# Ativa o temporizador de shoot buffer
+		_shoot_input_buffer_timer = shoot_input_buffer_time
+	
+	# Atualiza buffer timer
+	if _shoot_input_buffer_timer > 0:
+		_shoot_input_buffer_timer -= delta
 
 #endregion
 
