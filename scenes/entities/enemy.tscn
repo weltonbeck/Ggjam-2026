@@ -629,7 +629,7 @@ states/die/position = Vector2(370, 186)
 transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_owm76"), "base", "die", SubResource("AnimationNodeStateMachineTransition_pt174"), "die", "base", SubResource("AnimationNodeStateMachineTransition_2ynut")]
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1910708734]
-collision_layer = 8
+collision_layer = 0
 script = ExtResource("1_r3y0q")
 
 [node name="EnemyItentifier" parent="." unique_id=1986323858 node_paths=PackedStringArray("target") instance=ExtResource("1_rrp0o")]
@@ -676,7 +676,7 @@ animation_tree_blend_param = "parameters/base/blend_position"
 animated_sprite = NodePath("../../AnimatedSprite2D")
 animated_sprite_animation_name = "walk"
 
-[node name="Die" type="Node" parent="StateMachine" unique_id=138577506 node_paths=PackedStringArray("life_points", "animation_tree", "animated_sprite")]
+[node name="Die" type="Node" parent="StateMachine" unique_id=138577506 node_paths=PackedStringArray("life_points", "animation_tree", "animated_sprite", "audio_stream_player")]
 script = ExtResource("8_owm76")
 life_points = NodePath("../../LifePoints")
 push_force = 350.0
@@ -684,6 +684,7 @@ animation_tree = NodePath("../../AnimationTree")
 animation_tree_animation_name = "die"
 animated_sprite = NodePath("../../AnimatedSprite2D")
 animated_sprite_animation_name = "die"
+audio_stream_player = NodePath("../../AudioHurt")
 
 [node name="LifePoints" parent="." unique_id=879321014 instance=ExtResource("7_f71c5")]
 

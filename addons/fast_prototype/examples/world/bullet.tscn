@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cttguxsgq5tls"]
+
+[ext_resource type="Script" uid="uid://c5nptyeigi456" path="res://addons/fast_prototype/components/damage/bullet.gd" id="1_isa8o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_isa8o"]
+radius = 4.0
+
+[node name="Bullet" type="Area2D" unique_id=1765166060]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_isa8o")
+hit_once = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=610457439]
+shape = SubResource("CircleShape2D_isa8o")
+debug_color = Color(0.9706649, 0, 0.45639497, 0.41960785)

@@ -31,6 +31,8 @@ func _on_state_next_transitions() -> void:
 			transition_to("push_walk")
 		elif state_machine.has_state("attack") and behavior.is_able_to_attack() and not behavior.current_pushable_platformer:
 			transition_to("attack")
+		elif state_machine.has_state("shoot") and behavior.is_able_to_shoot() and not behavior.current_pushable_platformer:
+			transition_to("shoot")
 		elif behavior.is_able_to_crouch():
 			transition_to("crouch")
 		elif state_machine.has_state("run") and behavior.is_able_to_move():

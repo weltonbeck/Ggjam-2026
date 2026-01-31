@@ -14,7 +14,7 @@ class_name HitBox
 
 var hurt_boxes: Array[HurtBox] = []
 
-signal did_damage(hurtBox:HurtBox, damage)
+signal did_damage(hurtBox:HurtBox, _damage:float)
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
@@ -26,7 +26,7 @@ func _physics_process(_delta: float) -> void:
 			var _hurt_boxes = hurt_boxes.duplicate()
 			hurt_boxes.clear()
 			for h in _hurt_boxes:
-				if h.has_method("set_damage"):
+				if h is HurtBox and h.has_method("set_damage"):
 					h.set_damage(self,damage)
 					did_damage.emit(h,damage)
 			

@@ -27,18 +27,31 @@ func _ready() -> void:
 ## Conecta dinamicamente um sinal externo a um callback local.
 ## O callback será executado sempre que o sinal alvo for emitido.
 func _connect_target_signal(callback: Callable) -> void:
-	if target_signal_node and target_signal:
-		var signal_node := get_node_or_null(target_signal_node)
+	if not target_signal_node or not target_signal:
+		return
 
-		# Garante que o nó existe e ainda é válido na cena.
-		if signal_node and is_instance_valid(signal_node):
-			# Wrapper para ignorar argumentos do sinal externo
-			# e manter uma assinatura consistente.
-			var wrapper := func(_args = []):
-				callback.call()
-			if not signal_node.is_connected(target_signal, Callable(wrapper)):
-				signal_node.connect(target_signal, Callable(wrapper))
+	var signal_node := get_node_or_null(target_signal_node)
+	if not signal_node or not is_instance_valid(signal_node):
+		return
 
+	# Descobre quantos argumentos o signal possui
+	var arg_count := 0
+	for s in signal_node.get_signal_list():
+		if s.name == target_signal:
+			arg_count = s.args.size()
+			break
+
+	var safe_callable: Callable
+
+	if arg_count > 0:
+		# Ignora TODOS os argumentos
+		safe_callable = callback.unbind(arg_count)
+	else:
+		# Signal sem argumentos → não faz unbind
+		safe_callable = callback
+
+	if not signal_node.is_connected(target_signal, safe_callable):
+		signal_node.connect(target_signal, safe_callable)
 
 ## Executado quando o sinal monitorado é disparado.
 func _on_trigger_active() -> void:

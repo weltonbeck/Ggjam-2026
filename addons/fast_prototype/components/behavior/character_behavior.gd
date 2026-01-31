@@ -57,10 +57,15 @@ var _attack_input_buffer_timer:float = 0 ## controla o timer do input buffer
 #region Shoot Variables
 @export_group("Shoot Params")
 @export var shoot_input_buffer_time: float = 0.15 ## Tempo (em segundos) que o input de shoot é armazenado, aguardando condição para atacar.
+@export var shoot_cooldown: float = 0.2 ## tempo entre tiros
+
+@export var bullet_scene: PackedScene
+@export var bullet_marker: Marker2D
 
 var _input_shoot:bool = false ## controle do input de shoot
 var _input_shoot_pressed:bool = false ## controle do input de ataque pressionado
 var _shoot_input_buffer_timer:float = 0 ## controla o timer do input buffer
+var _shoot_cooldown_timer: float = 0.0
 #endregion
 
 
@@ -284,13 +289,31 @@ func _process_attack(delta:float) -> void:
 
 #region Shoot Functions
 func is_able_to_shoot() -> bool:
-	return _shoot_input_buffer_timer > 0
+	return _shoot_input_buffer_timer > 0 and _shoot_cooldown_timer <= 0
 
 func set_shoot_input(_input:bool = false) -> void:
 	_input_shoot = _input
 
 func set_shoot_input_pressed(_input:bool = false) -> void:
 	_input_shoot_pressed = _input
+
+func do_shoot() -> void:
+	_shoot_input_buffer_timer = 0
+	_shoot_cooldown_timer = shoot_cooldown
+	
+	if bullet_scene :
+		var _instance = bullet_scene.instantiate()
+
+		if _instance is Bullet:
+			get_tree().root.add_child(_instance)
+
+			# Posiciona a instância no mesmo ponto global do trigger.
+			if bullet_marker:
+				_instance.global_position = bullet_marker.global_position
+			else:
+				_instance.global_position = global_position
+			
+			_instance.set_direction(Vector2(_last_horizontal_input,0))
 
 func _process_shoot(delta:float) -> void:
 	#caso tiver apertado
@@ -301,6 +324,10 @@ func _process_shoot(delta:float) -> void:
 	# Atualiza buffer timer
 	if _shoot_input_buffer_timer > 0:
 		_shoot_input_buffer_timer -= delta
+		
+	# Cooldown
+	if _shoot_cooldown_timer > 0:
+		_shoot_cooldown_timer -= delta
 
 #endregion
 

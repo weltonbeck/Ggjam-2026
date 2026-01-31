@@ -24,6 +24,8 @@ func _on_state_next_transitions() -> void:
 			transition_to("dash")
 		elif state_machine.has_state("attack") and behavior.is_able_to_attack():
 			transition_to("attack")
+		elif state_machine.has_state("shoot") and behavior.is_able_to_shoot():
+			transition_to("shoot")
 
 func _on_state_enter(_last_state_name: String) -> void:
 	if behavior:

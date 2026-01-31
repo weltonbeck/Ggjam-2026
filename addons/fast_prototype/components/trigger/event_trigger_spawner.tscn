@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjnbdckrs8rqo"]
+[gd_scene format=3 uid="uid://cjnbdckrs8rqo"]
 
 [ext_resource type="Script" uid="uid://bs436xrobm2q7" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.gd" id="1_n7uc7"]
 
-[node name="EventTriggerSpawner" type="Node2D"]
+[node name="EventTriggerSpawner" type="Node2D" unique_id=814409981]
 script = ExtResource("1_n7uc7")

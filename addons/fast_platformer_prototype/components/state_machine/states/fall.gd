@@ -27,5 +27,7 @@ func _on_state_next_transitions() -> void:
 			transition_to("land")
 		elif state_machine.has_state("attack") and behavior.is_able_to_attack():
 			transition_to("attack")
+		elif state_machine.has_state("shoot") and behavior.is_able_to_shoot():
+			transition_to("shoot")
 		elif state_machine.has_state("idle") and  behavior.is_able_to_land():
 			transition_to("idle")

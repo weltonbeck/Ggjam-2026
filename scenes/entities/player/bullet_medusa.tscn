@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bm27b2af78kmr"]
+
+[ext_resource type="Script" uid="uid://c5nptyeigi456" path="res://addons/fast_prototype/components/damage/bullet.gd" id="1_vk0ui"]
+[ext_resource type="Texture2D" uid="uid://difkn8tk40su3" path="res://assets/sprites/fire_bullet.png" id="2_3kpgc"]
+[ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="3_rlq6d"]
+[ext_resource type="PackedScene" uid="uid://chl5ok63hjso4" path="res://scenes/world/explosion_effect.tscn" id="4_vqsfa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rlq6d"]
+atlas = ExtResource("2_3kpgc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vqsfa"]
+atlas = ExtResource("2_3kpgc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vjthl"]
+atlas = ExtResource("2_3kpgc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_li2sn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rlq6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vqsfa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vjthl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_isa8o"]
+radius = 17.029387
+
+[node name="Bullet" type="Area2D" unique_id=1765166060]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource("1_vk0ui")
+hit_once = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1741503671]
+sprite_frames = SubResource("SpriteFrames_li2sn")
+autoplay = "default"
+frame_progress = 0.848906
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=610457439]
+shape = SubResource("CircleShape2D_isa8o")
+debug_color = Color(0.9706649, 0, 0.45639497, 0.41960785)
+
+[node name="EventSpawnerCollectedEffect" parent="." unique_id=1239793099 instance=ExtResource("3_rlq6d")]
+packed_scene = ExtResource("4_vqsfa")
+target_signal_node = NodePath("..")
+target_signal = "did_damage"

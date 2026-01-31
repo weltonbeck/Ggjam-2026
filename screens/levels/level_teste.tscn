@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://jxgo3ycppel2" path="res://addons/fast_prototype/components/audio/music_trigger.tscn" id="1_fasjr"]
 [ext_resource type="Texture2D" uid="uid://cu4un02bbjrsw" path="res://assets/bg/bg_museu_moon.png" id="1_j16xn"]
 [ext_resource type="PackedScene" uid="uid://beb4fbily8rdh" path="res://addons/fast_platformer_prototype/components/camera/platformer_camera_2d.tscn" id="1_vn6lg"]
-[ext_resource type="PackedScene" uid="uid://cqsj51nma5enb" path="res://scenes/entities/player.tscn" id="1_w5yiv"]
+[ext_resource type="PackedScene" uid="uid://cqsj51nma5enb" path="res://scenes/entities/player/player.tscn" id="1_w5yiv"]
 [ext_resource type="TileSet" uid="uid://da7t1sofurjej" path="res://scenes/tiles/tilemap.tres" id="1_xws8j"]
 [ext_resource type="Texture2D" uid="uid://j7gkif84ssip" path="res://assets/bg/bg_museu_walls.png" id="2_ti08h"]
 [ext_resource type="PackedScene" uid="uid://c7wyk7duohm5j" path="res://scenes/entities/enemy.tscn" id="3_kl5cn"]
@@ -57,7 +57,7 @@ is_current_camera = true
 pixel_snap_enabled = false
 
 [node name="Enemy" parent="." unique_id=1910708734 instance=ExtResource("3_kl5cn")]
-position = Vector2(987, 376)
+position = Vector2(1304, 376)
 
 [node name="PlatformerOneWay" parent="." unique_id=1347071625 instance=ExtResource("10_h2u83")]
 position = Vector2(244, 289)
@@ -73,7 +73,42 @@ position = Vector2(160, 418)
 position = Vector2(515, 327)
 
 [node name="Player" parent="." unique_id=1061758820 instance=ExtResource("1_w5yiv")]
-position = Vector2(515, 263)
+position = Vector2(1035, 376)
+key_change_mask = &"key_start"
+key_left = &"key_left"
+key_right = &"key_right"
+key_up = &"key_up"
+key_down = &"key_down"
+key_jump = &"key_button_a"
+key_dash = &"key_button_b"
+key_fast_fall = &"key_down"
+key_crouch = &"key_down"
+key_pull = &"key_button_x"
+key_attack = &"key_button_x"
+key_shoot = &"key_button_y"
+air_deceleration = 300.0
+air_friction = 500.0
+air_turn_speed = 1400.0
+use_slope_movement = true
+min_slope_angle = 35.0
+max_slope_angle = 46.0
+slope_up_speed_mult = 0.6
+slope_down_speed_mult = 1.2
+slope_slide_force = 80.0
+hang_time_gravity_multiplier = 0.5
+fast_fall_gravity_multiplier = 1.3
+hang_time_threshold = 50.0
+fast_fall_hold_time = 0.1
+jump_coyote_time = 0.08
+jump_input_buffer_time = 0.15
+max_jumps = 1
+dash_apply_gravity = true
+dash_four_directions = false
+turn_speed = 1400.0
+max_dashes = 1
+dash_input_buffer_time = 0.1
+attack_input_buffer_time = 0.15
+shoot_cooldown = 0.2
 
 [node name="Spikes" parent="." unique_id=2089353998 instance=ExtResource("9_tp0ta")]
 position = Vector2(352, 384)
