@@ -70,7 +70,7 @@ position = Vector2(242, 194)
 position = Vector2(160, 418)
 
 [node name="Pushable" parent="." unique_id=1018731178 instance=ExtResource("11_j16xn")]
-position = Vector2(515, 327)
+position = Vector2(1163, 326)
 
 [node name="Player" parent="." unique_id=1061758820 instance=ExtResource("1_w5yiv")]
 position = Vector2(1035, 376)

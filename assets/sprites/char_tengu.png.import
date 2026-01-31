@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://f15d03jw57rf"
-path="res://.godot/imported/char-masks-final.png-8b7730ad1c61653f78a0609702469197.ctex"
+uid="uid://bocrjffgtdu7b"
+path="res://.godot/imported/char_tengu.png-329b42344b92358c5edbefaec9e38e70.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/char-masks-final.png"
-dest_files=["res://.godot/imported/char-masks-final.png-8b7730ad1c61653f78a0609702469197.ctex"]
+source_file="res://assets/sprites/char_tengu.png"
+dest_files=["res://.godot/imported/char_tengu.png-329b42344b92358c5edbefaec9e38e70.ctex"]
 
 [params]
 

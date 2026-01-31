@@ -24,8 +24,8 @@
 [ext_resource type="AudioStream" uid="uid://ccdop10uba1ki" path="res://addons/fast_prototype/assets/sound/hurt.wav" id="16_38dyx"]
 [ext_resource type="AudioStream" uid="uid://y1ydu78k64p7" path="res://addons/fast_platformer_prototype/assets/sounds/block_hit.wav" id="17_38dyx"]
 [ext_resource type="Script" uid="uid://kcn51m16upow" path="res://scenes/entities/player/states/mask.gd" id="17_wghkl"]
-[ext_resource type="SpriteFrames" uid="uid://cx0wey8rnkj4e" path="res://scenes/entities/player/player_medusa.tres" id="18_yk2xr"]
 [ext_resource type="Script" uid="uid://bnjps5nm3dxdt" path="res://addons/fast_platformer_prototype/components/state_machine/states/shoot.gd" id="19_vs62q"]
+[ext_resource type="SpriteFrames" uid="uid://blsipd1nub5nw" path="res://scenes/entities/player/player_fogo.tres" id="20_7nfft"]
 [ext_resource type="PackedScene" uid="uid://daatb7te5ogdy" path="res://addons/fast_prototype/components/collectable/collectable_detector.tscn" id="20_r3ytj"]
 [ext_resource type="AudioStream" uid="uid://c33j2jh1a0w1l" path="res://assets/audio/bullet.wav" id="28_6u2ft"]
 
@@ -1952,10 +1952,8 @@ target = NodePath("..")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=84611841]
 position = Vector2(0, -48)
 sprite_frames = ExtResource("3_go8vc")
-animation = &"shoot"
+animation = &"fall"
 autoplay = "idle"
-frame = 4
-frame_progress = 1.0
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=42998860]
@@ -2025,8 +2023,9 @@ animated_sprite = NodePath("../../AnimatedSprite2D")
 animated_sprite_animation_name = "hurt"
 audio_stream_player = NodePath("../../AudioHurt")
 
-[node name="Dash" type="Node" parent="StateMachine" unique_id=1736377175 node_paths=PackedStringArray("animation_tree", "animated_sprite")]
+[node name="Dash" type="Node" parent="StateMachine" unique_id=1736377175 node_paths=PackedStringArray("life_points", "animation_tree", "animated_sprite")]
 script = ExtResource("12_736hv")
+life_points = NodePath("../../LifePoints")
 animation_tree = NodePath("../../AnimationTree")
 animation_tree_animation_name = "dash"
 animation_tree_blend_param = "parameters/dash/blend_position"
@@ -2065,7 +2064,7 @@ audio_stream_player = NodePath("../../AudioHurt")
 [node name="Mask" type="Node" parent="StateMachine" unique_id=1765648616 node_paths=PackedStringArray("animation_tree", "animated_sprite")]
 script = ExtResource("17_wghkl")
 texture_unmasked = ExtResource("3_go8vc")
-texture_masked = ExtResource("18_yk2xr")
+texture_masked = ExtResource("20_7nfft")
 animation_tree = NodePath("../../AnimationTree")
 animation_tree_animation_name = "base"
 animated_sprite = NodePath("../../AnimatedSprite2D")
