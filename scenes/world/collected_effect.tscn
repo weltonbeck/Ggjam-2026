@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://f74ox4ew883v"]
+
+[ext_resource type="Texture2D" uid="uid://coj7euwn8fyt0" path="res://assets/sprites/pickup.png" id="1_prhdd"]
+
+[sub_resource type="Animation" id="Animation_xhtkl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2riwf"]
+resource_name = "collected"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fuc1c"]
+_data = {
+&"RESET": SubResource("Animation_xhtkl"),
+&"collected": SubResource("Animation_2riwf")
+}
+
+[node name="CollectedEffect" type="Node2D" unique_id=1427487342]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1850133686]
+texture = ExtResource("1_prhdd")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=720290194]
+libraries/ = SubResource("AnimationLibrary_fuc1c")
+autoplay = &"collected"

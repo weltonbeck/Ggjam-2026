@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cj8l7cu4a5kn8" path="res://addons/fast_prototype/components/collectable/collectable.gd" id="1_6tjhv"]
 [ext_resource type="Texture2D" uid="uid://b70dxgvw2chx5" path="res://assets/sprites/coin.png" id="2_5ywsv"]
 [ext_resource type="AudioStream" uid="uid://bjh7ak5hlu21n" path="res://addons/fast_prototype/assets/sound/collectable.wav" id="3_5ywsv"]
+[ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="4_lt3xo"]
+[ext_resource type="PackedScene" uid="uid://f74ox4ew883v" path="res://scenes/world/collected_effect.tscn" id="5_7q46h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lesds"]
 atlas = ExtResource("2_5ywsv")
@@ -117,3 +119,8 @@ shape = SubResource("CircleShape2D_oh106")
 stream = ExtResource("3_5ywsv")
 bus = &"SFX"
 metadata/_edit_lock_ = true
+
+[node name="EventSpawnerCollectedEffect" parent="." unique_id=744538006 instance=ExtResource("4_lt3xo")]
+packed_scene = ExtResource("5_7q46h")
+target_signal_node = NodePath("..")
+target_signal = "collected"

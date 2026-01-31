@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://b6u1mmpdi08t8"]
+
+[ext_resource type="Script" uid="uid://cj8l7cu4a5kn8" path="res://addons/fast_prototype/components/collectable/collectable.gd" id="1_a1f5j"]
+[ext_resource type="Texture2D" uid="uid://dd0esca41wwej" path="res://assets/sprites/extralife.png" id="2_a1f5j"]
+[ext_resource type="AudioStream" uid="uid://bjh7ak5hlu21n" path="res://addons/fast_prototype/assets/sound/collectable.wav" id="3_2600d"]
+[ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="4_ggb6y"]
+[ext_resource type="PackedScene" uid="uid://f74ox4ew883v" path="res://scenes/world/collected_effect.tscn" id="5_7ohxi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaxtj"]
+atlas = ExtResource("2_a1f5j")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2600d"]
+atlas = ExtResource("2_a1f5j")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggb6y"]
+atlas = ExtResource("2_a1f5j")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ohxi"]
+atlas = ExtResource("2_a1f5j")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfvbn"]
+atlas = ExtResource("2_a1f5j")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4eb3k"]
+atlas = ExtResource("2_a1f5j")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hkkhm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vaxtj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2600d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggb6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ohxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfvbn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4eb3k")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oh106"]
+radius = 8.062258
+
+[node name="Heart" type="Area2D" unique_id=1622390802 node_paths=PackedStringArray("audio_stream_player")]
+script = ExtResource("1_a1f5j")
+game_state_key = "player.life"
+audio_stream_player = NodePath("AudioCollected")
+metadata/_custom_type_script = "uid://cj8l7cu4a5kn8"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1662968246]
+sprite_frames = SubResource("SpriteFrames_hkkhm")
+autoplay = "default"
+frame_progress = 0.2768412
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1819412162]
+shape = SubResource("CircleShape2D_oh106")
+
+[node name="AudioCollected" type="AudioStreamPlayer2D" parent="." unique_id=1375594670]
+stream = ExtResource("3_2600d")
+bus = &"SFX"
+metadata/_edit_lock_ = true
+
+[node name="EventSpawnerCollectedEffect" parent="." unique_id=744538006 instance=ExtResource("4_ggb6y")]
+packed_scene = ExtResource("5_7ohxi")
+target_signal_node = NodePath("..")
+target_signal = "collected"

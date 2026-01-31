@@ -192,7 +192,7 @@ func transition_to(state_name: String, force:bool = false) -> void:
 	current_state = new_state
 	current_state_name = new_state._state_name().to_lower()
 	
-	print("Current State: ", current_state_name,", Behavior: ", behavior)  # Debug opcional
+	#print("Current State: ", current_state_name,", Behavior: ", behavior)  # Debug opcional
 
 # ======================================================================
 # Verifica se tem o state

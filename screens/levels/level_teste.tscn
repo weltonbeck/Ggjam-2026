@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://jxgo3ycppel2" path="res://addons/fast_prototype/components/audio/music_trigger.tscn" id="1_fasjr"]
 [ext_resource type="Texture2D" uid="uid://cu4un02bbjrsw" path="res://assets/bg/bg_museu_moon.png" id="1_j16xn"]
 [ext_resource type="PackedScene" uid="uid://beb4fbily8rdh" path="res://addons/fast_platformer_prototype/components/camera/platformer_camera_2d.tscn" id="1_vn6lg"]
-[ext_resource type="PackedScene" uid="uid://cqsj51nma5enb" path="res://scenes/entities/character.tscn" id="1_w5yiv"]
+[ext_resource type="PackedScene" uid="uid://cqsj51nma5enb" path="res://scenes/entities/player.tscn" id="1_w5yiv"]
 [ext_resource type="TileSet" uid="uid://da7t1sofurjej" path="res://scenes/tiles/tilemap.tres" id="1_xws8j"]
 [ext_resource type="Texture2D" uid="uid://j7gkif84ssip" path="res://assets/bg/bg_museu_walls.png" id="2_ti08h"]
 [ext_resource type="PackedScene" uid="uid://c7wyk7duohm5j" path="res://scenes/entities/enemy.tscn" id="3_kl5cn"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://c0hpr2kbfjb0c" path="res://scenes/world/spring.tscn" id="10_og5e5"]
 [ext_resource type="PackedScene" uid="uid://cek766ct4nnfu" path="res://scenes/world/pushable.tscn" id="11_j16xn"]
 [ext_resource type="PackedScene" uid="uid://krrsj1yx0kkc" path="res://scenes/entities/drone.tscn" id="14_8arkg"]
+[ext_resource type="PackedScene" uid="uid://b6u1mmpdi08t8" path="res://scenes/world/heart.tscn" id="15_ho81j"]
 
 [node name="LevelTeste" type="Node2D" unique_id=549857030]
 metadata/_edit_lock_ = true
@@ -47,7 +48,7 @@ tile_set = ExtResource("1_xws8j")
 [node name="PlatformerCamera2D" parent="." unique_id=288152286 node_paths=PackedStringArray("target") instance=ExtResource("1_vn6lg")]
 position = Vector2(229, 248)
 limit_left = 0
-target = NodePath("../Character")
+target = NodePath("../Player")
 approach_speed = 100.0
 vertical_deadzone_height = 80.0
 vertical_follow_up_speed = 8.0
@@ -71,8 +72,8 @@ position = Vector2(160, 418)
 [node name="Pushable" parent="." unique_id=1018731178 instance=ExtResource("11_j16xn")]
 position = Vector2(515, 327)
 
-[node name="Character" parent="." unique_id=1061758820 instance=ExtResource("1_w5yiv")]
-position = Vector2(875, 248)
+[node name="Player" parent="." unique_id=1061758820 instance=ExtResource("1_w5yiv")]
+position = Vector2(515, 263)
 
 [node name="Spikes" parent="." unique_id=2089353998 instance=ExtResource("9_tp0ta")]
 position = Vector2(352, 384)
@@ -85,3 +86,6 @@ position = Vector2(613, 333)
 
 [node name="Drone" parent="." unique_id=185204279 instance=ExtResource("14_8arkg")]
 position = Vector2(597, 532)
+
+[node name="Heart" parent="." unique_id=1694816166 instance=ExtResource("15_ho81j")]
+position = Vector2(242, 240)

@@ -7,10 +7,10 @@ class_name Collectable
 @export var starts_enabled: bool = true:
 	set = set_starts_enabled
 
-@export_category("Game State")
+@export_group("Game State")
 @export_placeholder("collectables.key") var game_state_key: String = "" ## collectable.name
 
-@export_category("Block Unpack")
+@export_group("Block Unpack")
 @export var eject_position: Vector2 =  Vector2(0, -16)
 @export var eject_time: float = 0.1
 @export var auto_collect: bool = false

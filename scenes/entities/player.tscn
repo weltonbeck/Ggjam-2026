@@ -2624,7 +2624,7 @@ states/dash/node = SubResource("AnimationNodeBlendSpace1D_go4pq")
 states/dash/position = Vector2(565, 100)
 transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_nmfrm"), "base", "crouch", SubResource("AnimationNodeStateMachineTransition_38dyx"), "crouch", "base", SubResource("AnimationNodeStateMachineTransition_736hv"), "base", "dash", SubResource("AnimationNodeStateMachineTransition_l567y"), "dash", "base", SubResource("AnimationNodeStateMachineTransition_cwqw8")]
 
-[node name="Character" type="CharacterBody2D" unique_id=1061758820 node_paths=PackedStringArray("rc_bottom_left", "rc_bottom_center", "rc_bottom_right", "rc_top_left", "rc_top_center", "rc_top_right", "rc_left_top", "rc_left_center", "rc_left_bottom", "rc_right_top", "rc_right_center", "rc_right_bottom")]
+[node name="Player" type="CharacterBody2D" unique_id=1061758820 node_paths=PackedStringArray("rc_bottom_left", "rc_bottom_center", "rc_bottom_right", "rc_top_left", "rc_top_center", "rc_top_right", "rc_left_top", "rc_left_center", "rc_left_bottom", "rc_right_top", "rc_right_center", "rc_right_bottom")]
 collision_layer = 2
 script = ExtResource("1_nmfrm")
 air_max_speed = 250.0
