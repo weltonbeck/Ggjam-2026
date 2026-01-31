@@ -130,7 +130,7 @@ func _on_hit_area_body_entered(body):
 	if Engine.is_editor_hint(): return 
 	if current_state == State.DEAD: return # Morto não detecta player
 
-	if body.is_in_group("player"): 
+	if body.is_in_group(Globals.GROUP_PLAYER): 
 		current_state = State.ATTACK
 		target_player = body
 		shoot_timer.start(0.3) 
