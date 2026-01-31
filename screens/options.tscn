@@ -2,6 +2,67 @@
 
 [ext_resource type="Script" uid="uid://6a7730l2t1pq" path="res://screens/options.gd" id="1_6t2dq"]
 [ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="2_85sc2"]
+[ext_resource type="Texture2D" uid="uid://j53fgsij3qnm" path="res://assets/bg/bg_level_select.png" id="2_h0nkn"]
+[ext_resource type="Texture2D" uid="uid://ckhblxaolc1c0" path="res://assets/hud/options_title.png" id="3_m3hhw"]
+[ext_resource type="FontFile" uid="uid://dfbpb37lcno6i" path="res://assets/font/Kenney Pixel.ttf" id="4_h0nkn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_24hck"]
+font = ExtResource("4_h0nkn")
+font_size = 54
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="DPITexture" id="DPITexture_h0nkn"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".75\"/></svg>
+"
+
+[sub_resource type="DPITexture" id="DPITexture_m3hhw"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".37\"/></svg>
+"
+
+[sub_resource type="DPITexture" id="DPITexture_ko3cs"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
+"
+
+[sub_resource type="DPITexture" id="DPITexture_24hck"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"4\" height=\"8\"><path fill=\"#fff\" fill-opacity=\".25\" d=\"M1 0h2v16H1z\"/></svg>
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_250ap"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.8952403, 0.46991122, 0.08384324, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o83n2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+corner_detail = 6
+
+[sub_resource type="Theme" id="Theme_5ne44"]
+HSlider/constants/center_grabber = 0
+HSlider/constants/grabber_offset = 0
+HSlider/constants/tick_offset = 0
+HSlider/icons/grabber = SubResource("DPITexture_h0nkn")
+HSlider/icons/grabber_disabled = SubResource("DPITexture_m3hhw")
+HSlider/icons/grabber_highlight = SubResource("DPITexture_ko3cs")
+HSlider/icons/tick = SubResource("DPITexture_24hck")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_250ap")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_250ap")
+HSlider/styles/slider = SubResource("StyleBoxFlat_o83n2")
 
 [node name="Options" type="Control" unique_id=1049783179]
 layout_mode = 3
@@ -11,6 +72,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6t2dq")
+
+[node name="Background" type="TextureRect" parent="." unique_id=94486491]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_h0nkn")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=890373868]
 layout_mode = 1
@@ -27,12 +97,12 @@ theme_override_constants/margin_bottom = 60
 [node name="Layout" type="VBoxContainer" parent="MarginContainer" unique_id=298353637]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MarginContainer/Layout" unique_id=761090635]
+[node name="Title" type="TextureRect" parent="MarginContainer/Layout" unique_id=367210421]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-theme_override_font_sizes/font_size = 40
-text = "Options"
-horizontal_alignment = 1
-vertical_alignment = 1
+texture = ExtResource("3_m3hhw")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Spacer00" type="Control" parent="MarginContainer/Layout" unique_id=1299644110]
 layout_mode = 2
@@ -44,21 +114,26 @@ alignment = 1
 
 [node name="MusicLabel" type="Label" parent="MarginContainer/Layout/Menu" unique_id=1657960992]
 layout_mode = 2
+theme_override_constants/outline_size = 7
 text = "Music"
+label_settings = SubResource("LabelSettings_24hck")
 horizontal_alignment = 1
 
 [node name="MusicSlider" type="HSlider" parent="MarginContainer/Layout/Menu" unique_id=1347073907]
 layout_mode = 2
+theme = SubResource("Theme_5ne44")
 max_value = 1.0
 step = 0.1
 
 [node name="SoundLabel" type="Label" parent="MarginContainer/Layout/Menu" unique_id=1565622422]
 layout_mode = 2
 text = "Sound Effects"
+label_settings = SubResource("LabelSettings_24hck")
 horizontal_alignment = 1
 
 [node name="SoundSlider" type="HSlider" parent="MarginContainer/Layout/Menu" unique_id=1726752363]
 layout_mode = 2
+theme = SubResource("Theme_5ne44")
 max_value = 1.0
 step = 0.1
 
@@ -66,16 +141,16 @@ step = 0.1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="SaveButton" type="Button" parent="MarginContainer/Layout" unique_id=449262438]
+[node name="BackButton" type="Button" parent="MarginContainer/Layout" unique_id=449262438]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Save"
+text = "Back"
 
 [node name="EventTriggerLevelSwap3" parent="." unique_id=1719558936 instance=ExtResource("2_85sc2")]
 position = Vector2(1050, 223)
 packed_scene_path = "uid://cv1dtkuu78hsg"
-target_signal_node = NodePath("../MarginContainer/Layout/SaveButton")
+target_signal_node = NodePath("../MarginContainer/Layout/BackButton")
 target_signal = "pressed"
 
 [connection signal="value_changed" from="MarginContainer/Layout/Menu/MusicSlider" to="." method="_on_value_changed" binds= ["BGM"]]
