@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://clqurpspip3yu"]
 
-[ext_resource type="Script" uid="uid://dt7y3ndi6y4to" path="res://screens/options.gd" id="1_6t2dq"]
+[ext_resource type="Script" uid="uid://6a7730l2t1pq" path="res://screens/options.gd" id="1_6t2dq"]
+[ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="2_85sc2"]
 
 [node name="Options" type="Control" unique_id=1049783179]
 layout_mode = 3
@@ -70,6 +71,12 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Save"
+
+[node name="EventTriggerLevelSwap3" parent="." unique_id=1719558936 instance=ExtResource("2_85sc2")]
+position = Vector2(1050, 223)
+packed_scene_path = "uid://cv1dtkuu78hsg"
+target_signal_node = NodePath("../MarginContainer/Layout/SaveButton")
+target_signal = "pressed"
 
 [connection signal="value_changed" from="MarginContainer/Layout/Menu/MusicSlider" to="." method="_on_value_changed" binds= ["BGM"]]
 [connection signal="value_changed" from="MarginContainer/Layout/Menu/SoundSlider" to="." method="_on_value_changed" binds= ["SFX"]]

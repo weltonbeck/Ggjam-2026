@@ -58,7 +58,7 @@ text = "mask 2
 
 [node name="EventTriggerLevelSwap" parent="." unique_id=1719558936 instance=ExtResource("4_7513o")]
 position = Vector2(1050, 223)
-packed_scene_path = "uid://c1nshof3u2g2g"
+packed_scene_path = "uid://22v0mhq3mryc"
 target_signal_node = NodePath("../CanvasLayer/Control/Button")
 target_signal = "pressed"
 

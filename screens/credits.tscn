@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://j7p6j8l36glp"]
 
+[ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="1_j0jnr"]
+
 [node name="Credits" type="Control" unique_id=1150328667]
 layout_mode = 3
 anchors_preset = 15
@@ -76,3 +78,9 @@ custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Back"
+
+[node name="EventTriggerLevelSwap3" parent="." unique_id=1719558936 instance=ExtResource("1_j0jnr")]
+position = Vector2(1050, 223)
+packed_scene_path = "uid://cv1dtkuu78hsg"
+target_signal_node = NodePath("../MarginContainer/VBoxContainer/BackButton")
+target_signal = "pressed"

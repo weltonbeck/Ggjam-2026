@@ -80,5 +80,18 @@ music_stream = ExtResource("2_d662f")
 
 [node name="EventTriggerLevelSwap" parent="." unique_id=1719558936 instance=ExtResource("4_g1lfl")]
 position = Vector2(1050, 223)
+packed_scene_path = "uid://b16l1mn7qrsae"
 target_signal_node = NodePath("../MarginContainer/Layout/CenterContainer/Menu/NewGameButton")
+target_signal = "pressed"
+
+[node name="EventTriggerLevelSwap2" parent="." unique_id=1560486386 instance=ExtResource("4_g1lfl")]
+position = Vector2(1050, 223)
+packed_scene_path = "uid://clqurpspip3yu"
+target_signal_node = NodePath("../MarginContainer/Layout/CenterContainer/Menu/OptionsButton")
+target_signal = "pressed"
+
+[node name="EventTriggerLevelSwap3" parent="." unique_id=1390175229 instance=ExtResource("4_g1lfl")]
+position = Vector2(1050, 223)
+packed_scene_path = "uid://j7p6j8l36glp"
+target_signal_node = NodePath("../MarginContainer/Layout/CenterContainer/Menu/CredtisButton")
 target_signal = "pressed"
