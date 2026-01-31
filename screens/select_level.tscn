@@ -89,6 +89,7 @@ music_stream = ExtResource("15_lr0vd")
 
 [node name="EventTriggerLevelSwap" parent="." unique_id=1719558936 instance=ExtResource("4_7513o")]
 position = Vector2(1050, 223)
+packed_scene_path = "uid://22v0mhq3mryc"
 target_signal_node = NodePath("../MaskButton1")
 target_signal = "pressed"
 
