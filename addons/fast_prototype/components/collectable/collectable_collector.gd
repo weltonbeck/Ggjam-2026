@@ -1,10 +1,10 @@
 extends Area2D
-class_name CollectorComponent
+class_name CollectableCollector
 
 
 ## Emitido quando um coletável válido é detectado.
 ## Útil para HUD, FX, estatísticas ou lógica de gameplay.
-signal collectable_detected(collectable: Collectable)
+signal collectable_collected(collectable: Collectable)
 
 
 func _ready() -> void:
@@ -39,5 +39,5 @@ func _on_area_entered(area: Area2D) -> void:
 	# - Pertence ao grupo de coletáveis (flexível)
 	# - É do tipo Collectable (segurança de tipo)
 	if area.is_in_group(Globals.GROUP_COLLECTABLE) and area is Collectable:
-		emit_signal("collectable_detected", area)
+		emit_signal("collectable_collected", area)
 		area.collect()

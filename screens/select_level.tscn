@@ -39,6 +39,7 @@ offset_left = 95.0
 offset_top = 123.0
 offset_right = 195.0
 offset_bottom = 223.0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("2_mgq3i")
 texture_pressed = ExtResource("3_lr0vd")
 texture_hover = ExtResource("4_fojku")
@@ -52,6 +53,7 @@ offset_left = 241.0
 offset_top = 148.0
 offset_right = 321.0
 offset_bottom = 228.0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("5_oucb2")
 texture_pressed = ExtResource("6_ere4d")
 texture_hover = ExtResource("7_r3sbp")
@@ -65,6 +67,7 @@ offset_left = 341.0
 offset_top = 209.0
 offset_right = 431.0
 offset_bottom = 299.0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("8_722js")
 texture_pressed = ExtResource("9_r3naq")
 texture_hover = ExtResource("10_140kh")
@@ -78,6 +81,7 @@ offset_left = 444.0
 offset_top = 108.0
 offset_right = 544.0
 offset_bottom = 208.0
+mouse_default_cursor_shape = 2
 texture_normal = ExtResource("11_p3svd")
 texture_pressed = ExtResource("12_yrbbt")
 texture_hover = ExtResource("13_467ju")
@@ -89,13 +93,25 @@ music_stream = ExtResource("15_lr0vd")
 
 [node name="EventTriggerLevelSwap" parent="." unique_id=1719558936 instance=ExtResource("4_7513o")]
 position = Vector2(1050, 223)
-packed_scene_path = "uid://22v0mhq3mryc"
+packed_scene_path = "uid://tk5r06703lr4"
 target_signal_node = NodePath("../MaskButton1")
 target_signal = "pressed"
 
 [node name="EventTriggerLevelSwap2" parent="." unique_id=1429015595 instance=ExtResource("4_7513o")]
 position = Vector2(1050, 223)
-packed_scene_path = "uid://p36153ylv85b"
+packed_scene_path = "uid://skl3xk3ggbvc"
+target_signal_node = NodePath("../MaskButton2")
+target_signal = "pressed"
+
+[node name="EventTriggerLevelSwap3" parent="." unique_id=718244522 instance=ExtResource("4_7513o")]
+position = Vector2(1050, 223)
+packed_scene_path = "uid://22v0mhq3mryc"
+target_signal_node = NodePath("../MaskButton3")
+target_signal = "pressed"
+
+[node name="EventTriggerLevelSwap4" parent="." unique_id=702839663 instance=ExtResource("4_7513o")]
+position = Vector2(1050, 223)
+packed_scene_path = "uid://bhrttexquih83"
 target_signal_node = NodePath("../MaskButton4")
 target_signal = "pressed"
 

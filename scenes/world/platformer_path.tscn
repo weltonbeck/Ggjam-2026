@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b2xn0k4mx086q"]
+
+[ext_resource type="Script" uid="uid://di2swtaelenjn" path="res://scenes/world/platformer_path.gd" id="1_s8str"]
+
+[node name="PlatformerPath" type="Path2D" unique_id=810877936]
+script = ExtResource("1_s8str")
+speed = 80.0
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=763785511]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="PathFollow2D" unique_id=1442834160]
+remote_path = NodePath("../..")
+update_rotation = false
+update_scale = false

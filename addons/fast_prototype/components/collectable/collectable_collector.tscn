@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://daatb7te5ogdy"]
+
+[ext_resource type="Script" uid="uid://day7r60ugl6fc" path="res://addons/fast_prototype/components/collectable/collectable_collector.gd" id="1_ggcg5"]
+
+[node name="CollectableDetector" type="Area2D" unique_id=1510666873]
+script = ExtResource("1_ggcg5")

@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://k4n325vmko0k" path="res://addons/fast_platformer_prototype/components/state_machine/states/fast_fall.gd" id="11_diu3d"]
 [ext_resource type="AudioStream" uid="uid://bf6pnwm74ijdh" path="res://addons/fast_platformer_prototype/assets/sounds/jump.wav" id="11_ix8tx"]
 [ext_resource type="Script" uid="uid://th1j2n8cyc0m" path="res://addons/fast_platformer_prototype/components/state_machine/states/fall_on_edge.gd" id="11_jsjmd"]
-[ext_resource type="PackedScene" uid="uid://daatb7te5ogdy" path="res://addons/fast_prototype/components/collectable/collectable_detector.tscn" id="11_ka43l"]
+[ext_resource type="PackedScene" uid="uid://daatb7te5ogdy" path="res://addons/fast_prototype/components/collectable/collectable_collector.tscn" id="11_ka43l"]
 [ext_resource type="AudioStream" uid="uid://b0jt5ywmyvkpi" path="res://addons/fast_platformer_prototype/assets/sounds/land.wav" id="12_6q0e4"]
 [ext_resource type="PackedScene" uid="uid://b368li74bs13s" path="res://addons/fast_platformer_prototype/examples/entities/dust_jump.tscn" id="12_ccx85"]
 [ext_resource type="PackedScene" uid="uid://depdvq3yfdc23" path="res://addons/fast_platformer_prototype/examples/entities/dust_land.tscn" id="13_02ng6"]

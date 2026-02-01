@@ -25,8 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://y1ydu78k64p7" path="res://addons/fast_platformer_prototype/assets/sounds/block_hit.wav" id="17_38dyx"]
 [ext_resource type="Script" uid="uid://kcn51m16upow" path="res://scenes/entities/player/states/mask.gd" id="17_wghkl"]
 [ext_resource type="Script" uid="uid://bnjps5nm3dxdt" path="res://addons/fast_platformer_prototype/components/state_machine/states/shoot.gd" id="19_vs62q"]
-[ext_resource type="SpriteFrames" uid="uid://blsipd1nub5nw" path="res://scenes/entities/player/player_fogo.tres" id="20_7nfft"]
-[ext_resource type="PackedScene" uid="uid://daatb7te5ogdy" path="res://addons/fast_prototype/components/collectable/collectable_detector.tscn" id="20_r3ytj"]
+[ext_resource type="PackedScene" uid="uid://daatb7te5ogdy" path="res://addons/fast_prototype/components/collectable/collectable_collector.tscn" id="20_r3ytj"]
 [ext_resource type="AudioStream" uid="uid://c33j2jh1a0w1l" path="res://assets/audio/bullet.wav" id="28_6u2ft"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5tg2x"]
@@ -38,6 +37,9 @@ height = 82.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q6xd7"]
 radius = 20.0
 height = 76.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qko2e"]
+size = Vector2(88, 69)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3whfs"]
 radius = 20.0
@@ -1859,6 +1861,18 @@ blend_point_0/pos = -1.0
 blend_point_1/node = SubResource("AnimationNodeAnimation_5tg2x")
 blend_point_1/pos = 1.0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qko2e"]
+animation = &"base_left"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6u2ft"]
+animation = &"base_right"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_7nfft"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_qko2e")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_6u2ft")
+blend_point_1/pos = 1.0
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nmfrm"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_38dyx"]
@@ -1869,6 +1883,10 @@ blend_point_1/pos = 1.0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cwqw8"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_brjyi"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bnv2y"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_38dyx"]
 states/base/node = SubResource("AnimationNodeBlendSpace1D_puber")
 states/base/position = Vector2(402, 100)
@@ -1876,48 +1894,20 @@ states/crouch/node = SubResource("AnimationNodeBlendSpace1D_dptum")
 states/crouch/position = Vector2(402, 209)
 states/dash/node = SubResource("AnimationNodeBlendSpace1D_go4pq")
 states/dash/position = Vector2(565, 100)
-transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_nmfrm"), "base", "crouch", SubResource("AnimationNodeStateMachineTransition_38dyx"), "crouch", "base", SubResource("AnimationNodeStateMachineTransition_736hv"), "base", "dash", SubResource("AnimationNodeStateMachineTransition_l567y"), "dash", "base", SubResource("AnimationNodeStateMachineTransition_cwqw8")]
+states/super_dash/node = SubResource("AnimationNodeBlendSpace1D_7nfft")
+states/super_dash/position = Vector2(555, 209)
+transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_nmfrm"), "base", "crouch", SubResource("AnimationNodeStateMachineTransition_38dyx"), "crouch", "base", SubResource("AnimationNodeStateMachineTransition_736hv"), "base", "dash", SubResource("AnimationNodeStateMachineTransition_l567y"), "dash", "base", SubResource("AnimationNodeStateMachineTransition_cwqw8"), "base", "super_dash", SubResource("AnimationNodeStateMachineTransition_brjyi"), "super_dash", "base", SubResource("AnimationNodeStateMachineTransition_bnv2y")]
 
 [node name="Player" type="CharacterBody2D" unique_id=1061758820 node_paths=PackedStringArray("state_mask", "rc_bottom_left", "rc_bottom_center", "rc_bottom_right", "rc_top_left", "rc_top_center", "rc_top_right", "rc_left_top", "rc_left_center", "rc_left_bottom", "rc_right_top", "rc_right_center", "rc_right_bottom", "bullet_marker")]
 collision_layer = 2
 script = ExtResource("1_go8vc")
-key_change_mask = null
 state_mask = NodePath("StateMachine/Mask")
-key_left = null
-key_right = null
-key_up = null
-key_down = null
-key_jump = null
-key_dash = null
-key_fast_fall = null
-key_crouch = null
-key_pull = null
-key_attack = null
-key_shoot = null
 air_max_speed = 250.0
 air_acceleration = 1000.0
-air_deceleration = null
-air_friction = null
-air_turn_speed = null
-use_slope_movement = null
-min_slope_angle = null
-max_slope_angle = null
-slope_up_speed_mult = null
-slope_down_speed_mult = null
-slope_slide_force = null
 gravity = 1500.0
 max_gravity = 2000.0
-hang_time_gravity_multiplier = null
-fast_fall_gravity_multiplier = null
-hang_time_threshold = null
-fast_fall_hold_time = null
-jump_speed = 640.0
+jump_speed = 600.0
 jump_cut_off_speed = 200.0
-jump_coyote_time = null
-jump_input_buffer_time = null
-max_jumps = null
-dash_apply_gravity = null
-dash_four_directions = null
 rc_bottom_left = NodePath("Raycasts/Bottom/RayCastBottomLeft")
 rc_bottom_center = NodePath("Raycasts/Bottom/RayCastBottomCenter")
 rc_bottom_right = NodePath("Raycasts/Bottom/RayCastBottomRight")
@@ -1934,15 +1924,10 @@ max_speed = 200.0
 acceleration = 800.0
 deceleration = 800.0
 friction = 1000.0
-turn_speed = null
-max_dashes = null
 dash_speed = 500.0
 dash_duration_time = 0.5
-dash_input_buffer_time = null
-dash_cooldown_time = 0.1
-attack_input_buffer_time = null
+dash_cooldown_time = 0.2
 shoot_input_buffer_time = 0.5
-shoot_cooldown = null
 bullet_scene = ExtResource("2_qko2e")
 bullet_marker = NodePath("ShootMarker2D")
 
@@ -1950,6 +1935,7 @@ bullet_marker = NodePath("ShootMarker2D")
 target = NodePath("..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=84611841]
+z_index = 1
 position = Vector2(0, -48)
 sprite_frames = ExtResource("3_go8vc")
 animation = &"fall"
@@ -2023,9 +2009,10 @@ animated_sprite = NodePath("../../AnimatedSprite2D")
 animated_sprite_animation_name = "hurt"
 audio_stream_player = NodePath("../../AudioHurt")
 
-[node name="Dash" type="Node" parent="StateMachine" unique_id=1736377175 node_paths=PackedStringArray("life_points", "animation_tree", "animated_sprite")]
+[node name="Dash" type="Node" parent="StateMachine" unique_id=1736377175 node_paths=PackedStringArray("life_points", "hit_box", "animation_tree", "animated_sprite")]
 script = ExtResource("12_736hv")
 life_points = NodePath("../../LifePoints")
+hit_box = NodePath("../../HitBoxPower")
 animation_tree = NodePath("../../AnimationTree")
 animation_tree_animation_name = "dash"
 animation_tree_blend_param = "parameters/dash/blend_position"
@@ -2061,10 +2048,10 @@ animated_sprite = NodePath("../../AnimatedSprite2D")
 animated_sprite_animation_name = "die"
 audio_stream_player = NodePath("../../AudioHurt")
 
-[node name="Mask" type="Node" parent="StateMachine" unique_id=1765648616 node_paths=PackedStringArray("animation_tree", "animated_sprite")]
+[node name="Mask" type="Node" parent="StateMachine" unique_id=1765648616 node_paths=PackedStringArray("collectable_collector", "animation_tree", "animated_sprite")]
 script = ExtResource("17_wghkl")
+collectable_collector = NodePath("../../CollectableDetector")
 texture_unmasked = ExtResource("3_go8vc")
-texture_masked = ExtResource("20_7nfft")
 animation_tree = NodePath("../../AnimationTree")
 animation_tree_animation_name = "base"
 animated_sprite = NodePath("../../AnimatedSprite2D")
@@ -2095,7 +2082,6 @@ shape = SubResource("RectangleShape2D_j7xw4")
 debug_color = Color(0.12025965, 0.7059674, 0.27291515, 0.41960785)
 
 [node name="HitBoxOnAttack" parent="." unique_id=1528792408 instance=ExtResource("14_medo6")]
-visible = false
 collision_layer = 0
 collision_mask = 8
 metadata/_edit_lock_ = true
@@ -2103,6 +2089,17 @@ metadata/_edit_lock_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxOnAttack" unique_id=272787443]
 position = Vector2(11, -42)
 shape = SubResource("CapsuleShape2D_q6xd7")
+debug_color = Color(0.95627075, 0.056727253, 0.50869143, 0.41960785)
+metadata/_edit_lock_ = true
+
+[node name="HitBoxPower" parent="." unique_id=1492115700 instance=ExtResource("14_medo6")]
+collision_layer = 0
+collision_mask = 8
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxPower" unique_id=667034174]
+position = Vector2(0, -35.5)
+shape = SubResource("RectangleShape2D_qko2e")
 debug_color = Color(0.95627075, 0.056727253, 0.50869143, 0.41960785)
 metadata/_edit_lock_ = true
 
@@ -2180,6 +2177,7 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/base/blend_position = 1.0
 parameters/crouch/blend_position = 0.0
 parameters/dash/blend_position = 0.0
+parameters/super_dash/blend_position = 0.0
 
 [node name="AudioJump" type="AudioStreamPlayer2D" parent="." unique_id=831789885]
 stream = ExtResource("15_lnswd")

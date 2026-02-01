@@ -3,11 +3,17 @@ extends State
 @export_group("Intagible")
 @export var life_points: LifePoints
 
+@export_group("Damage")
+@export var hit_box:HitBox
+
+
 # nome do state
 func _state_name() -> String:
 	return "dash"
 
 func _on_state_ready() -> void:
+	if hit_box:
+		hit_box.active = false
 	if behavior:
 		set_animation_tree_blend_param(animation_tree, animation_tree_blend_param,behavior._last_horizontal_input, behavior.get_last_input())
 
@@ -43,6 +49,8 @@ func _on_state_next_transitions() -> void:
 
 func _on_state_enter(_last_state_name: String) -> void:
 	if behavior:
+		if hit_box:
+			hit_box.activate()
 		behavior.do_dash()
 		if life_points:
 			life_points.set_intagible(behavior.dash_duration_time)
@@ -51,6 +59,8 @@ func _on_state_enter(_last_state_name: String) -> void:
 func _on_state_exit() -> void:
 	if behavior:
 		behavior.do_dash_cooldown()
+	if hit_box:
+		hit_box.deactivate()
 
 func _on_animation_process(_delta: float) -> void:
 	if behavior and animation_tree and behavior.velocity != Vector2.ZERO:

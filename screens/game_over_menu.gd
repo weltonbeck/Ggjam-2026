@@ -1,9 +1,11 @@
 extends CanvasLayer
 
+@export var player:PlayerPlaformerBehavior
 
 func _ready() -> void:
-	#hide()
-	pass
+	hide()
+	if player:
+		player.character_die.connect(show_menu)
 
 
 func _on_quit_button_pressed() -> void:
@@ -16,6 +18,7 @@ func _on_retry_button_pressed() -> void:
 
 #Função para conectar no sinal da morte do player
 func show_menu():
+	await get_tree().create_timer(0.5, false).timeout
 	get_tree().paused = true
 	show()
 

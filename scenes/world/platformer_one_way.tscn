@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iiuti"]
 size = Vector2(96, 32)
 
-[node name="PlatformerOneWay" type="StaticBody2D" unique_id=1347071625]
+[node name="PlatformerOneWay" type="AnimatableBody2D" unique_id=166924463]
 script = ExtResource("1_q6uin")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=858735750]

@@ -59,7 +59,7 @@ func _process_inputs(delta: float) -> void:
 	# --------------------------------------------------------------------------
 	# Jump Input
 	# --------------------------------------------------------------------------
-	if InputMap.has_action(key_jump):
+	if not key_jump.is_empty() and InputMap.has_action(key_jump):
 		# Detecta o momento exato em que o botão de pulo foi pressionado
 		set_jump_input(Input.is_action_just_pressed(key_jump))
 
@@ -67,20 +67,20 @@ func _process_inputs(delta: float) -> void:
 		# (usado para pulo variável / corte de pulo)
 		set_jump_input_pressed(Input.is_action_pressed(key_jump))
 	
-	if key_dash and InputMap.has_action(key_dash):
+	if not key_dash.is_empty() and InputMap.has_action(key_dash):
 		set_input_dash(Input.is_action_just_pressed(key_dash))
 	
-	if key_fast_fall and InputMap.has_action(key_fast_fall):
+	if not key_fast_fall.is_empty() and InputMap.has_action(key_fast_fall):
 		set_fast_fall_input_pressed(Input.is_action_pressed(key_fast_fall), delta)
 	
-	if key_crouch and InputMap.has_action(key_crouch):
+	if not key_crouch.is_empty() and InputMap.has_action(key_crouch):
 		set_crouch_input_pressed(Input.is_action_pressed(key_crouch))
 	
-	if key_pull and InputMap.has_action(key_pull):
-		set_pull_input_pressed(Input.is_action_just_pressed(key_attack) or Input.is_action_pressed(key_pull))
+	if not key_pull.is_empty() and InputMap.has_action(key_pull):
+		set_pull_input_pressed(Input.is_action_just_pressed(key_pull) or Input.is_action_pressed(key_pull))
 	
-	if key_attack and InputMap.has_action(key_attack):
+	if not key_attack.is_empty() and InputMap.has_action(key_attack):
 		set_attack_input(Input.is_action_just_pressed(key_attack))
 	
-	if key_shoot and InputMap.has_action(key_shoot):
+	if not key_shoot.is_empty() and InputMap.has_action(key_shoot):
 		set_shoot_input(Input.is_action_just_pressed(key_shoot))

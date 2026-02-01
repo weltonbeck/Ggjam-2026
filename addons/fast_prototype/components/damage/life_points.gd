@@ -33,8 +33,8 @@ func set_intagible(_intagible_time:float) -> void:
 		await get_tree().create_timer(_intagible_time, false).timeout
 		_is_intagible = false
 
-func apply_damage(amount:float, diretion:Vector2 = Vector2.ZERO) -> void:
-	if not _is_intagible:
+func apply_damage(amount:float, diretion:Vector2 = Vector2.ZERO, _force:bool = false) -> void:
+	if not _is_intagible or _force:
 		_is_intagible = true
 		_current_life -= amount
 		take_damage.emit(amount,diretion)

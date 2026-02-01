@@ -1,7 +1,10 @@
 extends Area2D
 class_name HitBox
 
+
+
 @export var damage:float = 1
+@export var force: bool = false
 
 @export var active: bool = true
 ## Se true, o hit sera executado apenas uma vez

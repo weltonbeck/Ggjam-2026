@@ -71,6 +71,8 @@ var _shoot_cooldown_timer: float = 0.0
 
 var _die:bool = false
 
+signal character_die()
+
 func _ready() -> void:
 	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 
@@ -100,6 +102,7 @@ func do_move_and_slide() -> bool:
 
 func die() -> void:
 	_die = true
+	character_die.emit()
 	deactivate_inputs_control()
 	
 func is_able_to_die() -> bool:

@@ -94,7 +94,7 @@ func disable() -> void:
 
 # Método principal de coleta
 
-## Este método é chamado por sistemas externos (por exemplo, CollectorComponent) quando o coletável é coletado.
+## Este método é chamado por sistemas externos (por exemplo, Collector) quando o coletável é coletado.
 ## Emite um sinal para que sistemas como HUD ou inventário possam reagir.
 func collect() -> void:
 	# Verifica se o coletável já foi coletado para evitar coleta duplicada

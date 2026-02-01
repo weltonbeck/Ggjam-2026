@@ -1,6 +1,12 @@
 [gd_resource type="TileSet" format=3 uid="uid://da7t1sofurjej"]
 
 [ext_resource type="Texture2D" uid="uid://rwi62loa44mo" path="res://assets/sprites/tiles_stage1.png" id="1_ro847"]
+[ext_resource type="PackedScene" uid="uid://o5qlibbo0rbb" path="res://scenes/world/coin.tscn" id="2_3qk56"]
+[ext_resource type="PackedScene" uid="uid://rdfhec5sb62s" path="res://scenes/world/masks/mask_fogo.tscn" id="3_v7cn3"]
+[ext_resource type="PackedScene" uid="uid://b5f3v1lp6h51" path="res://scenes/world/masks/mask_tengu.tscn" id="4_ueqr3"]
+[ext_resource type="PackedScene" uid="uid://b6u1mmpdi08t8" path="res://scenes/world/heart.tscn" id="5_u8e6w"]
+[ext_resource type="PackedScene" uid="uid://uo333qodfjb2" path="res://scenes/world/spikes.tscn" id="6_tyeb2"]
+[ext_resource type="PackedScene" uid="uid://c0hpr2kbfjb0c" path="res://scenes/world/spring.tscn" id="7_o0qok"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fegt6"]
 texture = ExtResource("1_ro847")
@@ -382,6 +388,18 @@ texture_region_size = Vector2i(32, 32)
 8:4/0/terrains_peering_bit/left_side = 0
 8:4/0/terrains_peering_bit/top_side = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dod1g"]
+resource_name = "Collectables"
+scenes/1/scene = ExtResource("2_3qk56")
+scenes/2/scene = ExtResource("3_v7cn3")
+scenes/3/scene = ExtResource("4_ueqr3")
+scenes/4/scene = ExtResource("5_u8e6w")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_7v6be"]
+resource_name = "Interactibles"
+scenes/1/scene = ExtResource("6_tyeb2")
+scenes/2/scene = ExtResource("7_o0qok")
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
@@ -390,3 +408,5 @@ terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor"
 terrain_set_0/terrain_0/color = Color(0.680518, 0.122530855, 0.3457085, 1)
 sources/0 = SubResource("TileSetAtlasSource_fegt6")
+sources/1 = SubResource("TileSetScenesCollectionSource_dod1g")
+sources/2 = SubResource("TileSetScenesCollectionSource_7v6be")

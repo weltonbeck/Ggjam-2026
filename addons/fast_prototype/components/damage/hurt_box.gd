@@ -14,4 +14,4 @@ func set_damage(hit_box:HitBox, amount:float) -> void:
 		direction = Vector2.ZERO
 	
 	if (life_points):
-		life_points.apply_damage(amount, direction)
+		life_points.apply_damage(amount, direction, hit_box.force)

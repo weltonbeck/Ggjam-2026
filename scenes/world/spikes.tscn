@@ -9,12 +9,15 @@ size = Vector2(62, 56)
 [node name="Spikes" type="Node2D" unique_id=2089353998]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1490924672]
+position = Vector2(16, -16)
 texture = ExtResource("1_btssp")
 
 [node name="HitBox" type="Area2D" parent="." unique_id=2122609456]
+position = Vector2(16, -16)
 collision_layer = 0
 collision_mask = 10
 script = ExtResource("2_btssp")
+force = true
 damage_continuous = true
 time_interval = 1.0
 metadata/_custom_type_script = "uid://mgclbo6rctbp"

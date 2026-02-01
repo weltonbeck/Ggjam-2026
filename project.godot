@@ -46,6 +46,10 @@ folder_colors={
 "res://addons/fast_prototype/": "pink"
 }
 
+[global_group]
+
+mask=""
+
 [input]
 
 key_left={

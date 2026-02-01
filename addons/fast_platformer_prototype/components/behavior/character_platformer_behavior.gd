@@ -65,13 +65,13 @@ var _in_force_jump: bool = false ## caso esteja no pulo forçado
 
 #endregion
 
-#region crouch Variables
-
-#region crouch Variables
+#region pull Variables
 
 var _pull_input_pressed: bool = false
 
 #endregion
+
+#region crouch Variables
 
 var _crouch_input_pressed: bool = false
 
@@ -104,8 +104,19 @@ var _crouch_input_pressed: bool = false
 
 #endregion
 
+#region platformer Variables
+
 var current_floor_platformer: Node2D ## minha plataforma no chão
 var current_floor_surface:Surface ## minha superficie
+
+var current_platform_velocity: Vector2  = Vector2.ZERO ## valor da velocidade da plataforma
+var last_platform_velocity: Vector2  = Vector2.ZERO ## valor da ultima velocidade da plataforma
+
+var platformer_persist_momentum_time: float = 0.4 ## tempo de persistencia do momemtum
+var platformer_persist_momentum_timer: float = 0 ## temporizador do mommetum
+var platformer_momentum_velocity: Vector2  = Vector2.ZERO 
+#endregion
+
 
 var current_pushable_platformer: Pushable
 
@@ -119,10 +130,14 @@ func _physics_process(delta: float) -> void:
 	super._physics_process(delta)
 	_process_jump(delta)
 	_process_fall(delta)
+	_process_platformer(delta)
 
 func do_move_and_slide() -> bool:
 	_handle_through_platform()
 	handle_pushable_platformer(current_delta)
+	last_platform_velocity = current_platform_velocity
+	current_platform_velocity = get_platform_velocity()
+	
 	var output = super.do_move_and_slide()
 	handle_platformer()
 	handle_surface()
@@ -159,7 +174,11 @@ func horizontal_movement(delta:float,  _input:float = _horizontal_input, _max_sp
 		_turn_speed *=  1 + _surface_speed_multiply_factor
 		_deceleration *=  1 + _surface_speed_multiply_factor
 		_friction *= 1 + _surface_friction_multiply_factor
-		
+	
+	#if platformer_momentum_velocity.x != 0 and not is_on_floor() and platformer_persist_momentum_timer > 0:
+		#if _input == 0 or sign(_input) == sign(platformer_momentum_velocity.x):
+			#_max_speed += platformer_momentum_velocity.x * -1
+	
 	velocity.x = _get_axis_movement(velocity.x, delta, _input, _max_speed, _acceleration, _deceleration, _friction, _turn_speed)
 	
 	# Adiciona a força da esteira, se estiver no chão
@@ -481,12 +500,24 @@ func is_on_through_platform() -> bool:
 
 	return floor_collision.is_in_group(Globals.GROUP_THROUGH_PLATFORMER)
 
+func _add_platformer_velocity_to_character() -> void:
+	if last_platform_velocity != Vector2.ZERO:
+		velocity.x = last_platform_velocity.x
+		platformer_momentum_velocity = last_platform_velocity
+		last_platform_velocity = Vector2.ZERO
+		platformer_persist_momentum_timer = platformer_persist_momentum_time
+
+func _process_platformer(delta:float) -> void:
+	if platformer_persist_momentum_timer > 0:
+		platformer_persist_momentum_timer -= delta
+
 func handle_platformer() -> void:
 	if is_on_floor():
 		if rc_bottom_center or get_slide_collision_count() > 0:
 			current_floor_platformer = get_floor_platformer()
 	else:
 		current_floor_platformer = null
+		_add_platformer_velocity_to_character()
 
 func handle_surface() -> void:
 	if is_on_floor():
@@ -615,7 +646,6 @@ func is_pushable_platformer_on_left() -> bool:
 	return false
 
 #endregion
-
 
 #region Raycast
 

@@ -1,20 +1,20 @@
-[gd_scene format=3 uid="uid://bm27b2af78kmr"]
+[gd_scene format=3 uid="uid://c38w22u4dro38"]
 
-[ext_resource type="Script" uid="uid://c5nptyeigi456" path="res://addons/fast_prototype/components/damage/bullet.gd" id="1_vk0ui"]
-[ext_resource type="Texture2D" uid="uid://difkn8tk40su3" path="res://assets/sprites/fire_bullet.png" id="2_3kpgc"]
-[ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="3_rlq6d"]
-[ext_resource type="PackedScene" uid="uid://chl5ok63hjso4" path="res://scenes/world/explosion_effect.tscn" id="4_vqsfa"]
+[ext_resource type="Script" uid="uid://c5nptyeigi456" path="res://addons/fast_prototype/components/damage/bullet.gd" id="1_hmlpw"]
+[ext_resource type="Texture2D" uid="uid://difkn8tk40su3" path="res://assets/sprites/fire_bullet.png" id="2_p2x3i"]
+[ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="3_vw5ps"]
+[ext_resource type="PackedScene" uid="uid://chl5ok63hjso4" path="res://scenes/world/explosion_effect.tscn" id="4_58b2d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rlq6d"]
-atlas = ExtResource("2_3kpgc")
+atlas = ExtResource("2_p2x3i")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vqsfa"]
-atlas = ExtResource("2_3kpgc")
+atlas = ExtResource("2_p2x3i")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjthl"]
-atlas = ExtResource("2_3kpgc")
+atlas = ExtResource("2_p2x3i")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_li2sn"]
@@ -37,23 +37,23 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_isa8o"]
 radius = 17.029387
 
-[node name="BulletMedusa" type="Area2D" unique_id=1765166060]
-modulate = Color(0.011764706, 1, 0.8509804, 1)
+[node name="BulletFogo" type="Area2D" unique_id=1765166060]
 collision_layer = 0
 collision_mask = 9
-script = ExtResource("1_vk0ui")
+script = ExtResource("1_hmlpw")
+speed = 200.0
 hit_once = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1741503671]
 sprite_frames = SubResource("SpriteFrames_li2sn")
 autoplay = "default"
-frame_progress = 0.91648054
+frame_progress = 0.8785719
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=610457439]
 shape = SubResource("CircleShape2D_isa8o")
 debug_color = Color(0.9706649, 0, 0.45639497, 0.41960785)
 
-[node name="EventSpawnerCollectedEffect" parent="." unique_id=1239793099 instance=ExtResource("3_rlq6d")]
-packed_scene = ExtResource("4_vqsfa")
+[node name="EventSpawnerCollectedEffect" parent="." unique_id=1239793099 instance=ExtResource("3_vw5ps")]
+packed_scene = ExtResource("4_58b2d")
 target_signal_node = NodePath("..")
 target_signal = "did_damage"
