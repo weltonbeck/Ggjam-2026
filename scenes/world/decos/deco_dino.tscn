@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://chsiuwlx4drfn"]
+
+[ext_resource type="Texture2D" uid="uid://c58cqvewj2350" path="res://assets/sprites/dino.png" id="1_e4ype"]
+
+[node name="DecoDino" type="Node2D" unique_id=733150257]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=223470419]
+z_index = -1
+position = Vector2(0, -32)
+texture = ExtResource("1_e4ype")

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d3ljb5s2bnigu"]
+
+[ext_resource type="Texture2D" uid="uid://d1rhb5vykqpya" path="res://assets/sprites/deco.png" id="1_p85qx"]
+
+[node name="DecoFogoFour" type="Node2D" unique_id=733150257]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=223470419]
+z_index = -1
+position = Vector2(0, -16)
+texture = ExtResource("1_p85qx")
+hframes = 6
+vframes = 5
+frame = 15

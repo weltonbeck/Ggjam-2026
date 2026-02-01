@@ -6,33 +6,36 @@
 [ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="4_ggb6y"]
 [ext_resource type="PackedScene" uid="uid://f74ox4ew883v" path="res://scenes/world/collected_effect.tscn" id="5_7ohxi"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vaxtj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1f5j"]
 atlas = ExtResource("2_a1f5j")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2600d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vaxtj"]
 atlas = ExtResource("2_a1f5j")
 region = Rect2(48, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ggb6y"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2600d"]
 atlas = ExtResource("2_a1f5j")
 region = Rect2(96, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7ohxi"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggb6y"]
 atlas = ExtResource("2_a1f5j")
 region = Rect2(144, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sfvbn"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ohxi"]
 atlas = ExtResource("2_a1f5j")
 region = Rect2(192, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4eb3k"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfvbn"]
 atlas = ExtResource("2_a1f5j")
 region = Rect2(240, 0, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hkkhm"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1f5j")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vaxtj")
 }, {
@@ -47,9 +50,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sfvbn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4eb3k")
 }],
 "loop": true,
 "name": &"default",
@@ -57,7 +57,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oh106"]
-radius = 8.062258
+radius = 13.038404
 
 [node name="Heart" type="Area2D" unique_id=1622390802 node_paths=PackedStringArray("audio_stream_player")]
 script = ExtResource("1_a1f5j")

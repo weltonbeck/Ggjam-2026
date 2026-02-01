@@ -9,6 +9,34 @@
 [ext_resource type="PackedScene" uid="uid://cu1excj3djy4t" path="res://scenes/world/masks/mask_medusa.tscn" id="6_v7cn3"]
 [ext_resource type="PackedScene" uid="uid://c0hpr2kbfjb0c" path="res://scenes/world/spring.tscn" id="7_o0qok"]
 [ext_resource type="PackedScene" uid="uid://dtbim8p4riyu2" path="res://scenes/world/masks/mask_cavaleiro.tscn" id="7_ueqr3"]
+[ext_resource type="PackedScene" uid="uid://d2orrvx1h8cub" path="res://scenes/world/platformer_one_way.tscn" id="10_5g22v"]
+[ext_resource type="PackedScene" uid="uid://gnuabscsd77f" path="res://scenes/world/decos/deco_cavaleiro_two.tscn" id="10_wkkyv"]
+[ext_resource type="PackedScene" uid="uid://m1ba5gdoofnj" path="res://scenes/world/decos/deco_closing_rope.tscn" id="11_5g22v"]
+[ext_resource type="PackedScene" uid="uid://chsiuwlx4drfn" path="res://scenes/world/decos/deco_dino.tscn" id="12_yppot"]
+[ext_resource type="PackedScene" uid="uid://cj0wqs46ip1rb" path="res://scenes/world/decos/deco_fogo_five.tscn" id="13_rksi2"]
+[ext_resource type="PackedScene" uid="uid://d3ljb5s2bnigu" path="res://scenes/world/decos/deco_fogo_four.tscn" id="14_fyv52"]
+[ext_resource type="PackedScene" uid="uid://bydx14q73d7su" path="res://scenes/world/decos/deco_fogo_one.tscn" id="15_ib73g"]
+[ext_resource type="PackedScene" uid="uid://dwja1gseui2ji" path="res://scenes/world/decos/deco_fogo_three.tscn" id="16_lgmcj"]
+[ext_resource type="PackedScene" uid="uid://ds17dyi5knjh6" path="res://scenes/world/decos/deco_fogo_two.tscn" id="17_qdwt7"]
+[ext_resource type="PackedScene" uid="uid://dan3kkh7q07oq" path="res://scenes/world/decos/deco_light_off.tscn" id="18_j2pyd"]
+[ext_resource type="PackedScene" uid="uid://o32xhccupoet" path="res://scenes/world/decos/deco_light_on.tscn" id="19_swqqw"]
+[ext_resource type="PackedScene" uid="uid://ck5hxojeqe5ul" path="res://scenes/world/decos/deco_medusa_five.tscn" id="20_d0gw3"]
+[ext_resource type="PackedScene" uid="uid://b2nx8guregmdk" path="res://scenes/world/decos/deco_medusa_four.tscn" id="21_5o7sc"]
+[ext_resource type="PackedScene" uid="uid://j453y6dlfcx2" path="res://scenes/world/decos/deco_medusa_one.tscn" id="22_nv568"]
+[ext_resource type="PackedScene" uid="uid://bn3tprj5opk25" path="res://scenes/world/decos/deco_medusa_three.tscn" id="23_fhgga"]
+[ext_resource type="PackedScene" uid="uid://bceeey4b3dmju" path="res://scenes/world/decos/deco_medusa_two.tscn" id="24_i1wqq"]
+[ext_resource type="PackedScene" uid="uid://ckrs6ekqi1yq4" path="res://scenes/world/decos/deco_tengu_five.tscn" id="25_np4w1"]
+[ext_resource type="PackedScene" uid="uid://dj2111aejijof" path="res://scenes/world/decos/deco_tengu_four.tscn" id="26_37hld"]
+[ext_resource type="PackedScene" uid="uid://3beebiurjbdo" path="res://scenes/world/decos/deco_tengu_one.tscn" id="27_0a6wo"]
+[ext_resource type="PackedScene" uid="uid://dctohb2p6psrt" path="res://scenes/world/decos/deco_tengu_three.tscn" id="28_7u7uc"]
+[ext_resource type="PackedScene" uid="uid://crifaechx11w5" path="res://scenes/world/decos/deco_tengu_two.tscn" id="29_l5rqq"]
+[ext_resource type="PackedScene" uid="uid://bj2csc44rqefo" path="res://scenes/world/decos/deco_art_one.tscn" id="30_ldlie"]
+[ext_resource type="PackedScene" uid="uid://caotvxlnymn2w" path="res://scenes/world/decos/deco_art_three.tscn" id="31_elt11"]
+[ext_resource type="PackedScene" uid="uid://b4ei1ebkhu7o5" path="res://scenes/world/decos/deco_art_two.tscn" id="32_gdpv4"]
+[ext_resource type="PackedScene" uid="uid://bgdvory7igujc" path="res://scenes/world/decos/deco_cavaleiro_five.tscn" id="33_l7kmd"]
+[ext_resource type="PackedScene" uid="uid://dkl4u6y5bckes" path="res://scenes/world/decos/deco_cavaleiro_four.tscn" id="34_jbsam"]
+[ext_resource type="PackedScene" uid="uid://b7v2jfrtm2ee7" path="res://scenes/world/decos/deco_cavaleiro_one.tscn" id="35_61s1d"]
+[ext_resource type="PackedScene" uid="uid://m3vcawlb2cbl" path="res://scenes/world/decos/deco_cavaleiro_three.tscn" id="36_h62vs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fegt6"]
 texture = ExtResource("1_ro847")
@@ -403,6 +431,37 @@ scenes/6/scene = ExtResource("7_ueqr3")
 resource_name = "Interactibles"
 scenes/1/scene = ExtResource("6_tyeb2")
 scenes/2/scene = ExtResource("7_o0qok")
+scenes/3/scene = ExtResource("10_5g22v")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_tyeb2"]
+resource_name = "Deco"
+scenes/3/scene = ExtResource("30_ldlie")
+scenes/4/scene = ExtResource("31_elt11")
+scenes/5/scene = ExtResource("32_gdpv4")
+scenes/6/scene = ExtResource("33_l7kmd")
+scenes/7/scene = ExtResource("34_jbsam")
+scenes/8/scene = ExtResource("35_61s1d")
+scenes/9/scene = ExtResource("36_h62vs")
+scenes/10/scene = ExtResource("10_wkkyv")
+scenes/11/scene = ExtResource("11_5g22v")
+scenes/12/scene = ExtResource("12_yppot")
+scenes/13/scene = ExtResource("13_rksi2")
+scenes/14/scene = ExtResource("14_fyv52")
+scenes/15/scene = ExtResource("15_ib73g")
+scenes/16/scene = ExtResource("16_lgmcj")
+scenes/17/scene = ExtResource("17_qdwt7")
+scenes/18/scene = ExtResource("18_j2pyd")
+scenes/19/scene = ExtResource("19_swqqw")
+scenes/20/scene = ExtResource("20_d0gw3")
+scenes/21/scene = ExtResource("21_5o7sc")
+scenes/22/scene = ExtResource("22_nv568")
+scenes/23/scene = ExtResource("23_fhgga")
+scenes/24/scene = ExtResource("24_i1wqq")
+scenes/25/scene = ExtResource("25_np4w1")
+scenes/26/scene = ExtResource("26_37hld")
+scenes/27/scene = ExtResource("27_0a6wo")
+scenes/28/scene = ExtResource("28_7u7uc")
+scenes/29/scene = ExtResource("29_l5rqq")
 
 [resource]
 tile_size = Vector2i(32, 32)
@@ -414,3 +473,4 @@ terrain_set_0/terrain_0/color = Color(0.680518, 0.122530855, 0.3457085, 1)
 sources/0 = SubResource("TileSetAtlasSource_fegt6")
 sources/1 = SubResource("TileSetScenesCollectionSource_dod1g")
 sources/2 = SubResource("TileSetScenesCollectionSource_7v6be")
+sources/3 = SubResource("TileSetScenesCollectionSource_tyeb2")
