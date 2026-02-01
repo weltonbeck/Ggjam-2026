@@ -1,6 +1,7 @@
 @tool
 @icon("res://addons/fast_prototype/assets/icons/trigger.svg")
 extends Node2D
+class_name event_trigger
 
 # ======================================================================
 # Trigger

@@ -1,8 +1,7 @@
 [gd_scene format=4 uid="uid://bhrttexquih83"]
 
 [ext_resource type="PackedScene" uid="uid://bqy6ipvqys88m" path="res://scenes/hud/hud_levels.tscn" id="1_hmwrn"]
-[ext_resource type="Texture2D" uid="uid://cu4un02bbjrsw" path="res://assets/bg/bg_museu_moon.png" id="2_tcnn2"]
-[ext_resource type="Texture2D" uid="uid://j7gkif84ssip" path="res://assets/bg/bg_museu_walls.png" id="3_vqev0"]
+[ext_resource type="PackedScene" uid="uid://q6sopobwyb71" path="res://scenes/world/bg_paralax.tscn" id="3_nww4q"]
 [ext_resource type="TileSet" uid="uid://da7t1sofurjej" path="res://scenes/tiles/tilemap.tres" id="5_5d4oe"]
 [ext_resource type="PackedScene" uid="uid://beb4fbily8rdh" path="res://addons/fast_platformer_prototype/components/camera/platformer_camera_2d.tscn" id="6_k7i21"]
 [ext_resource type="PackedScene" uid="uid://c7wyk7duohm5j" path="res://scenes/entities/enemy.tscn" id="7_os8aj"]
@@ -38,22 +37,7 @@ layer = 2
 visible = false
 player = NodePath("../Player")
 
-[node name="Bg" type="Node2D" parent="." unique_id=1462802297]
-
-[node name="Parallax2D" type="Parallax2D" parent="Bg" unique_id=1680082508]
-scroll_scale = Vector2(0, 0)
-
-[node name="BgMoon" type="Sprite2D" parent="Bg/Parallax2D" unique_id=925347280]
-position = Vector2(400, 225)
-texture = ExtResource("2_tcnn2")
-
-[node name="Parallax2D2" type="Parallax2D" parent="Bg" unique_id=1152460834]
-scroll_scale = Vector2(0.05, 0.05)
-repeat_size = Vector2(800, 450)
-
-[node name="BgWalls" type="Sprite2D" parent="Bg/Parallax2D2" unique_id=2061120213]
-position = Vector2(400, 225)
-texture = ExtResource("3_vqev0")
+[node name="Bg" parent="." unique_id=1319805191 instance=ExtResource("3_nww4q")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1727406628]
 position = Vector2(6, 0)

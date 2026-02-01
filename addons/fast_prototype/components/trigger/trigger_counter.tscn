@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bs4injj64tn8e"]
+
+[ext_resource type="Script" uid="uid://ctc7x1tcokt1h" path="res://addons/fast_prototype/components/trigger/trigger_counter.gd" id="1_pl3r4"]
+
+[node name="TriggerCounter" type="Node2D" unique_id=907048953]
+script = ExtResource("1_pl3r4")

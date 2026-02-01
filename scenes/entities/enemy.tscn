@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://vhadpy31nnef" path="res://scenes/entities/enemy.gd" id="1_ln8om"]
 [ext_resource type="PackedScene" uid="uid://o1746xdmj8gs" path="res://addons/fast_prototype/components/identifier/enemy_itentifier.tscn" id="1_rrp0o"]
+[ext_resource type="PackedScene" uid="uid://djrarve8l3gkw" path="res://scenes/world/pushableEnemy.tscn" id="2_2ynut"]
 [ext_resource type="PackedScene" uid="uid://j2s8ejbnwb4l" path="res://scenes/entities/bullet_enemy.tscn" id="2_fkgbd"]
 [ext_resource type="PackedScene" uid="uid://dttd4r7nmj42p" path="res://addons/fast_prototype/components/state_machine/state_machine.tscn" id="3_68dbu"]
 [ext_resource type="Texture2D" uid="uid://vkn63nuro6fo" path="res://assets/sprites/guard.png" id="3_ln8om"]
@@ -712,8 +713,9 @@ transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition
 [node name="Enemy" type="CharacterBody2D" unique_id=1910708734 node_paths=PackedStringArray("player_detector", "bullet_marker")]
 collision_layer = 0
 script = ExtResource("1_ln8om")
+stone_scene = ExtResource("2_2ynut")
 player_detector = NodePath("PlayerDetector")
-shoot_cooldown = 0.5
+shoot_cooldown = 1.0
 bullet_scene = ExtResource("2_fkgbd")
 bullet_marker = NodePath("BulletMarker2D")
 

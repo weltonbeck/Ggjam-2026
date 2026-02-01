@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cjfrwsf574xjh" path="res://addons/fast_prototype/components/state_machine/states/run.gd" id="6_3nwpd"]
 [ext_resource type="Script" uid="uid://dwn20x4lnn3ea" path="res://addons/fast_platformer_prototype/components/state_machine/states/jump.gd" id="7_j7xw4"]
 [ext_resource type="Script" uid="uid://btgnvuxcexoro" path="res://addons/fast_platformer_prototype/components/state_machine/states/fall.gd" id="8_medo6"]
+[ext_resource type="Script" uid="uid://cc7ynhnyj8d42" path="res://addons/fast_platformer_prototype/components/state_machine/states/double_jump.gd" id="9_6u2ft"]
 [ext_resource type="Script" uid="uid://cifisxri804er" path="res://addons/fast_prototype/components/state_machine/states/attack.gd" id="9_dvt2f"]
 [ext_resource type="Script" uid="uid://cgbqduvpofp5h" path="res://addons/fast_platformer_prototype/components/state_machine/states/crouch.gd" id="10_puber"]
 [ext_resource type="Script" uid="uid://bu31gawm8506x" path="res://addons/fast_prototype/components/state_machine/states/hurt.gd" id="11_cocv6"]
@@ -1938,7 +1939,7 @@ target = NodePath("..")
 z_index = 1
 position = Vector2(0, -48)
 sprite_frames = ExtResource("3_go8vc")
-animation = &"win"
+animation = &"shoot"
 autoplay = "idle"
 metadata/_edit_lock_ = true
 
@@ -1967,6 +1968,14 @@ animated_sprite_animation_name = "walk"
 
 [node name="Jump" type="Node" parent="StateMachine" unique_id=2030144496 node_paths=PackedStringArray("animation_tree", "animated_sprite", "audio_stream_player")]
 script = ExtResource("7_j7xw4")
+animation_tree = NodePath("../../AnimationTree")
+animation_tree_animation_name = "base"
+animated_sprite = NodePath("../../AnimatedSprite2D")
+animated_sprite_animation_name = "jump"
+audio_stream_player = NodePath("../../AudioJump")
+
+[node name="DoubleJump" type="Node" parent="StateMachine" unique_id=200493619 node_paths=PackedStringArray("animation_tree", "animated_sprite", "audio_stream_player")]
+script = ExtResource("9_6u2ft")
 animation_tree = NodePath("../../AnimationTree")
 animation_tree_animation_name = "base"
 animated_sprite = NodePath("../../AnimatedSprite2D")

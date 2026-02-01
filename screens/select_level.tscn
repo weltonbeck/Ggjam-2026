@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b16l1mn7qrsae"]
 
+[ext_resource type="Script" uid="uid://c5qu3n7hkgctf" path="res://screens/select_level.gd" id="1_lr0vd"]
 [ext_resource type="Texture2D" uid="uid://bs7d131sbxu2s" path="res://assets/hud/mask1-1.png" id="2_mgq3i"]
 [ext_resource type="Texture2D" uid="uid://spygup48v4xa" path="res://assets/hud/mask1-4.png" id="3_lr0vd"]
 [ext_resource type="Texture2D" uid="uid://j53fgsij3qnm" path="res://assets/bg/bg_level_select.png" id="3_xm56c"]
@@ -24,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_lr0vd")
 
 [node name="Background" type="TextureRect" parent="." unique_id=531402106]
 layout_mode = 0
@@ -110,6 +112,12 @@ position = Vector2(1050, 223)
 packed_scene_path = "uid://bhrttexquih83"
 target_signal_node = NodePath("../MaskButton4")
 target_signal = "pressed"
+
+[node name="EventTriggerAllMasks" parent="." unique_id=403737895 instance=ExtResource("4_7513o")]
+position = Vector2(1050, 223)
+packed_scene_path = "uid://j7p6j8l36glp"
+target_signal_node = NodePath("..")
+target_signal = "all_masks"
 
 [node name="ChooseYourMask" type="TextureRect" parent="." unique_id=705727736]
 layout_mode = 1

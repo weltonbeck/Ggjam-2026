@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://cjp8umc4ycb4o"]
+
+[ext_resource type="Texture2D" uid="uid://bvasordbb8cnq" path="res://assets/sprites/vela.png" id="1_b7j30"]
+[ext_resource type="Script" uid="uid://h8kfvs74bk7o" path="res://scenes/world/candle_active_platformer.gd" id="1_wa8cp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa8cp"]
+atlas = ExtResource("1_b7j30")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0hrmf"]
+atlas = ExtResource("1_b7j30")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hssk"]
+atlas = ExtResource("1_b7j30")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3h52"]
+atlas = ExtResource("1_b7j30")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cv5ee"]
+atlas = ExtResource("1_b7j30")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gie6p"]
+atlas = ExtResource("1_b7j30")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nyrwl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa8cp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0hrmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hssk")
+}],
+"loop": true,
+"name": &"active",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3h52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cv5ee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gie6p")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lugtg"]
+size = Vector2(22, 65)
+
+[node name="CandleActivePlatformer" type="Area2D" unique_id=300368578]
+collision_layer = 0
+collision_mask = 64
+script = ExtResource("1_wa8cp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=840371451]
+sprite_frames = SubResource("SpriteFrames_nyrwl")
+animation = &"active"
+autoplay = "idle"
+frame_progress = 0.70057714
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=894034161]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_lugtg")

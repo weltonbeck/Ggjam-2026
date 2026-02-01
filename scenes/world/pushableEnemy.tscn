@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://djrarve8l3gkw"]
+
+[ext_resource type="Script" uid="uid://dy7kqda47wsiv" path="res://addons/fast_platformer_prototype/components/platformer/platformer_pushable.gd" id="1_cn75u"]
+[ext_resource type="Texture2D" uid="uid://br5numyuqt61q" path="res://assets/sprites/enemy_stone.png" id="2_cn75u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fptyg"]
+size = Vector2(62, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgnls"]
+atlas = ExtResource("2_cn75u")
+region = Rect2(0, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xu7v"]
+atlas = ExtResource("2_cn75u")
+region = Rect2(64, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2vb5s"]
+atlas = ExtResource("2_cn75u")
+region = Rect2(128, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwece"]
+atlas = ExtResource("2_cn75u")
+region = Rect2(192, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lqxc"]
+atlas = ExtResource("2_cn75u")
+region = Rect2(256, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rd0v"]
+atlas = ExtResource("2_cn75u")
+region = Rect2(320, 0, 64, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_63m8x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgnls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xu7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2vb5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwece")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lqxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rd0v")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PushableEnemy" type="CharacterBody2D" unique_id=984363278]
+collision_layer = 33
+collision_mask = 11
+script = ExtResource("1_cn75u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1840597693]
+shape = SubResource("RectangleShape2D_fptyg")
+debug_color = Color(0.18173793, 0.51577806, 0.99999994, 0.41960785)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=111110068]
+sprite_frames = SubResource("SpriteFrames_63m8x")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0

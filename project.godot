@@ -150,6 +150,8 @@ key_r2={
 2d_physics/layer_3="hazard"
 2d_physics/layer_4="enemy"
 2d_physics/layer_5="collectable"
+2d_physics/layer_6="pushable"
+2d_physics/layer_7="bullet_fire"
 
 [physics]
 

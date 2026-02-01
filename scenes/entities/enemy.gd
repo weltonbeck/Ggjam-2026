@@ -1,9 +1,12 @@
 extends SimplePatrolPlaformerBehavior
+class_name Enemy
 
 var _shoot:bool = false
 
 @onready var state_look: State = $StateMachine/Look
 @onready var state_lose_player: Node = $StateMachine/LosePlayer
+
+@export var stone_scene: PackedScene
 
 var max_shoot_time = 5
 var max_shoot_timer = 0
@@ -44,3 +47,10 @@ func stop_shoot() -> void:
 
 func is_shooting() -> bool:
 	return _shoot
+
+func turn_stone() -> void:
+	if stone_scene:
+		var _instance = stone_scene.instantiate()
+		get_tree().root.call_deferred("add_child", _instance)
+		_instance.global_position = global_position
+		call_deferred("queue_free")

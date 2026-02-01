@@ -1,23 +1,31 @@
 [gd_scene format=4 uid="uid://22v0mhq3mryc"]
 
 [ext_resource type="PackedScene" uid="uid://bqy6ipvqys88m" path="res://scenes/hud/hud_levels.tscn" id="1_doqsp"]
-[ext_resource type="Texture2D" uid="uid://cu4un02bbjrsw" path="res://assets/bg/bg_museu_moon.png" id="1_j16xn"]
 [ext_resource type="PackedScene" uid="uid://beb4fbily8rdh" path="res://addons/fast_platformer_prototype/components/camera/platformer_camera_2d.tscn" id="1_vn6lg"]
 [ext_resource type="PackedScene" uid="uid://cqsj51nma5enb" path="res://scenes/entities/player/player.tscn" id="1_w5yiv"]
 [ext_resource type="TileSet" uid="uid://da7t1sofurjej" path="res://scenes/tiles/tilemap.tres" id="1_xws8j"]
 [ext_resource type="PackedScene" uid="uid://d3x2rrbctw8a6" path="res://screens/game_over_menu.tscn" id="2_2f05k"]
-[ext_resource type="Texture2D" uid="uid://j7gkif84ssip" path="res://assets/bg/bg_museu_walls.png" id="2_ti08h"]
 [ext_resource type="PackedScene" uid="uid://c7wyk7duohm5j" path="res://scenes/entities/enemy.tscn" id="3_kl5cn"]
+[ext_resource type="PackedScene" uid="uid://q6sopobwyb71" path="res://scenes/world/bg_paralax.tscn" id="3_xdbw7"]
 [ext_resource type="PackedScene" uid="uid://uo333qodfjb2" path="res://scenes/world/spikes.tscn" id="9_tp0ta"]
 [ext_resource type="PackedScene" uid="uid://d2orrvx1h8cub" path="res://scenes/world/platformer_one_way.tscn" id="10_h2u83"]
 [ext_resource type="PackedScene" uid="uid://o5qlibbo0rbb" path="res://scenes/world/coin.tscn" id="10_j16xn"]
 [ext_resource type="PackedScene" uid="uid://c0hpr2kbfjb0c" path="res://scenes/world/spring.tscn" id="10_og5e5"]
 [ext_resource type="PackedScene" uid="uid://cek766ct4nnfu" path="res://scenes/world/pushable.tscn" id="11_j16xn"]
-[ext_resource type="PackedScene" uid="uid://jss4lpahhqai" path="res://scenes/entities/drone.tscn" id="14_8arkg"]
+[ext_resource type="PackedScene" uid="uid://krrsj1yx0kkc" path="res://scenes/entities/drone.tscn" id="14_8arkg"]
 [ext_resource type="PackedScene" uid="uid://b6u1mmpdi08t8" path="res://scenes/world/heart.tscn" id="15_ho81j"]
 [ext_resource type="PackedScene" uid="uid://rdfhec5sb62s" path="res://scenes/world/masks/mask_fogo.tscn" id="16_xdbw7"]
 [ext_resource type="PackedScene" uid="uid://b5f3v1lp6h51" path="res://scenes/world/masks/mask_tengu.tscn" id="17_vcgwl"]
+[ext_resource type="PackedScene" uid="uid://dtbim8p4riyu2" path="res://scenes/world/masks/mask_cavaleiro.tscn" id="18_2f05k"]
 [ext_resource type="PackedScene" uid="uid://b2xn0k4mx086q" path="res://scenes/world/platformer_path.tscn" id="18_vcgwl"]
+[ext_resource type="PackedScene" uid="uid://cu1excj3djy4t" path="res://scenes/world/masks/mask_medusa.tscn" id="19_5v5t4"]
+[ext_resource type="PackedScene" uid="uid://djrarve8l3gkw" path="res://scenes/world/pushableEnemy.tscn" id="20_5v5t4"]
+[ext_resource type="PackedScene" uid="uid://drby2rms2x4bm" path="res://scenes/world/button_active_platformer.tscn" id="21_sdsmv"]
+[ext_resource type="PackedScene" uid="uid://bude7jcvaw78s" path="res://addons/fast_prototype/components/trigger/event_trigger.tscn" id="22_p8y6i"]
+[ext_resource type="Script" uid="uid://37pvq0tqrwha" path="res://addons/fast_prototype/resources/node_signal.gd" id="23_qjs0f"]
+[ext_resource type="Script" uid="uid://dggerfjab2a3f" path="res://addons/fast_prototype/resources/node_method.gd" id="24_2hujo"]
+[ext_resource type="PackedScene" uid="uid://cjp8umc4ycb4o" path="res://scenes/world/candle_active_platformer.tscn" id="25_qjs0f"]
+[ext_resource type="PackedScene" uid="uid://bs4injj64tn8e" path="res://addons/fast_prototype/components/trigger/trigger_counter.tscn" id="26_2hujo"]
 
 [sub_resource type="Curve2D" id="Curve2D_2f05k"]
 bake_interval = 2.25
@@ -25,6 +33,42 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 245, 221, 0, 0, 0, 0, 244, 89)
 }
 point_count = 2
+
+[sub_resource type="Resource" id="Resource_8on4x"]
+script = ExtResource("23_qjs0f")
+target_signal_node = NodePath("../../ButtonActivePlatformer")
+target_signal = "body_entered"
+metadata/_custom_type_script = "uid://37pvq0tqrwha"
+
+[sub_resource type="Resource" id="Resource_rpyvk"]
+script = ExtResource("24_2hujo")
+target_method_node = NodePath("../../TriggerCounter")
+target_method = "add_to_trigger_count"
+metadata/_custom_type_script = "uid://dggerfjab2a3f"
+
+[sub_resource type="Resource" id="Resource_m68m5"]
+script = ExtResource("23_qjs0f")
+target_signal_node = NodePath("../../CandleActivePlatformer")
+target_signal = "trigger_active"
+metadata/_custom_type_script = "uid://37pvq0tqrwha"
+
+[sub_resource type="Resource" id="Resource_nycew"]
+script = ExtResource("24_2hujo")
+target_method_node = NodePath("../../TriggerCounter")
+target_method = "add_to_trigger_count"
+metadata/_custom_type_script = "uid://dggerfjab2a3f"
+
+[sub_resource type="Resource" id="Resource_qdunr"]
+script = ExtResource("23_qjs0f")
+target_signal_node = NodePath("..")
+target_signal = "trigger_active"
+metadata/_custom_type_script = "uid://37pvq0tqrwha"
+
+[sub_resource type="Resource" id="Resource_dbh2y"]
+script = ExtResource("24_2hujo")
+target_method_node = NodePath("../../PlatformerPath")
+target_method = "activate"
+metadata/_custom_type_script = "uid://dggerfjab2a3f"
 
 [node name="LevelTeste" type="Node2D" unique_id=549857030]
 metadata/_edit_lock_ = true
@@ -36,22 +80,7 @@ layer = 2
 visible = false
 player = NodePath("../Player")
 
-[node name="Bg" type="Node2D" parent="." unique_id=1462802297]
-
-[node name="Parallax2D" type="Parallax2D" parent="Bg" unique_id=1680082508]
-scroll_scale = Vector2(0, 0)
-
-[node name="BgMoon" type="Sprite2D" parent="Bg/Parallax2D" unique_id=925347280]
-position = Vector2(400, 225)
-texture = ExtResource("1_j16xn")
-
-[node name="Parallax2D2" type="Parallax2D" parent="Bg" unique_id=1152460834]
-scroll_scale = Vector2(0.05, 0.05)
-repeat_size = Vector2(800, 450)
-
-[node name="BgWalls" type="Sprite2D" parent="Bg/Parallax2D2" unique_id=2061120213]
-position = Vector2(400, 225)
-texture = ExtResource("2_ti08h")
+[node name="Bg" parent="." unique_id=1319805191 instance=ExtResource("3_xdbw7")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1727406628]
 tile_map_data = PackedByteArray("AAD//wYAAAAAAAEAAAD//wcAAAAAAAEAAAD//wgAAAAAAAEAAAD//wkAAAAAAAEAAAD//woAAAAAAAEAAAD//wsAAAAAAAEAAAD//wwAAAAAAAEAAAD//w0AAAAAAAEAAAD//w4AAAAAAAIAAAD//wEAAAAAAAEAAAD//wIAAAAAAAEAAAD//wMAAAAAAAEAAAD//wQAAAAAAAEAAAD//wUAAAAAAAEAAAAAAAAAAAACAAAAAAAAAAEAAAACAAEAAAD//wAAAAAAAAAAAAAAAAIAAAACAAEAAAAAAAMAAAACAAEAAAAAAAQAAAACAAEAAAAAAAUAAAACAAEAAAAAAAYAAAACAAEAAAAAAAcAAAACAAEAAAAAAAgAAAACAAEAAAAAAAkAAAACAAEAAAAAAAoAAAACAAEAAAAAAAsAAAACAAEAAAAAAAwAAAAFAAIAAAAFAA4AAAABAAMAAAAEAA4AAAABAAMAAAADAA4AAAAFAAMAAAACAA4AAAABAAIAAAABAA4AAAABAAIAAAADAA0AAAACAAEAAAACAA0AAAABAAEAAAABAA0AAAABAAEAAAAAAA0AAAABAAEAAAAAAA4AAAABAAIAAAADAAwAAAACAAAAAAACAAwAAAABAAAAAAABAAwAAAABAAAAAAAGAA0AAAAAAAAAAAAGAA4AAAAGAAMAAAAHAA0AAAABAAAAAAAHAA4AAAABAAIAAAAIAA4AAAABAAIAAAAIAA0AAAAGAAIAAAAJAA4AAAABAAIAAAAJAA0AAAAFAAIAAAANAAwAAAABAAAAAAAOAAwAAAABAAAAAAALAA0AAAABAAAAAAAKAA0AAAABAAAAAAAKAA4AAAABAAIAAAALAA4AAAABAAIAAAAMAA4AAAABAAIAAAANAA4AAAABAAIAAAANAA0AAAABAAEAAAAMAA0AAAAGAAIAAAAOAA0AAAABAAEAAAAOAA4AAAABAAIAAAAYAAwAAAABAAEAAAAXAAwAAAABAAEAAAAWAAwAAAABAAEAAAAVAAwAAAABAAEAAAAPAAwAAAABAAAAAAAPAA0AAAABAAEAAAAPAA4AAAABAAIAAAAQAA4AAAABAAIAAAARAA4AAAABAAIAAAASAA4AAAABAAIAAAATAA4AAAABAAIAAAAUAA0AAAABAAEAAAAVAA0AAAABAAEAAAAWAA0AAAABAAEAAAAXAA0AAAABAAEAAAAYAA0AAAABAAEAAAAYAA4AAAABAAIAAAAXAA4AAAABAAIAAAAWAA4AAAABAAIAAAAVAA4AAAABAAIAAAAUAA4AAAABAAIAAAARAA0AAAABAAEAAAASAA0AAAABAAEAAAATAA0AAAABAAEAAAAQAA0AAAABAAEAAAAcAA4AAAABAAIAAAAcAA0AAAABAAEAAAAcAAwAAAABAAAAAAAbAA4AAAABAAIAAAAbAA0AAAABAAEAAAAbAAwAAAAFAAIAAAAaAA4AAAABAAIAAAAaAA0AAAABAAEAAAAaAAwAAAABAAEAAAAZAA4AAAABAAIAAAAZAA0AAAABAAEAAAAZAAwAAAABAAEAAAAZAAkAAAABAAEAAAAZAAgAAAABAAAAAAAkAA4AAAABAAIAAAAkAA0AAAABAAEAAAAkAAwAAAABAAAAAAAjAA4AAAABAAIAAAAjAA0AAAABAAEAAAAjAAwAAAABAAAAAAAiAA4AAAABAAIAAAAiAA0AAAABAAEAAAAiAAwAAAABAAAAAAAhAA4AAAABAAIAAAAhAA0AAAABAAEAAAAhAAwAAAABAAAAAAAgAA4AAAABAAIAAAAgAA0AAAABAAEAAAAgAAwAAAABAAAAAAAfAA4AAAABAAIAAAAfAA0AAAABAAEAAAAfAAwAAAABAAAAAAAeAA4AAAABAAIAAAAeAA0AAAABAAEAAAAeAAwAAAABAAAAAAAdAA4AAAABAAIAAAAdAA0AAAABAAEAAAAdAAwAAAABAAAAAAAmAA4AAAABAAIAAAAmAA0AAAABAAEAAAAmAAwAAAABAAAAAAAlAA4AAAABAAIAAAAlAA0AAAABAAEAAAAlAAwAAAABAAAAAAAJAAwAAAACAAAAAAAIAAwAAAAAAAAAAAAMAAwAAAAAAAAAAAAQAAwAAAAGAAIAAAAbAAkAAAACAAEAAAAbAAgAAAACAAAAAAAaAAkAAAABAAEAAAAaAAgAAAABAAAAAAAYAAkAAAABAAEAAAAYAAgAAAABAAAAAAAXAAkAAAAAAAEAAAAXAAgAAAAAAAAAAAAXAAoAAAAGAAIAAAAXAAsAAAABAAEAAAAYAAoAAAABAAEAAAAYAAsAAAABAAEAAAAbAAsAAAACAAEAAAAbAAoAAAACAAEAAAAaAAsAAAABAAEAAAAaAAoAAAABAAEAAAAZAAsAAAABAAEAAAAZAAoAAAABAAEAAAAtAA4AAAABAAIAAAAtAA0AAAABAAEAAAAtAAwAAAABAAAAAAAsAA4AAAABAAIAAAAsAA0AAAABAAEAAAAsAAwAAAABAAAAAAArAA4AAAABAAIAAAArAA0AAAABAAEAAAArAAwAAAABAAAAAAAqAA4AAAABAAIAAAAqAA0AAAABAAEAAAAqAAwAAAABAAAAAAApAA4AAAABAAIAAAApAA0AAAABAAEAAAApAAwAAAABAAAAAAAoAA4AAAABAAIAAAAoAA0AAAABAAEAAAAoAAwAAAABAAAAAAAnAA4AAAABAAIAAAAnAA0AAAABAAEAAAAnAAwAAAABAAAAAAAxAA4AAAACAAIAAAAxAA0AAAACAAEAAAAxAAwAAAACAAEAAAAxAAsAAAACAAEAAAAxAAoAAAACAAEAAAAxAAkAAAACAAEAAAAxAAgAAAACAAEAAAAxAAcAAAACAAEAAAAxAAYAAAACAAEAAAAxAAUAAAACAAEAAAAxAAQAAAACAAEAAAAxAAMAAAACAAEAAAAxAAIAAAACAAEAAAAxAAEAAAACAAAAAAAwAA4AAAABAAIAAAAwAA0AAAABAAEAAAAwAAwAAAAGAAIAAAAwAAsAAAAAAAEAAAAwAAoAAAAAAAEAAAAwAAkAAAAAAAEAAAAwAAgAAAAAAAEAAAAwAAcAAAAAAAEAAAAwAAYAAAAAAAEAAAAwAAUAAAAAAAEAAAAwAAQAAAAAAAEAAAAwAAMAAAAAAAEAAAAwAAIAAAAAAAEAAAAwAAEAAAAAAAAAAAAvAA4AAAABAAIAAAAvAA0AAAABAAEAAAAvAAwAAAABAAAAAAAuAA4AAAABAAIAAAAuAA0AAAABAAEAAAAuAAwAAAABAAAAAAAVAAoAAAABAAAAAAAWAAoAAAABAAAAAAAVAAsAAAABAAEAAAAWAAsAAAABAAEAAAAUAAwAAAABAAEAAAAUAAsAAAABAAEAAAAUAAoAAAABAAAAAAATAAwAAAABAAEAAAATAAsAAAABAAEAAAATAAoAAAABAAAAAAASAAwAAAABAAEAAAASAAsAAAABAAEAAAASAAoAAAABAAAAAAARAAwAAAABAAEAAAARAAsAAAABAAEAAAARAAoAAAABAAAAAAAQAAsAAAAAAAEAAAAQAAoAAAAAAAAAAAA=")
@@ -79,13 +108,13 @@ rotation = -0.014461687
 position = Vector2(144, 434)
 
 [node name="Pushable" parent="." unique_id=1018731178 instance=ExtResource("11_j16xn")]
-position = Vector2(681, 264)
+position = Vector2(1230, 323)
 
 [node name="Player" parent="." unique_id=1061758820 instance=ExtResource("1_w5yiv")]
-position = Vector2(790, 237)
+position = Vector2(485, 386)
 
 [node name="Spikes" parent="." unique_id=2089353998 instance=ExtResource("9_tp0ta")]
-position = Vector2(336, 400)
+position = Vector2(50, 354)
 
 [node name="Coin" parent="." unique_id=1622390802 instance=ExtResource("10_j16xn")]
 position = Vector2(695, 333)
@@ -100,7 +129,7 @@ position = Vector2(679, 844)
 position = Vector2(242, 240)
 
 [node name="MaskFogo" parent="." unique_id=134231411 instance=ExtResource("16_xdbw7")]
-position = Vector2(849, 329)
+position = Vector2(681, 290)
 game_state_key = "masks.fogo"
 
 [node name="MaskTengu" parent="." unique_id=1017165944 instance=ExtResource("17_vcgwl")]
@@ -108,9 +137,45 @@ position = Vector2(681, 386)
 
 [node name="PlatformerPath" parent="." unique_id=810877936 node_paths=PackedStringArray("platformer") instance=ExtResource("18_vcgwl")]
 curve = SubResource("Curve2D_2f05k")
+is_active = false
 platformer = NodePath("PlatformerOneWay2")
 movement_mode = 1
 speed = 150.0
 
 [node name="PlatformerOneWay2" parent="PlatformerPath" unique_id=912649839 instance=ExtResource("10_h2u83")]
 position = Vector2(245, 221)
+
+[node name="MaskCavaleiro" parent="." unique_id=614465412 instance=ExtResource("18_2f05k")]
+position = Vector2(787, 308)
+
+[node name="MaskMedusa" parent="." unique_id=1907017133 instance=ExtResource("19_5v5t4")]
+position = Vector2(831, 387)
+
+[node name="PushableEnemy" parent="." unique_id=984363278 instance=ExtResource("20_5v5t4")]
+position = Vector2(420, 332)
+
+[node name="ButtonActivePlatformer" parent="." unique_id=19471131 instance=ExtResource("21_sdsmv")]
+position = Vector2(351, 403)
+
+[node name="EventTrigger" parent="ButtonActivePlatformer" unique_id=646069128 instance=ExtResource("22_p8y6i")]
+trigger_once = false
+signal_trigger = SubResource("Resource_8on4x")
+targets = Array[ExtResource("24_2hujo")]([SubResource("Resource_rpyvk")])
+
+[node name="CandleActivePlatformer" parent="." unique_id=300368578 instance=ExtResource("25_qjs0f")]
+position = Vector2(598, 288)
+
+[node name="EventTrigger2" parent="CandleActivePlatformer" unique_id=1432193620 instance=ExtResource("22_p8y6i")]
+position = Vector2(-247, 115)
+trigger_once = false
+signal_trigger = SubResource("Resource_m68m5")
+targets = Array[ExtResource("24_2hujo")]([SubResource("Resource_nycew")])
+
+[node name="TriggerCounter" parent="." unique_id=907048953 instance=ExtResource("26_2hujo")]
+position = Vector2(347, 280)
+
+[node name="EventTrigger3" parent="TriggerCounter" unique_id=1328335004 instance=ExtResource("22_p8y6i")]
+position = Vector2(4, 123)
+trigger_once = false
+signal_trigger = SubResource("Resource_qdunr")
+targets = Array[ExtResource("24_2hujo")]([SubResource("Resource_dbh2y")])

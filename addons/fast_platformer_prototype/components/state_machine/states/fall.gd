@@ -1,5 +1,8 @@
 extends State
 
+
+@export var gravity_multiply: float = 1
+
 # nome do state
 func _state_name() -> String:
 	return "fall"
@@ -8,7 +11,7 @@ func _state_name() -> String:
 func _on_state_physics_process(delta : float) -> void:
 	if behavior and behavior is CharacterPlaformerBehavior:
 		behavior.horizontal_movement(delta)
-		behavior.handle_gravity(delta)
+		behavior.handle_gravity(delta, gravity_multiply)
 		behavior.do_move_and_slide()
 
 
