@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://jxgo3ycppel2"]
-
-[ext_resource type="Script" uid="uid://c2u5b3lv4woj" path="res://addons/fast_prototype/components/audio/music_trigger.gd" id="1_5ua68"]
-
-[node name="MusicTrigger" type="Node" unique_id=572786924]
-script = ExtResource("1_5ua68")

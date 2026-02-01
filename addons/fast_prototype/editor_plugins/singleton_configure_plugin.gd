@@ -5,9 +5,6 @@ var singletons = [{
 	"name": "SceneManager",
 	"path": "res://addons/fast_prototype/singletons/scene_manager.gd",
 }, {
-	"name": "AudioManager",
-	"path": "res://addons/fast_prototype/singletons/audio_manager.gd",
-}, {
 	"name": "GameStateManager",
 	"path": "res://addons/fast_prototype/singletons/game_state_manager.gd"
 }, {

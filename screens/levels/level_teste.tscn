@@ -113,10 +113,10 @@ rotation = -0.014461687
 position = Vector2(144, 434)
 
 [node name="Pushable" parent="." unique_id=1018731178 instance=ExtResource("11_j16xn")]
-position = Vector2(1230, 323)
+position = Vector2(1076, 504)
 
 [node name="Player" parent="." unique_id=1061758820 instance=ExtResource("1_w5yiv")]
-position = Vector2(647, 303)
+position = Vector2(851, 237)
 
 [node name="Spikes" parent="." unique_id=2089353998 instance=ExtResource("9_tp0ta")]
 position = Vector2(50, 354)
@@ -134,7 +134,7 @@ position = Vector2(679, 844)
 position = Vector2(513, 181)
 
 [node name="MaskFogo" parent="." unique_id=134231411 instance=ExtResource("16_xdbw7")]
-position = Vector2(755, 387)
+position = Vector2(774, 331)
 game_state_key = "masks.fogo"
 
 [node name="MaskTengu" parent="." unique_id=1017165944 instance=ExtResource("17_vcgwl")]
@@ -154,7 +154,7 @@ position = Vector2(245, 221)
 position = Vector2(819, 308)
 
 [node name="MaskMedusa" parent="." unique_id=1907017133 instance=ExtResource("19_5v5t4")]
-position = Vector2(831, 207)
+position = Vector2(787, 221)
 
 [node name="PushableEnemy" parent="." unique_id=984363278 instance=ExtResource("20_5v5t4")]
 position = Vector2(420, 332)

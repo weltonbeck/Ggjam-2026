@@ -26,6 +26,11 @@ layer = 2
 visible = false
 player = NodePath("../Player")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1128912508]
+stream = ExtResource("12_myx8n")
+autoplay = true
+bus = &"BGM"
+
 [node name="Bg" parent="." unique_id=1319805191 instance=ExtResource("3_myx8n")]
 
 [node name="TileMapBackground" type="TileMapLayer" parent="." unique_id=455676003]
@@ -52,7 +57,7 @@ pixel_snap_enabled = false
 position = Vector2(200, 369)
 
 [node name="LevelExit" type="Node2D" parent="." unique_id=1096157003]
-position = Vector2(1146, -177)
+position = Vector2(953, -357)
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelExit" unique_id=202080584]
 position = Vector2(0, -14)
@@ -75,9 +80,4 @@ shape = SubResource("RectangleShape2D_in6xs")
 metadata/_edit_lock_ = true
 
 [node name="Enemy" parent="." unique_id=1910708734 instance=ExtResource("8_xtu1u")]
-position = Vector2(-94, 98)
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1128912508]
-stream = ExtResource("12_myx8n")
-autoplay = true
-bus = &"BGM"
+position = Vector2(-208, 98)

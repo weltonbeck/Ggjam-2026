@@ -1,36 +1,29 @@
 [gd_scene format=3 uid="uid://j2s8ejbnwb4l"]
 
 [ext_resource type="Script" uid="uid://c5nptyeigi456" path="res://addons/fast_prototype/components/damage/bullet.gd" id="1_ygdko"]
-[ext_resource type="Texture2D" uid="uid://difkn8tk40su3" path="res://assets/sprites/fire_bullet.png" id="2_a2mrf"]
+[ext_resource type="Texture2D" uid="uid://yagdnth1tu07" path="res://assets/sprites/guard_bullet.png" id="2_ygdko"]
 [ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="3_belmr"]
 [ext_resource type="PackedScene" uid="uid://chl5ok63hjso4" path="res://scenes/world/explosion_effect.tscn" id="4_845ch"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_isa8o"]
-radius = 11.0
+radius = 6.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rlq6d"]
-atlas = ExtResource("2_a2mrf")
-region = Rect2(0, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2mrf"]
+atlas = ExtResource("2_ygdko")
+region = Rect2(0, 0, 32, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_vqsfa"]
-atlas = ExtResource("2_a2mrf")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vjthl"]
-atlas = ExtResource("2_a2mrf")
-region = Rect2(128, 0, 64, 64)
+[sub_resource type="AtlasTexture" id="AtlasTexture_belmr"]
+atlas = ExtResource("2_ygdko")
+region = Rect2(32, 0, 32, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_li2sn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rlq6d")
+"texture": SubResource("AtlasTexture_a2mrf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_vqsfa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vjthl")
+"texture": SubResource("AtlasTexture_belmr")
 }],
 "loop": true,
 "name": &"default",
@@ -38,7 +31,6 @@ animations = [{
 }]
 
 [node name="BulletFogo" type="Area2D" unique_id=1765166060]
-modulate = Color(0, 0.29633003, 0.26489818, 1)
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_ygdko")

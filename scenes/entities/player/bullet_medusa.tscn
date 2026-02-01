@@ -1,33 +1,33 @@
 [gd_scene format=3 uid="uid://bm27b2af78kmr"]
 
 [ext_resource type="Script" uid="uid://c5nptyeigi456" path="res://addons/fast_prototype/components/damage/bullet.gd" id="1_vk0ui"]
-[ext_resource type="Texture2D" uid="uid://difkn8tk40su3" path="res://assets/sprites/fire_bullet.png" id="2_3kpgc"]
+[ext_resource type="Texture2D" uid="uid://bjxf5udrq3f7s" path="res://assets/sprites/medusa_bullet.png" id="2_vqsfa"]
 [ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="3_rlq6d"]
-[ext_resource type="PackedScene" uid="uid://chl5ok63hjso4" path="res://scenes/world/explosion_effect.tscn" id="4_vqsfa"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rlq6d"]
-atlas = ExtResource("2_3kpgc")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vqsfa"]
-atlas = ExtResource("2_3kpgc")
-region = Rect2(64, 0, 64, 64)
+[ext_resource type="PackedScene" uid="uid://cddpkwf2r4wbk" path="res://scenes/world/medusa_explosion_effect.tscn" id="4_vqsfa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vjthl"]
-atlas = ExtResource("2_3kpgc")
+atlas = ExtResource("2_vqsfa")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li2sn"]
+atlas = ExtResource("2_vqsfa")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i0fc"]
+atlas = ExtResource("2_vqsfa")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_li2sn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rlq6d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vqsfa")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_vjthl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li2sn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i0fc")
 }],
 "loop": true,
 "name": &"default",
@@ -38,7 +38,6 @@ animations = [{
 radius = 17.029387
 
 [node name="BulletMedusa" type="Area2D" unique_id=1765166060]
-modulate = Color(0.011764706, 1, 0.8509804, 1)
 collision_layer = 0
 collision_mask = 9
 script = ExtResource("1_vk0ui")

@@ -3,6 +3,8 @@ class_name Bullet
 
 @export var turn_stone: bool = false
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 @export var speed: float = 100
 var direction = Vector2.ZERO
 
@@ -16,7 +18,9 @@ func _process(delta: float) -> void:
 		return
 	
 	global_position += direction * speed * delta
-
+	
+	if animated_sprite_2d and direction.x < 0:
+			animated_sprite_2d.flip_h = true
 
 func set_direction(dir: Vector2) -> void:
 	direction = dir.normalized()

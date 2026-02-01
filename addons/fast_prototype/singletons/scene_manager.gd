@@ -8,7 +8,6 @@ extends Node
 # ✔ Aceita tanto caminhos (.tscn) quanto PackedScenes
 # ✔ Faz validação de cenas antes de trocar
 # ✔ Controla estado para evitar trocas simultâneas
-# ✔ Integração direta com AudioManager (fade-out opcional)
 # ✔ Integração com CameraManager (desabilita durante troca)
 # ✔ Permite reload da cena atual
 # ---------------------------------------------------------------
@@ -69,18 +68,6 @@ func change_scene(new_scene: Variant, fade_audio: bool = true) -> void:
 		return    
 	
 	is_changing_scene = true
-
-	# ============================================================
-	#  FADE-OUT DE ÁUDIO (Opcional)
-	# ------------------------------------------------------------
-	# Só faz fade se:
-	#   - o parâmetro permitir
-	#   - o AudioManager existir
-	#   - a música realmente estiver tocando
-	# ============================================================
-	#if fade_audio and AudioManager and AudioManager.bgm_player.playing:
-		##AudioManager.fade_out_bgm()
-		#pass
 
 	# ============================================================
 	#  DESATIVA O CAMERA MANAGER DURANTE A TROCA
