@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://j7gkif84ssip" path="res://assets/bg/bg_museu_walls.png" id="2_7g7v3"]
 
 [node name="Bg" type="Node2D" unique_id=1319805191]
-z_index = -1
+z_index = -2
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1304086841]
 scroll_scale = Vector2(0, 0)
