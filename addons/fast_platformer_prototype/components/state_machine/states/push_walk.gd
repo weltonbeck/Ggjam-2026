@@ -8,12 +8,12 @@ func _state_name() -> String:
 # Função chamada a cada frame de física (para lógicas dependentes da física)
 func _on_state_physics_process(delta : float) -> void:
 	if behavior:
-		behavior.horizontal_movement(delta, behavior._horizontal_input, behavior.max_speed / 2)
+		behavior.horizontal_movement(delta, behavior._horizontal_input, behavior.max_speed / 3)
 		if behavior.has_method("handle_gravity") and behavior.has_method("handle_slope_slide"):
 			behavior.handle_gravity(delta)
 			behavior.handle_slope_slide(delta)
 		else:
-			behavior.vertical_movement(delta, behavior._vertical_input, behavior.max_speed / 2)
+			behavior.vertical_movement(delta, behavior._vertical_input, behavior.max_speed / 3)
 		
 		behavior.do_move_and_slide()
 		

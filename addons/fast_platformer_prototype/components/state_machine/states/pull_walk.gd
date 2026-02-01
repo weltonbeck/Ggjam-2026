@@ -14,12 +14,12 @@ func _on_state_physics_process(delta : float) -> void:
 		if behavior.test_move_left_right() and ((behavior.is_pushable_platformer_on_right() and _input < 0) or (behavior.is_pushable_platformer_on_left() and _input > 0)):
 			_input = 0
 			is_on_limit = true
-		behavior.horizontal_movement(delta, _input, behavior.max_speed / 2)		
+		behavior.horizontal_movement(delta, _input, behavior.max_speed / 3)		
 		if behavior.has_method("handle_gravity") and behavior.has_method("handle_slope_slide"):
 			behavior.handle_gravity(delta)
 			behavior.handle_slope_slide(delta)
 		else:
-			behavior.vertical_movement(delta, behavior._vertical_input, behavior.max_speed / 2)
+			behavior.vertical_movement(delta, behavior._vertical_input, behavior.max_speed / 3)
 		
 		
 		behavior.do_move_and_slide()

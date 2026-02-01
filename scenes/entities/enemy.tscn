@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://c7wyk7duohm5j"]
 
-[ext_resource type="Script" uid="uid://cdnbtts331g5u" path="res://addons/fast_platformer_prototype/components/behavior/simple_patrol_platformer_behavior.gd" id="1_r3y0q"]
+[ext_resource type="Script" uid="uid://vhadpy31nnef" path="res://scenes/entities/enemy.gd" id="1_ln8om"]
 [ext_resource type="PackedScene" uid="uid://o1746xdmj8gs" path="res://addons/fast_prototype/components/identifier/enemy_itentifier.tscn" id="1_rrp0o"]
+[ext_resource type="PackedScene" uid="uid://j2s8ejbnwb4l" path="res://scenes/entities/bullet_enemy.tscn" id="2_fkgbd"]
 [ext_resource type="PackedScene" uid="uid://dttd4r7nmj42p" path="res://addons/fast_prototype/components/state_machine/state_machine.tscn" id="3_68dbu"]
 [ext_resource type="Texture2D" uid="uid://vkn63nuro6fo" path="res://assets/sprites/guard.png" id="3_ln8om"]
 [ext_resource type="Script" uid="uid://cdmwl0okbdamc" path="res://addons/fast_prototype/components/state_machine/states/idle.gd" id="4_f71c5"]
@@ -11,7 +12,11 @@
 [ext_resource type="Script" uid="uid://cjfrwsf574xjh" path="res://addons/fast_prototype/components/state_machine/states/run.gd" id="7_14tws"]
 [ext_resource type="PackedScene" uid="uid://l5d7y0pghaqc" path="res://addons/fast_prototype/components/damage/life_points.tscn" id="7_f71c5"]
 [ext_resource type="Script" uid="uid://dwjkj8k80qgrs" path="res://addons/fast_prototype/components/state_machine/states/die.gd" id="8_owm76"]
+[ext_resource type="Script" uid="uid://dahh7ph7gxi0l" path="res://scenes/entities/states/state_look.gd" id="9_owm76"]
 [ext_resource type="AudioStream" uid="uid://ccdop10uba1ki" path="res://addons/fast_prototype/assets/sound/hurt.wav" id="10_adrne"]
+[ext_resource type="Script" uid="uid://bnjps5nm3dxdt" path="res://addons/fast_platformer_prototype/components/state_machine/states/shoot.gd" id="10_fkgbd"]
+[ext_resource type="Script" uid="uid://7gj1nriakpye" path="res://addons/fast_prototype/components/detector/player_detector.gd" id="12_ln8om"]
+[ext_resource type="Script" uid="uid://dww6fha4f5f0v" path="res://scenes/entities/states/state_lose_player.gd" id="12_pt174"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fkgbd"]
 atlas = ExtResource("3_ln8om")
@@ -105,22 +110,6 @@ region = Rect2(864, 0, 96, 96)
 atlas = ExtResource("3_ln8om")
 region = Rect2(960, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ny15q"]
-atlas = ExtResource("3_ln8om")
-region = Rect2(0, 480, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qblde"]
-atlas = ExtResource("3_ln8om")
-region = Rect2(96, 480, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y2xxc"]
-atlas = ExtResource("3_ln8om")
-region = Rect2(192, 480, 96, 96)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ltx1l"]
-atlas = ExtResource("3_ln8om")
-region = Rect2(288, 480, 96, 96)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_o2h7d"]
 atlas = ExtResource("3_ln8om")
 region = Rect2(0, 192, 96, 96)
@@ -168,6 +157,22 @@ region = Rect2(960, 192, 96, 96)
 [sub_resource type="AtlasTexture" id="AtlasTexture_rw0u6"]
 atlas = ExtResource("3_ln8om")
 region = Rect2(1056, 192, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny15q"]
+atlas = ExtResource("3_ln8om")
+region = Rect2(0, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qblde"]
+atlas = ExtResource("3_ln8om")
+region = Rect2(96, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2xxc"]
+atlas = ExtResource("3_ln8om")
+region = Rect2(192, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ltx1l"]
+atlas = ExtResource("3_ln8om")
+region = Rect2(288, 480, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1o1et"]
 atlas = ExtResource("3_ln8om")
@@ -285,23 +290,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ny15q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qblde")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_y2xxc")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ltx1l")
-}],
-"loop": false,
-"name": &"lose_player",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_o2h7d")
 }, {
 "duration": 1.0,
@@ -338,8 +326,25 @@ animations = [{
 "texture": SubResource("AtlasTexture_rw0u6")
 }],
 "loop": false,
-"name": &"see_player",
-"speed": 5.0
+"name": &"look_player",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny15q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qblde")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2xxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ltx1l")
+}],
+"loop": false,
+"name": &"lose_player",
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -383,8 +388,12 @@ size = Vector2(30, 88)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_od71d"]
 size = Vector2(30, 88)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14tws"]
+size = Vector2(289, 34)
+
 [sub_resource type="Animation" id="Animation_r3y0q"]
 length = 0.001
+step = 0.1123
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -420,6 +429,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerDetector/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(134.5, -73.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BulletMarker2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(45, -68)]
 }
 
 [sub_resource type="Animation" id="Animation_ln8om"]
@@ -461,6 +494,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerDetector/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-133, -73.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BulletMarker2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-45, -68), Vector2(-45, -68)]
+}
 
 [sub_resource type="Animation" id="Animation_14tws"]
 resource_name = "base_right"
@@ -500,6 +557,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerDetector/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(134.5, -73.5)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("BulletMarker2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(45, -68)]
 }
 
 [sub_resource type="Animation" id="Animation_fkgbd"]
@@ -628,9 +709,13 @@ states/die/node = SubResource("AnimationNodeBlendSpace1D_fkgbd")
 states/die/position = Vector2(370, 186)
 transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_owm76"), "base", "die", SubResource("AnimationNodeStateMachineTransition_pt174"), "die", "base", SubResource("AnimationNodeStateMachineTransition_2ynut")]
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1910708734]
+[node name="Enemy" type="CharacterBody2D" unique_id=1910708734 node_paths=PackedStringArray("player_detector", "bullet_marker")]
 collision_layer = 0
-script = ExtResource("1_r3y0q")
+script = ExtResource("1_ln8om")
+player_detector = NodePath("PlayerDetector")
+shoot_cooldown = 0.5
+bullet_scene = ExtResource("2_fkgbd")
+bullet_marker = NodePath("BulletMarker2D")
 
 [node name="EnemyItentifier" parent="." unique_id=1986323858 node_paths=PackedStringArray("target") instance=ExtResource("1_rrp0o")]
 target = NodePath("..")
@@ -638,7 +723,7 @@ target = NodePath("..")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2071569626]
 position = Vector2(0, -48)
 sprite_frames = SubResource("SpriteFrames_fp52m")
-animation = &"idle"
+animation = &"lose_player"
 autoplay = "idle"
 flip_h = true
 
@@ -686,6 +771,28 @@ animated_sprite = NodePath("../../AnimatedSprite2D")
 animated_sprite_animation_name = "die"
 audio_stream_player = NodePath("../../AudioHurt")
 
+[node name="Look" type="Node" parent="StateMachine" unique_id=2048442441 node_paths=PackedStringArray("animation_tree", "animated_sprite")]
+script = ExtResource("9_owm76")
+animation_tree = NodePath("../../AnimationTree")
+animation_tree_animation_name = "base"
+animated_sprite = NodePath("../../AnimatedSprite2D")
+animated_sprite_animation_name = "look_player"
+
+[node name="Shoot" type="Node" parent="StateMachine" unique_id=716772591 node_paths=PackedStringArray("animation_tree", "animated_sprite")]
+script = ExtResource("10_fkgbd")
+duration_time = 0.7
+animation_tree = NodePath("../../AnimationTree")
+animation_tree_animation_name = "base"
+animated_sprite = NodePath("../../AnimatedSprite2D")
+animated_sprite_animation_name = "shoot"
+
+[node name="LosePlayer" type="Node" parent="StateMachine" unique_id=1773846407 node_paths=PackedStringArray("animation_tree", "animated_sprite")]
+script = ExtResource("12_pt174")
+animation_tree = NodePath("../../AnimationTree")
+animation_tree_animation_name = "base"
+animated_sprite = NodePath("../../AnimatedSprite2D")
+animated_sprite_animation_name = "lose_player"
+
 [node name="LifePoints" parent="." unique_id=879321014 instance=ExtResource("7_f71c5")]
 
 [node name="HurtBox" parent="." unique_id=1297779625 node_paths=PackedStringArray("life_points") instance=ExtResource("5_adrne")]
@@ -707,6 +814,15 @@ position = Vector2(-1, -44)
 shape = SubResource("RectangleShape2D_od71d")
 debug_color = Color(0.95132166, 2.695322e-06, 0.5666602, 0.41960785)
 
+[node name="PlayerDetector" type="Area2D" parent="." unique_id=505640056]
+script = ExtResource("12_ln8om")
+metadata/_custom_type_script = "uid://7gj1nriakpye"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector" unique_id=74004597]
+position = Vector2(134.5, -73.5)
+shape = SubResource("RectangleShape2D_14tws")
+debug_color = Color(0.6894371, 0.49855733, 0.02489669, 0.41960785)
+
 [node name="AudioHurt" type="AudioStreamPlayer2D" parent="." unique_id=968696238]
 stream = ExtResource("10_adrne")
 bus = &"SFX"
@@ -720,3 +836,6 @@ tree_root = SubResource("AnimationNodeStateMachine_fkgbd")
 anim_player = NodePath("../AnimationPlayer")
 parameters/base/blend_position = -1.0
 parameters/die/blend_position = 0.0
+
+[node name="BulletMarker2D" type="Marker2D" parent="." unique_id=1241459788]
+position = Vector2(45, -68)

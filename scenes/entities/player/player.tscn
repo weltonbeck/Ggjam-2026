@@ -1899,7 +1899,7 @@ states/super_dash/position = Vector2(555, 209)
 transitions = ["Start", "base", SubResource("AnimationNodeStateMachineTransition_nmfrm"), "base", "crouch", SubResource("AnimationNodeStateMachineTransition_38dyx"), "crouch", "base", SubResource("AnimationNodeStateMachineTransition_736hv"), "base", "dash", SubResource("AnimationNodeStateMachineTransition_l567y"), "dash", "base", SubResource("AnimationNodeStateMachineTransition_cwqw8"), "base", "super_dash", SubResource("AnimationNodeStateMachineTransition_brjyi"), "super_dash", "base", SubResource("AnimationNodeStateMachineTransition_bnv2y")]
 
 [node name="Player" type="CharacterBody2D" unique_id=1061758820 node_paths=PackedStringArray("state_mask", "rc_bottom_left", "rc_bottom_center", "rc_bottom_right", "rc_top_left", "rc_top_center", "rc_top_right", "rc_left_top", "rc_left_center", "rc_left_bottom", "rc_right_top", "rc_right_center", "rc_right_bottom", "bullet_marker")]
-collision_layer = 2
+collision_layer = 0
 script = ExtResource("1_go8vc")
 state_mask = NodePath("StateMachine/Mask")
 air_max_speed = 250.0
@@ -2082,6 +2082,7 @@ shape = SubResource("RectangleShape2D_j7xw4")
 debug_color = Color(0.12025965, 0.7059674, 0.27291515, 0.41960785)
 
 [node name="HitBoxOnAttack" parent="." unique_id=1528792408 instance=ExtResource("14_medo6")]
+visible = false
 collision_layer = 0
 collision_mask = 8
 metadata/_edit_lock_ = true
@@ -2093,6 +2094,7 @@ debug_color = Color(0.95627075, 0.056727253, 0.50869143, 0.41960785)
 metadata/_edit_lock_ = true
 
 [node name="HitBoxPower" parent="." unique_id=1492115700 instance=ExtResource("14_medo6")]
+visible = false
 collision_layer = 0
 collision_mask = 8
 metadata/_edit_lock_ = true
@@ -2104,6 +2106,7 @@ debug_color = Color(0.95627075, 0.056727253, 0.50869143, 0.41960785)
 metadata/_edit_lock_ = true
 
 [node name="CollectableDetector" parent="." unique_id=1030869510 instance=ExtResource("20_r3ytj")]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollectableDetector" unique_id=891323401]
 position = Vector2(0, -42)

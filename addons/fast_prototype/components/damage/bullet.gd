@@ -21,7 +21,9 @@ func set_direction(dir: Vector2) -> void:
 
 
 func _on_body_entered(body) -> void:
-	did_damage.emit(null,0)
+	if not body is Player:
+		did_damage.emit(null,0)
+	
 	
 func _on_did_damage(_body,_value) -> void:
 	await get_tree().process_frame

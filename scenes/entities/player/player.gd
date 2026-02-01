@@ -1,5 +1,5 @@
 extends PlayerPlaformerBehavior
-
+class_name Player
 
 @export var key_change_mask:  StringName = &"key_start"
 @export var state_mask: State

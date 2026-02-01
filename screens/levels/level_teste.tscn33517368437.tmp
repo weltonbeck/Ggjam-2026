@@ -74,6 +74,7 @@ pixel_snap_enabled = false
 
 [node name="Enemy" parent="." unique_id=1910708734 instance=ExtResource("3_kl5cn")]
 position = Vector2(1304, 376)
+active = false
 
 [node name="PlatformerOneWay" parent="." unique_id=1347071625 instance=ExtResource("10_h2u83")]
 position = Vector2(244, 289)

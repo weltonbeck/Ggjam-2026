@@ -549,10 +549,9 @@ func is_able_to_die_smashed_up_down() -> bool:
 	var down: bool= test_move(global_transform, Vector2(0, space))
 	
 	if up and down:
-		#if (is_on_floor() or is_on_rc_floor()) and (is_on_ceiling() or is_on_rc_ceiling()):
-			#if not get_ceiling_platformer(Globals.GROUP_THROUGH_PLATFORMER):
-				#return true
-		return true
+		if (is_on_floor() or is_on_rc_floor()) and (is_on_ceiling() or is_on_rc_ceiling()):
+			if not current_pushable_platformer and not get_ceiling_platformer(Globals.GROUP_THROUGH_PLATFORMER):
+				return true
 	return false
 			
 func is_able_to_die_smashed_left_right() -> bool:
@@ -573,6 +572,7 @@ func is_able_to_die_smashed_left_right() -> bool:
 	if left and right:
 		if rc_left_center and rc_right_center and rc_left_center.is_colliding() and rc_right_center.is_colliding():
 			if not current_pushable_platformer and not get_wall_pushable_platformer(true) and not get_wall_platformer(true,Globals.GROUP_THROUGH_PLATFORMER):
+				print("morreu esmagado lado")
 				return true
 	return false
 

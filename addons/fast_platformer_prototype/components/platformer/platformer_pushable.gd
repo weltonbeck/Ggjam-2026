@@ -3,6 +3,7 @@ class_name Pushable
 
 @export var gravity: float= 900.0
 @export var min_velocity:float = 5.0
+#@export var max_velocity:float = 50.0
 @export var friction: float= 100.0
 
 var holder: CharacterPlaformerBehavior = null
@@ -21,6 +22,8 @@ func _physics_process(delta):
 func push_process(delta, horizontal_velocity:float = 0):
 	if abs(horizontal_velocity) < min_velocity:
 		horizontal_velocity = sign(horizontal_velocity) * min_velocity
+	#elif abs(horizontal_velocity) > max_velocity:
+		#horizontal_velocity = sign(horizontal_velocity) * max_velocity
 	velocity.x = horizontal_velocity
 	_apply_gravity(delta)
 	move_and_slide()

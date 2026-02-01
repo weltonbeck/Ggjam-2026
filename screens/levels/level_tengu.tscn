@@ -12,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://cm5dqvkttajcb" path="res://assets/sprites/level_exit.png" id="10_m3wd8"]
 [ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="11_cvibi"]
 [ext_resource type="PackedScene" uid="uid://6feg3m8fgnid" path="res://addons/fast_prototype/components/detector/player_detector.tscn" id="12_p64v0"]
-[ext_resource type="PackedScene" uid="uid://c7wyk7duohm5j" path="res://scenes/entities/enemy.tscn" id="13_atqtg"]
 [ext_resource type="PackedScene" uid="uid://d2orrvx1h8cub" path="res://scenes/world/platformer_one_way.tscn" id="14_0la7q"]
+[ext_resource type="PackedScene" uid="uid://cek766ct4nnfu" path="res://scenes/world/pushable.tscn" id="14_qm6sx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_in6xs"]
 size = Vector2(185, 77)
@@ -64,12 +64,13 @@ is_current_camera = true
 pixel_snap_enabled = false
 
 [node name="Player" parent="." unique_id=1061758820 instance=ExtResource("9_jy122")]
-position = Vector2(100, 373)
+position = Vector2(1040, 312)
 
 [node name="LevelExit" type="Node2D" parent="." unique_id=1096157003]
 position = Vector2(1688, 240)
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelExit" unique_id=202080584]
+position = Vector2(0, -12)
 texture = ExtResource("10_m3wd8")
 metadata/_edit_lock_ = true
 
@@ -88,11 +89,11 @@ position = Vector2(8.5, 8.5)
 shape = SubResource("RectangleShape2D_in6xs")
 metadata/_edit_lock_ = true
 
-[node name="Enemy" parent="." unique_id=1910708734 instance=ExtResource("13_atqtg")]
-position = Vector2(1172, 414)
-
 [node name="PlatformerOneWay" parent="." unique_id=166924463 instance=ExtResource("14_0la7q")]
 position = Vector2(352, 256)
 
 [node name="PlatformerOneWay2" parent="." unique_id=38913818 instance=ExtResource("14_0la7q")]
 position = Vector2(352, 144)
+
+[node name="Pushable" parent="." unique_id=984363278 instance=ExtResource("14_qm6sx")]
+position = Vector2(1200, 352)

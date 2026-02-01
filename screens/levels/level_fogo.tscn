@@ -69,6 +69,7 @@ position = Vector2(100, 373)
 position = Vector2(1688, 240)
 
 [node name="Sprite2D" type="Sprite2D" parent="LevelExit" unique_id=202080584]
+position = Vector2(0, -14)
 texture = ExtResource("9_myx8n")
 metadata/_edit_lock_ = true
 
