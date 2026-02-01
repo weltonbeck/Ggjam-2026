@@ -78,9 +78,9 @@ func change_scene(new_scene: Variant, fade_audio: bool = true) -> void:
 	#   - o AudioManager existir
 	#   - a música realmente estiver tocando
 	# ============================================================
-	if fade_audio and AudioManager and AudioManager.bgm_player.playing:
-		#AudioManager.fade_out_bgm()
-		pass
+	#if fade_audio and AudioManager and AudioManager.bgm_player.playing:
+		##AudioManager.fade_out_bgm()
+		#pass
 
 	# ============================================================
 	#  DESATIVA O CAMERA MANAGER DURANTE A TROCA

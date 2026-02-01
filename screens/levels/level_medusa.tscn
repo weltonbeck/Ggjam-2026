@@ -3,9 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bqy6ipvqys88m" path="res://scenes/hud/hud_levels.tscn" id="1_hmwrn"]
 [ext_resource type="Texture2D" uid="uid://cu4un02bbjrsw" path="res://assets/bg/bg_museu_moon.png" id="2_tcnn2"]
 [ext_resource type="Texture2D" uid="uid://j7gkif84ssip" path="res://assets/bg/bg_museu_walls.png" id="3_vqev0"]
-[ext_resource type="PackedScene" uid="uid://jxgo3ycppel2" path="res://addons/fast_prototype/components/audio/music_trigger.tscn" id="4_5nbgb"]
 [ext_resource type="TileSet" uid="uid://da7t1sofurjej" path="res://scenes/tiles/tilemap.tres" id="5_5d4oe"]
-[ext_resource type="AudioStream" uid="uid://bdrr3v1mlm5c1" path="res://assets/musics/Apero Hour.mp3" id="6_fcqo1"]
 [ext_resource type="PackedScene" uid="uid://beb4fbily8rdh" path="res://addons/fast_platformer_prototype/components/camera/platformer_camera_2d.tscn" id="6_k7i21"]
 [ext_resource type="PackedScene" uid="uid://c7wyk7duohm5j" path="res://scenes/entities/enemy.tscn" id="7_os8aj"]
 [ext_resource type="PackedScene" uid="uid://d2orrvx1h8cub" path="res://scenes/world/platformer_one_way.tscn" id="8_kthni"]
@@ -18,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://d3x2rrbctw8a6" path="res://screens/game_over_menu.tscn" id="16_u35s2"]
 [ext_resource type="Texture2D" uid="uid://cm5dqvkttajcb" path="res://assets/sprites/level_exit.png" id="17_q6ma8"]
 [ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="18_e1kk1"]
+[ext_resource type="AudioStream" uid="uid://c1nfp7g1b8h2t" path="res://assets/musics/Achaidh Cheide.mp3" id="18_es2p4"]
 [ext_resource type="PackedScene" uid="uid://6feg3m8fgnid" path="res://addons/fast_prototype/components/detector/player_detector.tscn" id="19_dywto"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_5nbgb"]
@@ -55,9 +54,6 @@ repeat_size = Vector2(800, 450)
 [node name="BgWalls" type="Sprite2D" parent="Bg/Parallax2D2" unique_id=2061120213]
 position = Vector2(400, 225)
 texture = ExtResource("3_vqev0")
-
-[node name="MusicTrigger" parent="." unique_id=1295311058 instance=ExtResource("4_5nbgb")]
-music_stream = ExtResource("6_fcqo1")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1727406628]
 position = Vector2(6, 0)
@@ -554,3 +550,8 @@ metadata/_edit_lock_ = true
 position = Vector2(2475.0002, 880.00006)
 scale = Vector2(63, 80)
 texture = SubResource("PlaceholderTexture2D_tcnn2")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2017663085]
+stream = ExtResource("18_es2p4")
+autoplay = true
+bus = &"BGM"

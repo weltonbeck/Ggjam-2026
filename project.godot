@@ -23,7 +23,7 @@ buses/default_bus_layout="uid://dyxtp740c3gs4"
 [autoload]
 
 SceneManager="*uid://ckfaal62yhxxo"
-AudioManager="*uid://blhm0ywm8w6n8"
+AudioManager="uid://blhm0ywm8w6n8"
 GameStateManager="*uid://bta7irwwy58ia"
 GameManager="*uid://hqxvd46gguio"
 
