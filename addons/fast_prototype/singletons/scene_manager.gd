@@ -38,6 +38,8 @@ var is_changing_scene: bool = false
 # ================================================================
 func change_scene(new_scene: Variant, fade_audio: bool = true) -> void:
 	# Impede chamadas duplicadas
+	if get_tree().paused:
+		get_tree().paused = false
 	if is_changing_scene:
 		push_warning("SceneManager: Já estou mudando de cena, pedido ignorado.")
 		return
@@ -144,3 +146,6 @@ func _validate_scene_path(path: String) -> bool:
 
 	# verifica se é uma cena carregável
 	return ResourceLoader.exists(path, "PackedScene")
+	
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS

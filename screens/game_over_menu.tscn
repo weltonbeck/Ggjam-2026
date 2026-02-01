@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://d3x2rrbctw8a6"]
+
+[ext_resource type="Script" uid="uid://dhuwa31105fwx" path="res://screens/game_over_menu.gd" id="1_1im50"]
+[ext_resource type="FontFile" uid="uid://b4aqvboegvttq" path="res://assets/font/Urbana-®.ttf" id="1_3piex"]
+[ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="2_1im50"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_133du"]
+font = ExtResource("1_3piex")
+font_size = 40
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1im50"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_133du"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l4u6q"]
+
+[node name="GameOverMenu" type="CanvasLayer" unique_id=244102891]
+process_mode = 3
+script = ExtResource("1_1im50")
+
+[node name="Background" type="ColorRect" parent="." unique_id=640244744]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.9019608)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1677710578]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 60
+
+[node name="Layout" type="VBoxContainer" parent="MarginContainer" unique_id=1912930017]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/Layout" unique_id=480988138]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_133du")
+horizontal_alignment = 1
+
+[node name="Spacer00" type="Control" parent="MarginContainer/Layout" unique_id=1422953442]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/Layout" unique_id=309699290]
+layout_mode = 2
+
+[node name="Buttons" type="VBoxContainer" parent="MarginContainer/Layout/CenterContainer" unique_id=758652861]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="MarginContainer/Layout/CenterContainer/Buttons" unique_id=1354474038]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.88235295, 0.21568628, 1)
+theme_override_colors/font_hover_color = Color(0.88235295, 0.21568628, 0.21568628, 1)
+theme_override_fonts/font = ExtResource("1_3piex")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1im50")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_133du")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l4u6q")
+text = "Retry"
+
+[node name="SelectStageButton" type="Button" parent="MarginContainer/Layout/CenterContainer/Buttons" unique_id=597600537]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.88235295, 0.21568628, 1)
+theme_override_colors/font_hover_color = Color(0.88235295, 0.21568628, 0.21568628, 1)
+theme_override_fonts/font = ExtResource("1_3piex")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1im50")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_133du")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l4u6q")
+text = "Back to the Van"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/Layout/CenterContainer/Buttons" unique_id=1434956214]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.33333334, 0.88235295, 0.21568628, 1)
+theme_override_colors/font_hover_color = Color(0.88235295, 0.21568628, 0.21568628, 1)
+theme_override_fonts/font = ExtResource("1_3piex")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1im50")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_133du")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_l4u6q")
+text = "Quit"
+
+[node name="Spacer01" type="Control" parent="MarginContainer/Layout" unique_id=2018237112]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EventTriggerLevelSwap3" parent="." unique_id=1181120203 instance=ExtResource("2_1im50")]
+process_mode = 3
+position = Vector2(1050, 223)
+packed_scene_path = "uid://b16l1mn7qrsae"
+target_signal_node = NodePath("../MarginContainer/Layout/CenterContainer/Buttons/SelectStageButton")
+target_signal = "pressed"
+
+[connection signal="pressed" from="MarginContainer/Layout/CenterContainer/Buttons/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Layout/CenterContainer/Buttons/SelectStageButton" to="." method="_on_select_stage_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Layout/CenterContainer/Buttons/QuitButton" to="." method="_on_quit_button_pressed"]

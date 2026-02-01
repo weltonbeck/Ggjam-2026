@@ -10,11 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://d2orrvx1h8cub" path="res://scenes/world/platformer_one_way.tscn" id="8_kthni"]
 [ext_resource type="PackedScene" uid="uid://c0hpr2kbfjb0c" path="res://scenes/world/spring.tscn" id="9_je47g"]
 [ext_resource type="PackedScene" uid="uid://cek766ct4nnfu" path="res://scenes/world/pushable.tscn" id="10_jka2a"]
-[ext_resource type="PackedScene" uid="uid://cqsj51nma5enb" path="res://scenes/entities/player.tscn" id="11_y4sb8"]
+[ext_resource type="PackedScene" uid="uid://cqsj51nma5enb" path="res://scenes/entities/player/player.tscn" id="11_y4sb8"]
 [ext_resource type="PackedScene" uid="uid://uo333qodfjb2" path="res://scenes/world/spikes.tscn" id="12_bncip"]
 [ext_resource type="PackedScene" uid="uid://o5qlibbo0rbb" path="res://scenes/world/coin.tscn" id="13_lvdf0"]
-[ext_resource type="PackedScene" uid="uid://krrsj1yx0kkc" path="res://scenes/entities/drone.tscn" id="14_uktxo"]
+[ext_resource type="PackedScene" uid="uid://jss4lpahhqai" path="res://scenes/entities/drone.tscn" id="14_uktxo"]
 [ext_resource type="PackedScene" uid="uid://b6u1mmpdi08t8" path="res://scenes/world/heart.tscn" id="15_krfca"]
+[ext_resource type="PackedScene" uid="uid://d3x2rrbctw8a6" path="res://screens/game_over_menu.tscn" id="16_u35s2"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_hmwrn"]
 
@@ -24,6 +25,9 @@
 metadata/_edit_lock_ = true
 
 [node name="HudLevels" parent="." unique_id=249876708 instance=ExtResource("1_hmwrn")]
+
+[node name="GameOverMenu" parent="." unique_id=244102891 instance=ExtResource("16_u35s2")]
+layer = 2
 
 [node name="Bg" type="Node2D" parent="." unique_id=1462802297]
 

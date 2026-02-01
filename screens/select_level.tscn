@@ -95,6 +95,8 @@ target_signal = "pressed"
 
 [node name="EventTriggerLevelSwap2" parent="." unique_id=1429015595 instance=ExtResource("4_7513o")]
 position = Vector2(1050, 223)
+packed_scene_path = "uid://p36153ylv85b"
+target_signal_node = NodePath("../MaskButton4")
 target_signal = "pressed"
 
 [node name="ChooseYourMask" type="TextureRect" parent="." unique_id=705727736]

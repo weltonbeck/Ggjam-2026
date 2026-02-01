@@ -4,8 +4,8 @@ extends Control
 
 
 func _ready() -> void:
-	music_slider.value = 1 #Carregar das configs
-	sound_slider.value = 1
+	music_slider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("BGM"))
+	sound_slider.value = AudioServer.get_bus_volume_linear(AudioServer.get_bus_index("SFX"))
 
 
 func _on_value_changed(_value: float, bus_name: String) -> void:
