@@ -7,7 +7,8 @@ enum TYPES {FOGO,MEDUSA,CAVALEIRO,TENGU}
 @export var texture_masked:SpriteFrames
 
 func _ready() -> void:
-	game_state_key = _get_game_state_key_from_type()
+	if not Engine.is_editor_hint():
+		game_state_key = _get_game_state_key_from_type()
 	super._ready()
 
 func get_type_name() -> String:

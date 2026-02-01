@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c31f3cht4hkav"]
+
+[ext_resource type="Script" uid="uid://blhm0ywm8w6n8" path="res://addons/fast_prototype/singletons/audio_manager.gd" id="1_llow2"]
+
+[node name="AudioManager" type="Node2D" unique_id=1775416081]
+script = ExtResource("1_llow2")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=306807508]
+autoplay = true
+
+[node name="BGMFadePlayer" type="AudioStreamPlayer" parent="." unique_id=2072301267]

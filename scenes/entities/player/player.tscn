@@ -1938,7 +1938,7 @@ target = NodePath("..")
 z_index = 1
 position = Vector2(0, -48)
 sprite_frames = ExtResource("3_go8vc")
-animation = &"fall"
+animation = &"win"
 autoplay = "idle"
 metadata/_edit_lock_ = true
 

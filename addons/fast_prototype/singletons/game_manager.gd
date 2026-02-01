@@ -3,15 +3,6 @@ extends Node
 const SAVE_SECRET = "123456"
 var save_helper = SaveHelper.new()
 
-var audio_unlocked := false
-
-func _input(event):
-	if audio_unlocked:
-		return
-
-	if event is InputEventKey or event is InputEventMouseButton:
-		AudioServer.set_bus_mute(0, false)
-		audio_unlocked = true
 
 func save_game(slot:int = 1) -> void:
 	var data:Dictionary = {}

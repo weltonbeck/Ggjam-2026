@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://b5f3v1lp6h51" path="res://scenes/world/masks/mask_tengu.tscn" id="4_ueqr3"]
 [ext_resource type="PackedScene" uid="uid://b6u1mmpdi08t8" path="res://scenes/world/heart.tscn" id="5_u8e6w"]
 [ext_resource type="PackedScene" uid="uid://uo333qodfjb2" path="res://scenes/world/spikes.tscn" id="6_tyeb2"]
+[ext_resource type="PackedScene" uid="uid://cu1excj3djy4t" path="res://scenes/world/masks/mask_medusa.tscn" id="6_v7cn3"]
 [ext_resource type="PackedScene" uid="uid://c0hpr2kbfjb0c" path="res://scenes/world/spring.tscn" id="7_o0qok"]
+[ext_resource type="PackedScene" uid="uid://dtbim8p4riyu2" path="res://scenes/world/masks/mask_cavaleiro.tscn" id="7_ueqr3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fegt6"]
 texture = ExtResource("1_ro847")
@@ -394,6 +396,8 @@ scenes/1/scene = ExtResource("2_3qk56")
 scenes/2/scene = ExtResource("3_v7cn3")
 scenes/3/scene = ExtResource("4_ueqr3")
 scenes/4/scene = ExtResource("5_u8e6w")
+scenes/5/scene = ExtResource("6_v7cn3")
+scenes/6/scene = ExtResource("7_ueqr3")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_7v6be"]
 resource_name = "Interactibles"

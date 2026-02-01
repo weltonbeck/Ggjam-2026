@@ -116,4 +116,3 @@ target_signal = "pressed"
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1103934000]
 stream = ExtResource("13_yhbrq")
 autoplay = true
-bus = &"BGM"

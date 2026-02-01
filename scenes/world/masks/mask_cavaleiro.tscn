@@ -1,58 +1,58 @@
-[gd_scene format=3 uid="uid://b5f3v1lp6h51"]
+[gd_scene format=3 uid="uid://dtbim8p4riyu2"]
 
-[ext_resource type="Script" uid="uid://dfsn285elmudd" path="res://scenes/world/masks/mask.gd" id="1_l2sl7"]
-[ext_resource type="SpriteFrames" uid="uid://df2acvt1lyd64" path="res://scenes/entities/player/player_tengu.tres" id="2_l2sl7"]
-[ext_resource type="Texture2D" uid="uid://yhxfd6ccdk2h" path="res://assets/sprites/char_masks.png" id="3_dh24u"]
-[ext_resource type="AudioStream" uid="uid://bjh7ak5hlu21n" path="res://addons/fast_prototype/assets/sound/collectable.wav" id="4_ta0v2"]
-[ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="5_un1dd"]
-[ext_resource type="PackedScene" uid="uid://f74ox4ew883v" path="res://scenes/world/collected_effect.tscn" id="6_yeo4w"]
+[ext_resource type="Script" uid="uid://dfsn285elmudd" path="res://scenes/world/masks/mask.gd" id="1_qt7f1"]
+[ext_resource type="SpriteFrames" uid="uid://dg2vp757j20lh" path="res://scenes/entities/player/player_cavaleiro.tres" id="2_qt7f1"]
+[ext_resource type="Texture2D" uid="uid://yhxfd6ccdk2h" path="res://assets/sprites/char_masks.png" id="3_kusqa"]
+[ext_resource type="AudioStream" uid="uid://bjh7ak5hlu21n" path="res://addons/fast_prototype/assets/sound/collectable.wav" id="4_rjtar"]
+[ext_resource type="PackedScene" uid="uid://cjnbdckrs8rqo" path="res://addons/fast_prototype/components/trigger/event_trigger_spawner.tscn" id="5_jb7q0"]
+[ext_resource type="PackedScene" uid="uid://f74ox4ew883v" path="res://scenes/world/collected_effect.tscn" id="6_o1jnt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wm57s"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(0, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eyh7i"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(64, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k5vuq"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(128, 128, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pomhv"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_72km5"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gsx2"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3mwjx"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(0, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vt3tk"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(64, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kpjcp"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(128, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mgm8y"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(0, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vlgmn"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(64, 64, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p8dy6"]
-atlas = ExtResource("3_dh24u")
+atlas = ExtResource("3_kusqa")
 region = Rect2(128, 64, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hkkhm"]
@@ -118,27 +118,27 @@ animations = [{
 radius = 16.0
 height = 44.0
 
-[node name="MaskTengu" type="Area2D" unique_id=1622390802 node_paths=PackedStringArray("audio_stream_player") groups=["mask"]]
-script = ExtResource("1_l2sl7")
-type = 3
-texture_masked = ExtResource("2_l2sl7")
+[node name="MaskCavaleiro" type="Area2D" unique_id=1622390802 node_paths=PackedStringArray("audio_stream_player") groups=["mask"]]
+script = ExtResource("1_qt7f1")
+type = 2
+texture_masked = ExtResource("2_qt7f1")
 audio_stream_player = NodePath("AudioCollected")
 metadata/_custom_type_script = "uid://cj8l7cu4a5kn8"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1662968246]
 sprite_frames = SubResource("SpriteFrames_hkkhm")
-animation = &"tengu"
-autoplay = "tengu"
+animation = &"cavaleiro"
+autoplay = "cavaleiro"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1819412162]
 shape = SubResource("CapsuleShape2D_s0mcx")
 
 [node name="AudioCollected" type="AudioStreamPlayer2D" parent="." unique_id=1375594670]
-stream = ExtResource("4_ta0v2")
+stream = ExtResource("4_rjtar")
 bus = &"SFX"
 metadata/_edit_lock_ = true
 
-[node name="EventSpawnerCollectedEffect" parent="." unique_id=744538006 instance=ExtResource("5_un1dd")]
-packed_scene = ExtResource("6_yeo4w")
+[node name="EventSpawnerCollectedEffect" parent="." unique_id=744538006 instance=ExtResource("5_jb7q0")]
+packed_scene = ExtResource("6_o1jnt")
 target_signal_node = NodePath("..")
 target_signal = "collected"
