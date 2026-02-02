@@ -27,6 +27,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lr0vd")
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2126422220]
+stream = ExtResource("15_lr0vd")
+autoplay = true
+bus = &"BGM"
+
 [node name="Background" type="TextureRect" parent="." unique_id=531402106]
 layout_mode = 0
 offset_right = 800.0
@@ -132,8 +137,3 @@ grow_vertical = 0
 texture = ExtResource("17_lr0vd")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=2126422220]
-stream = ExtResource("15_lr0vd")
-autoplay = true
-bus = &"BGM"

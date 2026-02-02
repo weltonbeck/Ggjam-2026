@@ -22,6 +22,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1103934000]
+stream = ExtResource("13_yhbrq")
+autoplay = true
+bus = &"BGM"
+
 [node name="Background" type="TextureRect" parent="." unique_id=531402106]
 layout_mode = 1
 anchors_preset = 15
@@ -112,8 +117,3 @@ position = Vector2(1050, 223)
 packed_scene_path = "uid://j7p6j8l36glp"
 target_signal_node = NodePath("../MarginContainer/Layout/CenterContainer/Menu/CredtisButton")
 target_signal = "pressed"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1103934000]
-stream = ExtResource("13_yhbrq")
-autoplay = true
-bus = &"BGM"
