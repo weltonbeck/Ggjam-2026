@@ -37,10 +37,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_isa8o"]
 radius = 17.029387
 
-[node name="BulletFogo" type="Area2D" unique_id=1765166060]
+[node name="BulletFogo" type="Area2D" unique_id=1765166060 node_paths=PackedStringArray("visible_on_screen_enabler_2d")]
 collision_layer = 64
 collision_mask = 73
 script = ExtResource("1_hmlpw")
+visible_on_screen_enabler_2d = NodePath("VisibleOnScreenEnabler2D")
 speed = 200.0
 hit_once = true
 
@@ -57,3 +58,5 @@ debug_color = Color(0.9706649, 0, 0.45639497, 0.41960785)
 packed_scene = ExtResource("4_58b2d")
 target_signal_node = NodePath("..")
 target_signal = "did_damage"
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." unique_id=375197108]

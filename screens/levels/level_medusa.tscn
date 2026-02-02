@@ -135,7 +135,7 @@ position = Vector2(3152, 512)
 position = Vector2(3824, 512)
 
 [node name="Player" parent="." unique_id=1061758820 instance=ExtResource("11_y4sb8")]
-position = Vector2(3120, 816)
+position = Vector2(102, 418)
 
 [node name="LevelExit" type="Node2D" parent="." unique_id=77019639]
 position = Vector2(2416, 322)
