@@ -43,7 +43,7 @@ class_name State
 
 
 @export_group("Audio")
-@export var audio_stream_player:AudioStreamPlayer2D
+@export var audio_stream_player:AudioStreamPlayer
 
 ## Referência interna para a StateMachine que gerencia este estado.
 ## É automaticamente definida pela própria StateMachine ao iniciar.

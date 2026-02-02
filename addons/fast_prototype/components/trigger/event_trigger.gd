@@ -76,7 +76,7 @@ enum TYPES { MULTIPLE, SEQUENCE }
 
 @export_category("Sound")
 ## Som reproduzido no momento da ativação.
-@export var trigger_sound: AudioStreamPlayer2D = null
+@export var trigger_sound: AudioStreamPlayer = null
 
 
 

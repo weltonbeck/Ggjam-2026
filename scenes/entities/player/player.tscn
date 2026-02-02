@@ -1966,12 +1966,8 @@ animation_tree_blend_param = "parameters/base/blend_position"
 animated_sprite = NodePath("../../AnimatedSprite2D")
 animated_sprite_animation_name = "walk"
 
-[node name="Jump" type="Node" parent="StateMachine" unique_id=2030144496 node_paths=PackedStringArray("animation_tree", "animated_sprite", "audio_stream_player")]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=2030144496 node_paths=PackedStringArray("audio_stream_player")]
 script = ExtResource("7_j7xw4")
-animation_tree = NodePath("../../AnimationTree")
-animation_tree_animation_name = "base"
-animated_sprite = NodePath("../../AnimatedSprite2D")
-animated_sprite_animation_name = "jump"
 audio_stream_player = NodePath("../../AudioJump")
 
 [node name="DoubleJump" type="Node" parent="StateMachine" unique_id=200493619 node_paths=PackedStringArray("animation_tree", "animated_sprite", "audio_stream_player")]
@@ -1980,7 +1976,7 @@ animation_tree = NodePath("../../AnimationTree")
 animation_tree_animation_name = "base"
 animated_sprite = NodePath("../../AnimatedSprite2D")
 animated_sprite_animation_name = "jump"
-audio_stream_player = NodePath("../../AudioJump")
+audio_stream_player = NodePath("")
 
 [node name="Fall" type="Node" parent="StateMachine" unique_id=1815315344 node_paths=PackedStringArray("animation_tree", "animated_sprite")]
 script = ExtResource("8_medo6")
@@ -2191,19 +2187,19 @@ parameters/crouch/blend_position = 0.0
 parameters/dash/blend_position = 0.0
 parameters/super_dash/blend_position = 0.0
 
-[node name="AudioJump" type="AudioStreamPlayer2D" parent="." unique_id=831789885]
+[node name="AudioJump" type="AudioStreamPlayer" parent="." unique_id=1906003962]
 stream = ExtResource("15_lnswd")
 metadata/_edit_lock_ = true
 
-[node name="AudioHurt" type="AudioStreamPlayer2D" parent="." unique_id=2130968129]
+[node name="AudioHurt" type="AudioStreamPlayer" parent="." unique_id=735990656]
 stream = ExtResource("16_38dyx")
 metadata/_edit_lock_ = true
 
-[node name="AudioAttack" type="AudioStreamPlayer2D" parent="." unique_id=548335628]
+[node name="AudioAttack" type="AudioStreamPlayer" parent="." unique_id=855573350]
 stream = ExtResource("17_38dyx")
 metadata/_edit_lock_ = true
 
-[node name="AudioShoot" type="AudioStreamPlayer2D" parent="." unique_id=404962667]
+[node name="AudioShoot" type="AudioStreamPlayer" parent="." unique_id=1568301876]
 stream = ExtResource("28_6u2ft")
 metadata/_edit_lock_ = true
 

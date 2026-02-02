@@ -16,7 +16,7 @@ enum STATES {DEFAULT,HITED}
 @export var animation_blend_param: String
 
 @export_category("Audio")
-@export var sound:AudioStreamPlayer2D ## barulho ao ser acertado
+@export var sound:AudioStreamPlayer ## barulho ao ser acertado
 
 signal hited(direction: Vector2, transmit_limit:int) # foi atingido
 

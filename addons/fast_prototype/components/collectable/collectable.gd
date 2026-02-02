@@ -17,7 +17,7 @@ class_name Collectable
 
 @export_group("Audio")
 ## Player de áudio opcional, executado no momento da coleta
-@export var audio_stream_player: AudioStreamPlayer2D
+@export var audio_stream_player: AudioStreamPlayer
 
 ## Flag interna que impede a coleta múltipla no mesmo frame
 var _collected: bool = false

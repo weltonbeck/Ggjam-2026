@@ -1,5 +1,5 @@
 @icon("res://addons/fast_prototype/assets/icons/trigger.svg")
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
 
 @export_category("Signal Trigger")
 
