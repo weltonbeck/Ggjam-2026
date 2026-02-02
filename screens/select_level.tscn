@@ -96,7 +96,7 @@ stretch_mode = 5
 
 [node name="EventTriggerLevelSwap" parent="." unique_id=1719558936 instance=ExtResource("4_7513o")]
 position = Vector2(1050, 223)
-packed_scene_path = "uid://tk5r06703lr4"
+packed_scene_path = "uid://dj2n75uei6m02"
 target_signal_node = NodePath("../MaskButton1")
 target_signal = "pressed"
 
@@ -108,7 +108,7 @@ target_signal = "pressed"
 
 [node name="EventTriggerLevelSwap3" parent="." unique_id=718244522 instance=ExtResource("4_7513o")]
 position = Vector2(1050, 223)
-packed_scene_path = "uid://22v0mhq3mryc"
+packed_scene_path = "uid://dsito5fnl28s4"
 target_signal_node = NodePath("../MaskButton3")
 target_signal = "pressed"
 

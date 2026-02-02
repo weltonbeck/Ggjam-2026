@@ -1,6 +1,8 @@
 extends HitBox
 class_name Bullet
 
+@export var visible_on_screen_enabler_2d: VisibleOnScreenEnabler2D
+
 @export var turn_stone: bool = false
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -12,6 +14,11 @@ func _ready() -> void:
 	super._ready()
 	body_entered.connect(_on_body_entered)
 	did_damage.connect(_on_did_damage)
+	if visible_on_screen_enabler_2d:
+		visible_on_screen_enabler_2d.screen_exited.connect(_on_screen_exited)
+
+func _on_screen_exited() -> void:
+	call_deferred("queue_free")
 	
 func _process(delta: float) -> void:
 	if direction == Vector2.ZERO:
