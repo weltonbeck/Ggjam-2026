@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://j7p6j8l36glp"]
 
 [ext_resource type="PackedScene" uid="uid://cnh1puf212hhs" path="res://addons/fast_prototype/components/trigger/event_trigger_level_swap.tscn" id="1_j0jnr"]
-[ext_resource type="Texture2D" uid="uid://c31h8dphdi8vx" path="res://assets/bg/bg_start_game.png" id="1_qkjnt"]
+[ext_resource type="Texture2D" uid="uid://cgnby7qpl1720" path="res://assets/bg/bg_final.png" id="1_w0rrl"]
 [ext_resource type="Texture2D" uid="uid://2csbevtqnq8q" path="res://assets/hud/CREDITS.png" id="2_h3olt"]
 [ext_resource type="FontFile" uid="uid://b4aqvboegvttq" path="res://assets/font/Urbana-®.ttf" id="3_w0rrl"]
+[ext_resource type="AudioStream" uid="uid://djibx7ejvgbre" path="res://assets/musics/Spy Glass.mp3" id="5_b3bfq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b3bfq"]
 
@@ -26,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_qkjnt")
+texture = ExtResource("1_w0rrl")
 expand_mode = 1
 stretch_mode = 4
 
@@ -61,36 +62,40 @@ layout_mode = 2
 
 [node name="Name01" type="Label" parent="MarginContainer/VBoxContainer/Names" unique_id=720152329]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
 text = "Welton Beck - tomwb1@gmail.com"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Name02" type="Label" parent="MarginContainer/VBoxContainer/Names" unique_id=406592802]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
 text = "Bcsilva - bcs9000@gmail.com"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Name03" type="Label" parent="MarginContainer/VBoxContainer/Names" unique_id=810297950]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
 text = "Lucas Fowl - lucasfow91@gmail.com"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Name04" type="Label" parent="MarginContainer/VBoxContainer/Names" unique_id=1141852088]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
 text = "Jesong - jefferson.adrian@gmail.com"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Name05" type="Label" parent="MarginContainer/VBoxContainer/Names" unique_id=419339932]
-layout_mode = 2
-text = "nome e email "
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Name06" type="Label" parent="MarginContainer/VBoxContainer/Names" unique_id=1534798408]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 7
 text = "Efraim Marcatto - efraimmarcatto@gmail.com"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -119,3 +124,8 @@ position = Vector2(1050, 223)
 packed_scene_path = "uid://cv1dtkuu78hsg"
 target_signal_node = NodePath("../MarginContainer/VBoxContainer/BackButton")
 target_signal = "pressed"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=613538042]
+stream = ExtResource("5_b3bfq")
+autoplay = true
+bus = &"BGM"

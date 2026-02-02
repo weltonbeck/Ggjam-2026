@@ -2193,22 +2193,18 @@ parameters/super_dash/blend_position = 0.0
 
 [node name="AudioJump" type="AudioStreamPlayer2D" parent="." unique_id=831789885]
 stream = ExtResource("15_lnswd")
-bus = &"SFX"
 metadata/_edit_lock_ = true
 
 [node name="AudioHurt" type="AudioStreamPlayer2D" parent="." unique_id=2130968129]
 stream = ExtResource("16_38dyx")
-bus = &"SFX"
 metadata/_edit_lock_ = true
 
 [node name="AudioAttack" type="AudioStreamPlayer2D" parent="." unique_id=548335628]
 stream = ExtResource("17_38dyx")
-bus = &"SFX"
 metadata/_edit_lock_ = true
 
 [node name="AudioShoot" type="AudioStreamPlayer2D" parent="." unique_id=404962667]
 stream = ExtResource("28_6u2ft")
-bus = &"SFX"
 metadata/_edit_lock_ = true
 
 [node name="ShootMarker2D" type="Marker2D" parent="." unique_id=1282097011]
